@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About DeShea Witcher | Ridgeline Automation — Roanoke</title>
+<meta name="description" content="Ridgeline Automation was founded by DeShea Witcher — 15 years in Roanoke, 15+ years building AI-driven growth systems. Local expert. Real credentials.">
+<meta property="og:title" content="About DeShea Witcher | Ridgeline Automation">
+<meta property="og:description" content="Not a vendor. A neighbor. Ridgeline was built by someone who has spent 15 years in Roanoke watching local businesses leave efficiency on the table.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ridgelineautomation.io/about/">
+<meta property="og:site_name" content="Ridgeline Automation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About DeShea Witcher | Ridgeline Automation">
+<meta name="twitter:description" content="Not a vendor. A neighbor. Ridgeline was built by someone who has spent 15 years in Roanoke watching local businesses leave efficiency on the table.">
+<link rel="canonical" href="https://ridgelineautomation.io/about/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Ridgeline Automation",
+  "url": "https://ridgelineautomation.io/about/",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "DeShea Witcher",
+    "jobTitle": "Founder, Ridgeline Automation",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Roanoke",
+      "addressRegion": "VA",
+      "addressCountry": "US"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Ferrum College"
+    },
+    "knowsAbout": ["AI automation", "workflow automation", "marketing technology", "digital strategy", "SEO", "account-based marketing"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Ridgeline Automation",
+  "founder": {
+    "@type": "Person",
+    "name": "DeShea Witcher"
+  },
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Roanoke, Virginia"
+  },
+  "url": "https://ridgelineautomation.io",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Roanoke",
+    "addressRegion": "VA",
+    "addressCountry": "US"
+  }
+}
+</script>
+<script>
+function submitForm(btn) {
+  var name = document.getElementById('cf-name') ? document.getElementById('cf-name').value.trim() : '';
+  var email = document.getElementById('cf-email') ? document.getElementById('cf-email').value.trim() : '';
+  var phone = document.getElementById('cf-phone') ? document.getElementById('cf-phone').value.trim() : '';
+  var biz = document.getElementById('cf-biz') ? document.getElementById('cf-biz').value.trim() : '';
+  var city = document.getElementById('cf-city') ? document.getElementById('cf-city').value.trim() : '';
+  var size = document.getElementById('cf-size') ? document.getElementById('cf-size').value : '';
+  var msg = document.getElementById('cf-msg') ? document.getElementById('cf-msg').value.trim() : '';
+
+  if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+
+  // Clear previous errors
+  document.querySelectorAll('.cta-form-input').forEach(function(el) { el.classList.remove('error'); });
+
+  var valid = true;
+
+  if (!name) {
+    var nameEl = document.getElementById('cf-name');
+    if (nameEl) nameEl.classList.add('error');
+    valid = false;
+  }
+
+  var emailOk = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    var emailEl = document.getElementById('cf-email');
+    if (emailEl) emailEl.classList.add('error');
+    valid = false;
+  }
+
+  var phoneOk = !phone || /^[\d\s\(\)\-\+\.]{7,15}$/.test(phone);
+  if (phone && !phoneOk) {
+    var phoneEl = document.getElementById('cf-phone');
+    if (phoneEl) phoneEl.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    btn.textContent = 'Please fix the fields above';
+    setTimeout(function(){ btn.textContent = btn.dataset.orig; }, 2500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  function showSuccess() {
+    ['contact-form','form-wrap'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+    var s = document.getElementById('form-success');
+    if (s) { s.style.display='block'; s.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+
+  fetch('https://formspree.io/f/xdayodbr', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name:name, email:email, phone:phone, business:biz, city:city, team_size:size, message:msg, page:window.location.pathname })
+  })
+  .then(function(r) {
+    if (r.ok) { showSuccess(); }
+    else { btn.disabled=false; btn.textContent='Something went wrong, try again'; setTimeout(function(){ btn.textContent=btn.dataset.orig; },3000); }
+  })
+  .catch(function() {
+    var subj = encodeURIComponent('Discovery Call - ' + (biz||name));
+    var body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nBusiness: '+biz+'\nCity: '+city+'\n\n'+msg);
+    window.location.href = 'mailto:hello@ridgelineautomation.io?subject='+subj+'&body='+body;
+    btn.disabled=false; btn.textContent=btn.dataset.orig;
+  });
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #0e0e0e; --paper: #f2ede6; --rust: #c94f2a; --steel: #3a4a56; --mist: #8a9aa6; --cream: #e8e2d8; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 60px;
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--paper);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--rust); }
+
+  /* ── NAV LINKS ── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0 1.1rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .nav-link:hover, .nav-item:hover > .nav-link { color: var(--paper); }
+  .nav-link .nav-arrow {
+    font-size: 0.5rem;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .nav-item:hover > .nav-link .nav-arrow { transform: rotate(180deg); opacity: 1; }
+
+  /* ── DROPDOWNS ── */
+  .nav-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    border-top: 2px solid var(--rust);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.45);
+    text-decoration: none;
+    padding: 0.75rem 1.2rem;
+    border-bottom: 1px solid rgba(242,237,230,0.04);
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-dropdown-link:last-child { border-bottom: none; }
+  .nav-dropdown-link:hover { background: rgba(242,237,230,0.05); color: var(--paper); }
+  .nav-dropdown-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.2rem 0.3rem;
+    opacity: 0.8;
+  }
+
+  /* ── NAV CTA ── */
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--rust);
+    border: none;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: #e05a30; }
+
+  /* ── HAMBURGER (mobile) ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.25s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: #0e0e0e;
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    padding: 1rem 0 1.5rem;
+    z-index: 99;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .nav-mobile.open { display: block; }
+  .nav-mobile-section { padding: 0.5rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .nav-mobile-section:last-child { border-bottom: none; }
+  .nav-mobile-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.5rem 0.3rem;
+  }
+  .nav-mobile-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0.65rem 1.5rem;
+    transition: color 0.15s;
+  }
+  .nav-mobile-link:hover { color: var(--paper); }
+  .nav-mobile-cta {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--rust);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    margin: 1rem 1.5rem 0;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
+
+  /* ── HERO ── */
+  .about-hero {
+    padding: 9rem 3rem 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: end;
+  }
+  .hero-text { padding-bottom: 5rem; }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); margin-bottom: 2rem; }
+  .breadcrumb a { color: var(--rust); text-decoration: none; }
+  .page-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.2rem; }
+  .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 6vw, 7rem); line-height: 0.93; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 2rem; }
+  .hero-headline .accent { color: var(--rust); }
+  .hero-body { font-size: 1.1rem; line-height: 1.75; color: var(--mist); max-width: 480px; }
+  .hero-body strong { color: var(--paper); font-weight: 400; }
+
+  /* ── PHOTO COLUMN ── */
+  .photo-col { position: relative; }
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--rust);
+  }
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .photo-initials {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: rgba(242,237,230,0.06);
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+  .photo-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.2);
+  }
+  .photo-caption {
+    padding: 1.2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .caption-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--paper); }
+  .caption-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); }
+  .caption-location { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); margin-top: 0.2rem; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: rgba(242,237,230,0.07); margin: 0 3rem; }
+
+  /* ── CREDENTIAL BAR ── */
+  .cred-bar {
+    background: #0a0a0a;
+    padding: 0;
+    border-bottom: 1px solid rgba(242,237,230,0.06);
+    overflow: hidden;
+  }
+  .cred-track {
+    display: flex;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+    padding: 1rem 0;
+  }
+  .cred-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.35);
+    flex-shrink: 0;
+    padding: 0 2rem;
+  }
+  .cred-item span { color: var(--rust); margin-right: 0.5rem; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── STORY SECTION ── */
+  .story-section { padding: 7rem 3rem; background: var(--ink); }
+  .story-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+  .story-aside { position: sticky; top: 7rem; }
+  .section-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .section-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.5rem); line-height: 1; letter-spacing: 0.02em; color: var(--paper); }
+  .story-body p { font-size: 1.05rem; line-height: 1.8; color: rgba(242,237,230,0.65); margin-bottom: 1.5rem; }
+  .story-body p strong { color: var(--paper); font-weight: 400; }
+  .story-body p em { color: var(--rust); font-style: normal; }
+
+  /* ── NUMBERS ── */
+  .numbers-section { background: var(--paper); padding: 6rem 3rem; }
+  .numbers-inner { max-width: 1100px; margin: 0 auto; }
+  .numbers-section .section-tag { color: var(--rust); }
+  .numbers-section .section-headline { color: var(--ink); margin-bottom: 3.5rem; }
+  .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(14,14,14,0.08); }
+  .number-card { background: var(--paper); padding: 2.5rem 2rem; transition: background 0.2s; }
+  .number-card:hover { background: var(--cream); }
+  .number-big { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--ink); margin-bottom: 0.5rem; }
+  .number-big span { color: var(--rust); }
+  .number-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #666; line-height: 1.5; }
+
+  /* ── CREDENTIALS GRID ── */
+  .creds-section { background: #0a0a0a; padding: 6rem 3rem; }
+  .creds-inner { max-width: 1100px; margin: 0 auto; }
+  .creds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(242,237,230,0.06); margin-top: 3rem; }
+  .cred-card { background: #0a0a0a; padding: 2.2rem 2rem; transition: background 0.2s; }
+  .cred-card:hover { background: #111; }
+  .cred-card-icon { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.8rem; }
+  .cred-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.6rem; }
+  .cred-card-body { font-size: 0.85rem; line-height: 1.6; color: var(--mist); }
+
+  /* ── WHY ROANOKE ── */
+  .roanoke-section { background: var(--steel); padding: 6rem 3rem; }
+  .roanoke-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .roanoke-section .section-tag { color: rgba(242,237,230,0.5); }
+  .roanoke-section .section-headline { color: var(--paper); margin-bottom: 1.5rem; }
+  .roanoke-body p { font-size: 1rem; line-height: 1.8; color: rgba(242,237,230,0.65); margin-bottom: 1.2rem; }
+  .roanoke-body p strong { color: var(--paper); font-weight: 400; }
+  .roanoke-facts { display: flex; flex-direction: column; gap: 1px; }
+  .roanoke-fact { background: rgba(242,237,230,0.06); padding: 1.4rem 1.8rem; border-left: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .roanoke-fact:hover { border-left-color: var(--rust); background: rgba(242,237,230,0.09); }
+  .fact-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.3rem; }
+  .fact-text { font-size: 0.9rem; line-height: 1.5; color: rgba(242,237,230,0.7); }
+
+  /* ── CTA ── */
+  .cta-section { background: var(--rust); padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: 'RIDGELINE'; font-family: 'Bebas Neue', sans-serif; font-size: 18rem; color: rgba(0,0,0,0.07); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; letter-spacing: 0.05em; }
+  .cta-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; color: var(--ink); margin-bottom: 1.2rem; letter-spacing: 0.02em; }
+  .cta-sub { font-size: 1.05rem; color: rgba(14,14,14,0.6); margin-bottom: 3rem; line-height: 1.65; }
+
+  /* ── FORM ── */
+  .cta-form { max-width: 560px; margin: 0 auto 1.5rem; text-align: left; }
+  .cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+  .cta-form-field { display: flex; flex-direction: column; }
+  .cta-form-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 0.8rem 0.25rem; color: rgba(14,14,14,0.5); background: rgba(14,14,14,0.1); }
+  .cta-form-input { background: rgba(14,14,14,0.12); border: none; border-bottom: 1px solid rgba(14,14,14,0.18); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; padding: 0.7rem 0.8rem; outline: none; transition: background 0.2s; resize: none; }
+  .cta-form-input::placeholder { color: rgba(14,14,14,0.32); }
+  .cta-form-input:focus { background: rgba(14,14,14,0.2); }
+  .cta-form-textarea { min-height: 80px; }
+  .cta-form-submit { width: 100%; margin-top: 1px; font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--ink); color: var(--paper); border: none; padding: 1.1rem 2rem; cursor: pointer; transition: opacity 0.2s, transform 0.15s; font-weight: 500; }
+  .cta-form-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+  .cta-form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .cta-form-note { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem; text-align: center; color: rgba(14,14,14,0.42); }
+  .cta-form-success { font-family: 'DM Mono', monospace; font-size: 0.82rem; letter-spacing: 0.06em; text-align: center; padding: 1.2rem; margin-top: 0.5rem; color: var(--ink); background: rgba(14,14,14,0.1); }
+
+  .cta-form-input.error { border-bottom: 2px solid #e05a30 !important; background: rgba(201,79,42,0.06) !important; }
+  .cta-form-error { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: #e05a30; padding: 0.3rem 0.8rem; display: none; }
+  .cta-form-error.show { display: block; }
+  @media (max-width: 600px) { .cta-form-row { grid-template-columns: 1fr; } }
+
+  /* ── FOOTER ── */
+  footer { background: #080808; padding: 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(242,237,230,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--paper); }
+  .footer-logo span { color: var(--rust); }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mist); text-align: center; text-transform: uppercase; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .about-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 0; gap: 3rem; }
+    .photo-col { order: -1; }
+    .photo-frame { aspect-ratio: 1/1; }
+    .hero-text { padding-bottom: 3rem; }
+    .story-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .story-aside { position: static; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .creds-grid { grid-template-columns: 1fr; }
+    .roanoke-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .story-section, .numbers-section, .creds-section, .roanoke-section { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .cta-section::before { font-size: 5rem; }
+  }
+
+  /* ── SITEMAP FOOTER ── */
+  .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .sitemap-heading { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .sitemap-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: rgba(242,237,230,0.35); text-decoration: none; margin-bottom: 0.45rem; transition: color 0.2s; line-height: 1.4; }
+  .sitemap-link:hover { color: var(--paper); }
+  @media (max-width: 900px) { .sitemap-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .anim-hidden { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .anim-visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
+
+  <div class="nav-links">
+
+    <!-- Services -->
+    <div class="nav-item">
+      <span class="nav-link">Services <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Our process</div>
+        <a href="/free-discovery-call/" class="nav-dropdown-link">Free Discovery Call</a>
+        <a href="/services/discovery-audit/" class="nav-dropdown-link">Workflow Discovery Audit</a>
+        <a href="/services/automation-build/" class="nav-dropdown-link">Custom Automation Build</a>
+        <a href="/services/maintenance-retainer/" class="nav-dropdown-link">Maintenance Retainer</a>
+      </div>
+    </div>
+
+    <!-- Service Areas -->
+    <div class="nav-item">
+      <span class="nav-link">Service Areas <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Roanoke Valley &amp; NRV</div>
+        <a href="/roanoke/" class="nav-dropdown-link">Roanoke, VA</a>
+        <a href="/salem/" class="nav-dropdown-link">Salem, VA</a>
+        <a href="/blacksburg/" class="nav-dropdown-link">Blacksburg, VA</a>
+        <a href="/christiansburg/" class="nav-dropdown-link">Christiansburg, VA</a>
+        <a href="/vinton/" class="nav-dropdown-link">Vinton, VA</a>
+        <a href="/lynchburg/" class="nav-dropdown-link">Lynchburg, VA</a>
+      </div>
+    </div>
+
+    <!-- Industries -->
+    <div class="nav-item">
+      <span class="nav-link">Industries <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Specialized pages</div>
+        <a href="/roanoke/healthcare/" class="nav-dropdown-link">Healthcare — Roanoke</a>
+        <a href="/salem/manufacturing/" class="nav-dropdown-link">Manufacturing — Salem</a>
+        <a href="/blacksburg/startups/" class="nav-dropdown-link">Startups — Blacksburg</a>
+        <a href="/lynchburg/healthcare/" class="nav-dropdown-link">Healthcare — Lynchburg</a>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="nav-item">
+      <a href="/about/" class="nav-link">About</a>
+    </div>
+
+  </div>
+
+  <a class="nav-cta" href="#cta">Free Discovery Call</a>
+
+  <!-- Hamburger -->
+  <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Services</div>
+    <a href="/free-discovery-call/" class="nav-mobile-link">Free Discovery Call</a>
+    <a href="/services/discovery-audit/" class="nav-mobile-link">Workflow Discovery Audit</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Custom Automation Build</a>
+    <a href="/services/maintenance-retainer/" class="nav-mobile-link">Maintenance Retainer</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Service Areas</div>
+    <a href="/roanoke/" class="nav-mobile-link">Roanoke, VA</a>
+    <a href="/salem/" class="nav-mobile-link">Salem, VA</a>
+    <a href="/blacksburg/" class="nav-mobile-link">Blacksburg, VA</a>
+    <a href="/christiansburg/" class="nav-mobile-link">Christiansburg, VA</a>
+    <a href="/vinton/" class="nav-mobile-link">Vinton, VA</a>
+    <a href="/lynchburg/" class="nav-mobile-link">Lynchburg, VA</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Industries</div>
+    <a href="/roanoke/healthcare/" class="nav-mobile-link">Healthcare — Roanoke</a>
+    <a href="/salem/manufacturing/" class="nav-mobile-link">Manufacturing — Salem</a>
+    <a href="/blacksburg/startups/" class="nav-mobile-link">Startups — Blacksburg</a>
+    <a href="/lynchburg/healthcare/" class="nav-mobile-link">Healthcare — Lynchburg</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="/about/" class="nav-mobile-link">About DeShea Witcher</a>
+  </div>
+  <a href="#cta" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Free Discovery Call &rarr;</a>
+</div>
+
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="hero-text">
+    <p class="breadcrumb"><a href="/">Ridgeline Automation</a> / About</p>
+    <p class="page-eyebrow">// Founded in Roanoke, VA</p>
+    <h1 class="hero-headline">Not a<br>Vendor.<br>A <span class="accent">Neighbor.</span></h1>
+    <p class="hero-body">
+      Ridgeline Automation was built by someone who has spent 15 years in Roanoke watching local businesses leave real money on the table — not from bad strategy, but from <strong>manual processes that nobody ever got around to fixing.</strong>
+      <br><br>
+      This is the company I built to fix that. For this market. By someone who actually lives here.
+    </p>
+  </div>
+
+  <div class="photo-col">
+    <div class="photo-frame">
+      <img src="/deshea-witcher.jpg" alt="DeShea Witcher — Founder, Ridgeline Automation" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+    </div>
+    <div class="photo-caption">
+      <div class="caption-name">DeShea Witcher</div>
+      <div class="caption-title">Founder, Ridgeline Automation</div>
+      <div class="caption-location">// Roanoke, Virginia · 15 years local</div>
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIAL MARQUEE -->
+<div class="cred-bar">
+  <div class="cred-track">
+    <div class="cred-item"><span>◆</span> $42M+ Pipeline Built</div>
+    <div class="cred-item"><span>◆</span> 15 Years in Roanoke</div>
+    <div class="cred-item"><span>◆</span> 5.63x ROAS Achieved</div>
+    <div class="cred-item"><span>◆</span> Cybersecurity Marketer of the Year</div>
+    <div class="cred-item"><span>◆</span> 60% Manual Task Reduction via AI</div>
+    <div class="cred-item"><span>◆</span> Google Ads Certified</div>
+    <div class="cred-item"><span>◆</span> 47% CAC Reduction</div>
+    <div class="cred-item"><span>◆</span> MIT Sloan AI in Business</div>
+    <div class="cred-item"><span>◆</span> 175% Traffic Growth</div>
+    <div class="cred-item"><span>◆</span> Ferrum College — B.S. Marketing</div>
+    <!-- dupe for seamless loop -->
+    <div class="cred-item"><span>◆</span> $42M+ Pipeline Built</div>
+    <div class="cred-item"><span>◆</span> 15 Years in Roanoke</div>
+    <div class="cred-item"><span>◆</span> 5.63x ROAS Achieved</div>
+    <div class="cred-item"><span>◆</span> Cybersecurity Marketer of the Year</div>
+    <div class="cred-item"><span>◆</span> 60% Manual Task Reduction via AI</div>
+    <div class="cred-item"><span>◆</span> Google Ads Certified</div>
+    <div class="cred-item"><span>◆</span> 47% CAC Reduction</div>
+    <div class="cred-item"><span>◆</span> MIT Sloan AI in Business</div>
+    <div class="cred-item"><span>◆</span> 175% Traffic Growth</div>
+    <div class="cred-item"><span>◆</span> Ferrum College — B.S. Marketing</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-aside">
+      <p class="section-tag">// The story</p>
+      <h2 class="section-headline">Why I<br>Built<br>This.</h2>
+    </div>
+    <div class="story-body">
+      <p>
+        I've spent my career building growth systems. Pipeline generation for global brands. Paid media frameworks that turned losing ad accounts into 5x return engines. AI-driven content operations that produced enterprise-scale output with lean teams. I've done that work at a high level — and the throughline in all of it has been the same: <strong>find the manual process, automate it, measure the result.</strong>
+      </p>
+      <p>
+        What I kept noticing was a gap. The tools I was using to drive results for large organizations — the AI workflows, the automation stacks, the data pipelines — they weren't making it to the businesses I drove past every day here in Roanoke. The HVAC company on Williamson Road. The accounting firm downtown. The medical practice on Electric Road running scheduling off a paper calendar and a prayer.
+      </p>
+      <p>
+        <em>Not because those businesses couldn't benefit from it. Because nobody local was offering it to them.</em>
+      </p>
+      <p>
+        The automation vendors serving this market are remote. They don't know the difference between Roanoke City and Roanoke County. They've never heard of Carilion. They deliver a Zap, collect a check, and disappear — and when the automation breaks six months later, the business owner is back to doing it by hand.
+      </p>
+      <p>
+        <strong>Ridgeline is the version of this that should exist for this market.</strong> Built by someone with the actual technical and strategic background to do it right. Maintained by someone with a local phone number and a reason to care whether it keeps working.
+      </p>
+      <p>
+        I've lived in Roanoke for 15 years. This is my market. These are my neighbors. And I'm tired of watching them leave efficiency on the table because the right partner never showed up.
+      </p>
+      <p>
+        That's the whole pitch. No fluff.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <div class="numbers-inner">
+    <p class="section-tag">// By the numbers</p>
+    <h2 class="section-headline">The Work<br>Speaks First.</h2>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="number-big">$<span>42</span>M</div>
+        <div class="number-label">Marketing pipeline built over 4 years for a global enterprise brand</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">5.<span>63</span>x</div>
+        <div class="number-label">ROAS achieved — up from 0.81x at the start of the engagement</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big"><span>60</span>%</div>
+        <div class="number-label">Reduction in manual tasks by leading AI integration across marketing ops</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big"><span>47</span>%</div>
+        <div class="number-label">CAC reduction through AI-assisted lead scoring and channel optimization</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big"><span>175</span>%</div>
+        <div class="number-label">Organic and paid traffic growth driven through AI content and SEO strategy</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big"><span>250</span>%</div>
+        <div class="number-label">Conversion increase for a regional credit union through multi-channel digital campaigns</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big"><span>113</span>%</div>
+        <div class="number-label">Increase in university applications via marketing automation and lead nurturing</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">$<span>8</span>M</div>
+        <div class="number-label">Annual digital ad budgets managed across healthcare, higher ed, and B2B clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="creds-section">
+  <div class="creds-inner">
+    <p class="section-tag">// Background & credentials</p>
+    <h2 class="section-headline">The Receipts.</h2>
+    <div class="creds-grid">
+      <div class="cred-card">
+        <div class="cred-card-icon">// Experience</div>
+        <div class="cred-card-title">15+ Years in Digital & Marketing Ops</div>
+        <div class="cred-card-body">Career spanning agency, e-commerce, and enterprise SaaS — building growth and automation systems for brands ranging from regional businesses to global cybersecurity companies. Director-level to VP at every stop.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">// Agency Roots</div>
+        <div class="cred-card-title">Deep Roanoke Market Experience</div>
+        <div class="cred-card-body">Spent five years as Director of Digital Marketing at a Roanoke-based agency managing $8M+ in annual digital ad budgets for clients including HCA Virginia, Virginia Tech, and Medeco — learning this market from the inside.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">// AI & Automation</div>
+        <div class="cred-card-title">Real AI Implementation Experience</div>
+        <div class="cred-card-body">Led the integration of AI across content production, lead scoring, SEO, and ad forecasting at enterprise scale — achieving a 60% reduction in manual tasks and building AI-driven content engines producing output at scale.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">// Certifications</div>
+        <div class="cred-card-title">Certified Digital Marketing Professional</div>
+        <div class="cred-card-body">CDMP, Google Ads, Google Analytics (GAIQ), HubSpot Content Marketing, Demandbase ABM, Pragmatic Institute Product Marketing (PMC), and AI in Business programs through Coursera and MIT Sloan.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">// Recognition</div>
+        <div class="cred-card-title">Cybersecurity Marketer of the Year</div>
+        <div class="cred-card-body">Earned Cybersecurity Marketer of the Year and Marketing Executive of the Year — recognizing leadership in AI-driven growth marketing at the enterprise level.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">// Education</div>
+        <div class="cred-card-title">B.S. Marketing — Ferrum College</div>
+        <div class="cred-card-body">Bachelor of Science in Marketing, Ferrum College, Virginia. 3.4 GPA. Followed by two decades of continuing education in digital, AI, and marketing technology — because the field doesn't slow down and neither do I.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ROANOKE -->
+<section class="roanoke-section">
+  <div class="roanoke-inner">
+    <div>
+      <p class="section-tag">// Why Roanoke</p>
+      <h2 class="section-headline">This Is<br>Home.<br>Not a<br>Market.</h2>
+      <div class="roanoke-body">
+        <p>I've been in Roanoke for 15 years. I've watched this city grow — the West End, the Grandin Village scene, the Market District coming back to life. I've also watched its businesses struggle with the same operational inefficiencies year after year while enterprise software vendors ignored them and remote agencies took their money and left.</p>
+        <p><strong>That's not a business opportunity to me — it's a problem I want to solve for my community.</strong> There's a version of this where I build automations for companies in San Francisco at three times the rate. I'm not doing that version.</p>
+        <p>I'm doing this one. For the businesses I drive past every day. With a phone number that actually rings here.</p>
+      </div>
+    </div>
+    <div class="roanoke-facts">
+      <div class="roanoke-fact">
+        <div class="fact-year">// 2010</div>
+        <div class="fact-text">Moved to Roanoke. Started at a local agency managing digital for regional clients across Virginia.</div>
+      </div>
+      <div class="roanoke-fact">
+        <div class="fact-year">// 2016</div>
+        <div class="fact-text">Promoted to Director of Digital Marketing. Managing $8M+ in annual budgets, Virginia Tech, HCA Virginia, Medeco.</div>
+      </div>
+      <div class="roanoke-fact">
+        <div class="fact-year">// 2021</div>
+        <div class="fact-text">Moved to global enterprise roles. Built AI-driven growth systems at scale. Started seeing the gap between what large companies had and what local businesses were stuck with.</div>
+      </div>
+      <div class="roanoke-fact">
+        <div class="fact-year">// Today</div>
+        <div class="fact-text">Founded Ridgeline Automation to bring that same technology to Roanoke Valley businesses. Still here. Still local. Not going anywhere.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<!-- SITE NAV -->
+<section style="background:#080808;padding:3rem;border-top:1px solid rgba(242,237,230,0.06);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mist);margin-bottom:1.5rem;">// Service areas &amp; industries</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;">
+      <a href="/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Home</a>
+      <a href="/roanoke/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Roanoke</a>
+      <a href="/salem/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Salem</a>
+      <a href="/blacksburg/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Blacksburg</a>
+      <a href="/christiansburg/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Christiansburg</a>
+      <a href="/vinton/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Vinton</a>
+      <a href="/lynchburg/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Lynchburg</a>
+      <a href="/roanoke/healthcare/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Healthcare — Roanoke</a>
+      <a href="/salem/manufacturing/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Manufacturing — Salem</a>
+      <a href="/blacksburg/startups/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Startups — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;background:#111;color:var(--mist);text-decoration:none;">Healthcare — Lynchburg</a>
+    </div>
+  </div>
+</section>
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <h2 class="cta-headline">Let's Talk.<br>No Deck.<br>No Runaround.</h2>
+    <p class="cta-sub">30 minutes with me directly. We look at your actual workflows and I tell you honestly what's worth automating — and what isn't. No junior rep. No overseas handoff.</p>
+
+    <div class="cta-form" id="contact-form">
+      <div class="cta-form-row">
+        <div class="cta-form-field">
+          <label class="cta-form-label" for="cf-name">Your name</label>
+          <input class="cta-form-input" type="text" id="cf-name" name="name" placeholder="Jane Smith" autocomplete="name">
+        </div>
+        <div class="cta-form-field">
+          <label class="cta-form-label" for="cf-phone">Phone number</label>
+          <input class="cta-form-input" type="tel" id="cf-phone" name="phone" placeholder="540-555-0100" autocomplete="tel">
+        </div>
+      </div>
+      <div class="cta-form-field" style="margin-top:1px;">
+        <label class="cta-form-label" for="cf-email">Work email</label>
+        <input class="cta-form-input" type="email" id="cf-email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email">
+      </div>
+      <div class="cta-form-row" style="margin-top:1px;">
+        <div class="cta-form-field">
+          <label class="cta-form-label" for="cf-biz">Business name</label>
+          <input class="cta-form-input" type="text" id="cf-biz" name="business" placeholder="Acme HVAC &amp; Mechanical">
+        </div>
+        <div class="cta-form-field">
+          <label class="cta-form-label" for="cf-city">City</label>
+          <input class="cta-form-input" type="text" id="cf-city" name="city" placeholder="Salem, VA">
+        </div>
+      </div>
+      <div class="cta-form-field" style="margin-top:1px;">
+        <label class="cta-form-label" for="cf-size">Team size</label>
+        <select class="cta-form-input" id="cf-size" name="team_size">
+          <option value="" disabled selected>Select team size</option>
+          <option value="1-3">Just me / 1–3 people</option>
+          <option value="4-10">4–10 people</option>
+          <option value="11-25">11–25 people</option>
+          <option value="26-50">26–50 people</option>
+          <option value="50+">50+ people</option>
+        </select>
+      </div>
+      <div class="cta-form-field" style="margin-top:1px;">
+        <label class="cta-form-label" for="cf-msg">What workflows are eating your time?</label>
+        <textarea class="cta-form-input cta-form-textarea" id="cf-msg" name="message" placeholder="e.g. We manually enter invoices into QuickBooks every day, takes about 2 hours..."></textarea>
+      </div>
+      <button class="cta-form-submit" type="button" onclick="submitForm(this)">Book Free Discovery Call &rarr;</button>
+      <div class="cta-form-note">I respond personally within 1 business day &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; No pitch deck</div>
+      <div class="cta-form-success" id="form-success" style="display:none;">&#10003; Got it. DeShea will be in touch within one business day.</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sitemap-section">
+  <div class="sitemap-inner">
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Service Areas</div>
+      <a href="/roanoke/" class="sitemap-link">AI Automation — Roanoke, VA</a>
+      <a href="/salem/" class="sitemap-link">AI Automation — Salem, VA</a>
+      <a href="/blacksburg/" class="sitemap-link">AI Automation — Blacksburg, VA</a>
+      <a href="/christiansburg/" class="sitemap-link">AI Automation — Christiansburg, VA</a>
+      <a href="/vinton/" class="sitemap-link">AI Automation — Vinton, VA</a>
+      <a href="/lynchburg/" class="sitemap-link">AI Automation — Lynchburg, VA</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Services</div>
+      <a href="/services/discovery-audit/" class="sitemap-link">Workflow Discovery Audit</a>
+      <a href="/services/automation-build/" class="sitemap-link">Custom Automation Build</a>
+      <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
+      <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
+      <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Industries</div>
+      <a href="/roanoke/healthcare/" class="sitemap-link">Healthcare Automation — Roanoke</a>
+      <a href="/salem/manufacturing/" class="sitemap-link">Manufacturing Automation — Salem</a>
+      <a href="/blacksburg/startups/" class="sitemap-link">Startup Ops Automation — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" class="sitemap-link">Healthcare Automation — Lynchburg</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">RIDGELINE<span>.</span></div>
+  <div class="footer-info">Roanoke, Virginia &nbsp;·&nbsp; AI Automation for Local Business</div>
+  <a class="footer-link" href="/about/" style="margin-right:1.5rem;">About</a>
+  <a class="footer-link" href="mailto:hello@ridgelineautomation.io">hello@ridgelineautomation.io</a>
+</footer>
+<script>
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.remove('anim-hidden'); e.target.classList.add('anim-visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.number-card, .cred-card, .roanoke-fact').forEach(function(el) {
+  el.classList.add('anim-hidden');
+  obs.observe(el);
+});
+</script>
+</html>

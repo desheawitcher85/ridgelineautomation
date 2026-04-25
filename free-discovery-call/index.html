@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Free Discovery Call | Ridgeline Automation</title>
+<meta name="description" content="Free 30-minute call with DeShea Witcher. We assess your workflows, tell you honestly if automation makes sense, and explain next steps. No obligation.">
+<meta property="og:title" content="Book a Free Discovery Call — No Obligation">
+<meta property="og:description" content="30 minutes with the founder. We tell you honestly whether automation is the right move for your business — and what it would cost.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ridgelineautomation.io/free-discovery-call/">
+<meta property="og:site_name" content="Ridgeline Automation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Book a Free Discovery Call — No Obligation">
+<meta name="twitter:description" content="30 minutes with the founder. We tell you honestly whether automation is the right move for your business — and what it would cost.">
+<link rel="canonical" href="https://ridgelineautomation.io/free-discovery-call/">
+<script>
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free Discovery Call",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Ridgeline Automation",
+    "url": "https://ridgelineautomation.io"
+  },
+  "description": "Free 30-minute consultation call for Roanoke Valley business owners. We assess your workflows, tell you honestly whether automation is the right move, and explain what it would cost and deliver.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free — no obligation"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Roanoke"},
+    {"@type": "City", "name": "Salem"},
+    {"@type": "City", "name": "Blacksburg"},
+    {"@type": "City", "name": "Christiansburg"},
+    {"@type": "City", "name": "Lynchburg"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens on the free discovery call?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A 30-minute conversation with DeShea Witcher, founder of Ridgeline Automation. You describe how your business currently operates and where your team's time goes. We give you an honest read on whether automation makes sense and what it would involve."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is the discovery call really free with no obligation?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. There is no charge and no obligation. If automation isn't the right move for your business, we'll tell you that on the call. We don't pitch services to businesses that aren't a good fit."}
+    },
+    {
+      "@type": "Question",
+      "name": "Who will I be speaking with on the discovery call?",
+      "acceptedAnswer": {"@type": "Answer", "text": "You speak directly with DeShea Witcher, founder of Ridgeline Automation. Not a sales rep. Not a junior account manager. The person you talk to is the person who would build your automation."}
+    }
+  ]
+}
+</script>
+<script>
+function submitForm(btn) {
+  var name = document.getElementById('cf-name') ? document.getElementById('cf-name').value.trim() : '';
+  var email = document.getElementById('cf-email') ? document.getElementById('cf-email').value.trim() : '';
+  var phone = document.getElementById('cf-phone') ? document.getElementById('cf-phone').value.trim() : '';
+  var biz = document.getElementById('cf-biz') ? document.getElementById('cf-biz').value.trim() : '';
+  var city = document.getElementById('cf-city') ? document.getElementById('cf-city').value.trim() : '';
+  var size = document.getElementById('cf-size') ? document.getElementById('cf-size').value : '';
+  var msg = document.getElementById('cf-msg') ? document.getElementById('cf-msg').value.trim() : '';
+
+  if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+
+  // Clear previous errors
+  document.querySelectorAll('.cta-form-input').forEach(function(el) { el.classList.remove('error'); });
+
+  var valid = true;
+
+  if (!name) {
+    var nameEl = document.getElementById('cf-name');
+    if (nameEl) nameEl.classList.add('error');
+    valid = false;
+  }
+
+  var emailOk = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    var emailEl = document.getElementById('cf-email');
+    if (emailEl) emailEl.classList.add('error');
+    valid = false;
+  }
+
+  var phoneOk = !phone || /^[\d\s\(\)\-\+\.]{7,15}$/.test(phone);
+  if (phone && !phoneOk) {
+    var phoneEl = document.getElementById('cf-phone');
+    if (phoneEl) phoneEl.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    btn.textContent = 'Please fix the fields above';
+    setTimeout(function(){ btn.textContent = btn.dataset.orig; }, 2500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  function showSuccess() {
+    ['contact-form','form-wrap'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+    var s = document.getElementById('form-success');
+    if (s) { s.style.display='block'; s.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+
+  fetch('https://formspree.io/f/xdayodbr', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name:name, email:email, phone:phone, business:biz, city:city, team_size:size, message:msg, page:window.location.pathname })
+  })
+  .then(function(r) {
+    if (r.ok) { showSuccess(); }
+    else { btn.disabled=false; btn.textContent='Something went wrong, try again'; setTimeout(function(){ btn.textContent=btn.dataset.orig; },3000); }
+  })
+  .catch(function() {
+    var subj = encodeURIComponent('Discovery Call - ' + (biz||name));
+    var body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nBusiness: '+biz+'\nCity: '+city+'\n\n'+msg);
+    window.location.href = 'mailto:hello@ridgelineautomation.io?subject='+subj+'&body='+body;
+    btn.disabled=false; btn.textContent=btn.dataset.orig;
+  });
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #0e0e0e; --paper: #f2ede6; --rust: #c94f2a; --steel: #3a4a56; --mist: #8a9aa6; --cream: #e8e2d8; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(14,14,14,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(242,237,230,0.07); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--paper); text-decoration: none; }
+  .nav-logo span { color: var(--rust); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--paper); }
+  .nav-cta { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,237,230,0.4); border: 1px solid rgba(242,237,230,0.15); padding: 0.6rem 1.4rem; text-decoration: none; }
+  /* No hover on nav-cta since we're already on the booking page */
+
+  /* ── HERO ── */
+  .hero-wrap { padding: 7rem 3rem 0; max-width: 1100px; margin: 0 auto; }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); margin-bottom: 2rem; }
+  .breadcrumb a { color: var(--rust); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--paper); }
+
+  /* ── SPLIT LAYOUT ── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; padding-bottom: 5rem; }
+
+  /* ── LEFT: TRUST SIDE ── */
+  .trust-side { padding-top: 1rem; }
+  .page-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .page-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 5.5vw, 5.5rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 1.8rem; }
+  .page-headline .accent { color: var(--rust); }
+  .page-sub { font-size: 1.05rem; line-height: 1.75; color: var(--mist); margin-bottom: 3rem; }
+  .page-sub strong { color: var(--paper); font-weight: 400; }
+
+  /* ── WHAT HAPPENS ── */
+  .what-happens { margin-bottom: 3rem; }
+  .what-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .what-steps { display: flex; flex-direction: column; gap: 1px; }
+  .what-step { display: grid; grid-template-columns: 60px 1fr; gap: 1rem; background: #111; padding: 1.4rem 1.5rem; align-items: start; transition: background 0.2s; }
+  .what-step:hover { background: #161616; }
+  .what-step-time { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); padding-top: 2px; }
+  .what-step-title { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--paper); margin-bottom: 0.2rem; }
+  .what-step-body { font-size: 0.82rem; line-height: 1.55; color: var(--mist); }
+
+  /* ── WHO YOU'RE TALKING TO ── */
+  .who-card { background: #111; border-top: 3px solid var(--rust); padding: 2rem; margin-bottom: 2rem; display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; align-items: center; }
+  .who-avatar { width: 80px; height: 80px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .who-initials { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--rust); letter-spacing: 0.1em; }
+  .who-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+  .who-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
+  .who-bio { font-size: 0.82rem; line-height: 1.55; color: var(--mist); }
+
+  /* ── TRUST BULLETS ── */
+  .trust-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .trust-item { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; line-height: 1.5; color: rgba(242,237,230,0.6); }
+  .trust-item::before { content: '✓'; color: var(--rust); font-family: 'DM Mono', monospace; font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── RIGHT: FORM SIDE ── */
+  .form-side { position: sticky; top: 6rem; }
+  .form-card { background: #111; border-top: 3px solid var(--rust); padding: 2.5rem; }
+  .form-headline { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.4rem; line-height: 1.1; }
+  .form-sub { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(242,237,230,0.07); }
+  .form-fields { display: flex; flex-direction: column; gap: 1px; }
+  .form-field { display: flex; flex-direction: column; }
+  .form-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 0.8rem 0.25rem; color: rgba(242,237,230,0.35); background: #0a0a0a; }
+  .form-input { background: #0d0d0d; border: none; border-bottom: 1px solid rgba(242,237,230,0.08); color: var(--paper); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.8rem; outline: none; transition: background 0.2s, border-color 0.2s; resize: none; }
+  .form-input::placeholder { color: rgba(242,237,230,0.2); }
+  .form-input:focus { background: #111; border-bottom-color: var(--rust); }
+  .form-textarea { min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+  .form-submit { width: 100%; margin-top: 1px; font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; background: var(--rust); color: var(--ink); border: none; padding: 1.2rem; cursor: pointer; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .form-submit:hover { background: #e05a30; transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .form-guarantee { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,237,230,0.22); text-align: center; margin-top: 1rem; line-height: 1.7; }
+  .form-success { font-family: 'DM Mono', monospace; font-size: 0.85rem; letter-spacing: 0.06em; text-align: center; padding: 2rem 1.5rem; color: var(--paper); line-height: 1.7; }
+  .form-success .success-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: rgba(242,237,230,0.07); margin: 0 3rem; }
+
+  /* ── OUTCOMES ── */
+  .outcomes-section { background: var(--paper); padding: 6rem 3rem; }
+  .outcomes-inner { max-width: 1100px; margin: 0 auto; }
+  .outcomes-section .section-tag { color: var(--rust); }
+  .outcomes-section .section-headline { color: var(--ink); margin-bottom: 3rem; }
+  .section-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .section-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(14,14,14,0.08); }
+  .outcome-card { background: var(--paper); padding: 2.5rem 2rem; transition: background 0.2s; }
+  .outcome-card:hover { background: var(--cream); }
+  .outcome-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.8rem; }
+  .outcome-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--ink); letter-spacing: 0.04em; margin-bottom: 0.75rem; }
+  .outcome-body { font-size: 0.9rem; line-height: 1.7; color: #555; }
+  .outcome-body strong { color: var(--ink); font-weight: 500; }
+
+  /* ── NOT A GOOD FIT ── */
+  .fit-section { background: #0a0a0a; padding: 6rem 3rem; }
+  .fit-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .fit-body p { font-size: 1rem; line-height: 1.8; color: var(--mist); margin-bottom: 1.2rem; }
+  .fit-body p strong { color: var(--paper); font-weight: 400; }
+  .fit-lists { display: flex; flex-direction: column; gap: 2rem; }
+  .fit-list-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; }
+  .fit-list-title.good { color: #2ecc71; }
+  .fit-list-title.bad { color: var(--rust); }
+  .fit-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .fit-item { font-size: 0.88rem; line-height: 1.5; color: var(--mist); padding-left: 1.2rem; position: relative; }
+  .fit-item.good::before { content: '✓'; position: absolute; left: 0; color: #2ecc71; font-family: 'DM Mono', monospace; }
+  .fit-item.bad::before { content: '✗'; position: absolute; left: 0; color: var(--rust); font-family: 'DM Mono', monospace; }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--ink); padding: 6rem 3rem; }
+  .faq-inner { max-width: 1100px; margin: 0 auto; }
+  .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1px; }
+  .faq-item { background: #111; }
+  .faq-q { padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+  .faq-q:hover { background: #161616; }
+  .faq-q-text { font-size: 0.95rem; color: var(--paper); font-weight: 400; }
+  .faq-toggle { font-family: 'DM Mono', monospace; color: var(--rust); font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem; transition: transform 0.2s; }
+  .faq-a { display: none; padding: 0 2rem 1.5rem; font-size: 0.9rem; line-height: 1.7; color: var(--mist); }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  /* ── SERVICES NAV ── */
+  .services-nav { background: #080808; padding: 4rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .services-nav-inner { max-width: 1100px; margin: 0 auto; }
+  .services-nav-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); margin-bottom: 1.5rem; }
+  .services-nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(242,237,230,0.06); }
+  .service-nav-card { background: #080808; padding: 2rem; text-decoration: none; display: block; transition: background 0.2s; border-top: 3px solid transparent; }
+  .service-nav-card:hover { background: #111; }
+  .service-nav-step { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
+  .service-nav-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+  .service-nav-price { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); }
+
+  /* ── FOOTER ── */
+  footer { background: #080808; padding: 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(242,237,230,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--paper); }
+  .footer-logo span { color: var(--rust); }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mist); text-align: center; text-transform: uppercase; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero-wrap { padding: 6rem 1.5rem 0; }
+    .split { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 3rem; }
+    .form-side { position: static; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .fit-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .services-nav-grid { grid-template-columns: 1fr; }
+    .outcomes-section, .fit-section, .faq-section, .services-nav { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .what-step { grid-template-columns: 50px 1fr; }
+    .divider { margin: 0 1.5rem; }
+  }
+
+  /* ── SITEMAP FOOTER ── */
+  .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .sitemap-heading { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .sitemap-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: rgba(242,237,230,0.35); text-decoration: none; margin-bottom: 0.45rem; transition: color 0.2s; line-height: 1.4; }
+  .sitemap-link:hover { color: var(--paper); }
+  @media (max-width: 900px) { .sitemap-inner { grid-template-columns: 1fr; gap: 2rem; } }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 60px;
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--paper);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--rust); }
+
+  /* ── NAV LINKS ── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0 1.1rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .nav-link:hover, .nav-item:hover > .nav-link { color: var(--paper); }
+  .nav-link .nav-arrow {
+    font-size: 0.5rem;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .nav-item:hover > .nav-link .nav-arrow { transform: rotate(180deg); opacity: 1; }
+
+  /* ── DROPDOWNS ── */
+  .nav-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    border-top: 2px solid var(--rust);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.45);
+    text-decoration: none;
+    padding: 0.75rem 1.2rem;
+    border-bottom: 1px solid rgba(242,237,230,0.04);
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-dropdown-link:last-child { border-bottom: none; }
+  .nav-dropdown-link:hover { background: rgba(242,237,230,0.05); color: var(--paper); }
+  .nav-dropdown-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.2rem 0.3rem;
+    opacity: 0.8;
+  }
+
+  /* ── NAV CTA ── */
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--rust);
+    border: none;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: #e05a30; }
+
+  /* ── HAMBURGER (mobile) ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.25s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: #0e0e0e;
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    padding: 1rem 0 1.5rem;
+    z-index: 99;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .nav-mobile.open { display: block; }
+  .nav-mobile-section { padding: 0.5rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .nav-mobile-section:last-child { border-bottom: none; }
+  .nav-mobile-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.5rem 0.3rem;
+  }
+  .nav-mobile-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0.65rem 1.5rem;
+    transition: color 0.15s;
+  }
+  .nav-mobile-link:hover { color: var(--paper); }
+  .nav-mobile-cta {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--rust);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    margin: 1rem 1.5rem 0;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
+
+  <div class="nav-links">
+
+    <!-- Services -->
+    <div class="nav-item">
+      <span class="nav-link">Services <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Our process</div>
+        <a href="/free-discovery-call/" class="nav-dropdown-link">Free Discovery Call</a>
+        <a href="/services/discovery-audit/" class="nav-dropdown-link">Workflow Discovery Audit</a>
+        <a href="/services/automation-build/" class="nav-dropdown-link">Custom Automation Build</a>
+        <a href="/services/maintenance-retainer/" class="nav-dropdown-link">Maintenance Retainer</a>
+      </div>
+    </div>
+
+    <!-- Service Areas -->
+    <div class="nav-item">
+      <span class="nav-link">Service Areas <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Roanoke Valley &amp; NRV</div>
+        <a href="/roanoke/" class="nav-dropdown-link">Roanoke, VA</a>
+        <a href="/salem/" class="nav-dropdown-link">Salem, VA</a>
+        <a href="/blacksburg/" class="nav-dropdown-link">Blacksburg, VA</a>
+        <a href="/christiansburg/" class="nav-dropdown-link">Christiansburg, VA</a>
+        <a href="/vinton/" class="nav-dropdown-link">Vinton, VA</a>
+        <a href="/lynchburg/" class="nav-dropdown-link">Lynchburg, VA</a>
+      </div>
+    </div>
+
+    <!-- Industries -->
+    <div class="nav-item">
+      <span class="nav-link">Industries <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Specialized pages</div>
+        <a href="/roanoke/healthcare/" class="nav-dropdown-link">Healthcare — Roanoke</a>
+        <a href="/salem/manufacturing/" class="nav-dropdown-link">Manufacturing — Salem</a>
+        <a href="/blacksburg/startups/" class="nav-dropdown-link">Startups — Blacksburg</a>
+        <a href="/lynchburg/healthcare/" class="nav-dropdown-link">Healthcare — Lynchburg</a>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="nav-item">
+      <a href="/about/" class="nav-link">About</a>
+    </div>
+
+  </div>
+
+  <a class="nav-cta" href="#cta">Free Discovery Call</a>
+
+  <!-- Hamburger -->
+  <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Services</div>
+    <a href="/free-discovery-call/" class="nav-mobile-link">Free Discovery Call</a>
+    <a href="/services/discovery-audit/" class="nav-mobile-link">Workflow Discovery Audit</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Custom Automation Build</a>
+    <a href="/services/maintenance-retainer/" class="nav-mobile-link">Maintenance Retainer</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Service Areas</div>
+    <a href="/roanoke/" class="nav-mobile-link">Roanoke, VA</a>
+    <a href="/salem/" class="nav-mobile-link">Salem, VA</a>
+    <a href="/blacksburg/" class="nav-mobile-link">Blacksburg, VA</a>
+    <a href="/christiansburg/" class="nav-mobile-link">Christiansburg, VA</a>
+    <a href="/vinton/" class="nav-mobile-link">Vinton, VA</a>
+    <a href="/lynchburg/" class="nav-mobile-link">Lynchburg, VA</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Industries</div>
+    <a href="/roanoke/healthcare/" class="nav-mobile-link">Healthcare — Roanoke</a>
+    <a href="/salem/manufacturing/" class="nav-mobile-link">Manufacturing — Salem</a>
+    <a href="/blacksburg/startups/" class="nav-mobile-link">Startups — Blacksburg</a>
+    <a href="/lynchburg/healthcare/" class="nav-mobile-link">Healthcare — Lynchburg</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="/about/" class="nav-mobile-link">About DeShea Witcher</a>
+  </div>
+  <a href="#cta" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Free Discovery Call &rarr;</a>
+</div>
+
+
+<div class="hero-wrap">
+  <p class="breadcrumb"><a href="/">Ridgeline Automation</a> / Free Discovery Call</p>
+
+  <div class="split">
+
+    <!-- LEFT: TRUST SIDE -->
+    <div class="trust-side">
+      <p class="page-eyebrow">// 30 minutes · Free · No obligation</p>
+      <h1 class="page-headline">Find Out If Automation Is<br>Right For <span class="accent">Your Business.</span></h1>
+      <p class="page-sub">
+        You don't need to know exactly what you want. You just need 30 minutes and an honest description of how your operation currently runs.
+        <br><br>
+        <strong>We'll do the rest.</strong> We'll tell you what's worth automating, what it would cost, and whether we're the right fit to build it.
+      </p>
+
+      <!-- WHAT HAPPENS -->
+      <div class="what-happens">
+        <p class="what-label">// What happens on the call</p>
+        <div class="what-steps">
+          <div class="what-step">
+            <div class="what-step-time">0–5 min</div>
+            <div>
+              <div class="what-step-title">Quick context</div>
+              <div class="what-step-body">Tell us about your business — what you do, how big your team is, what your day looks like.</div>
+            </div>
+          </div>
+          <div class="what-step">
+            <div class="what-step-time">5–20 min</div>
+            <div>
+              <div class="what-step-title">Where the time goes</div>
+              <div class="what-step-body">Walk us through the tasks your team does repeatedly. We're listening for the patterns that signal automation opportunity.</div>
+            </div>
+          </div>
+          <div class="what-step">
+            <div class="what-step-time">20–25 min</div>
+            <div>
+              <div class="what-step-title">Honest assessment</div>
+              <div class="what-step-body">We tell you what we heard, what we think is automatable, and whether the ROI math makes sense for your situation.</div>
+            </div>
+          </div>
+          <div class="what-step">
+            <div class="what-step-time">25–30 min</div>
+            <div>
+              <div class="what-step-title">Next steps — if any</div>
+              <div class="what-step-body">If it's a fit, we explain what a paid audit involves and what it would cost. If it's not, we tell you that and you walk away with a clear answer.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHO YOU'RE TALKING TO -->
+      <div class="who-card">
+        <div class="who-avatar">
+          <div class="who-initials">DW</div>
+        </div>
+        <div>
+          <div class="who-name">DeShea Witcher</div>
+          <div class="who-title">// Founder, Ridgeline Automation · Roanoke, VA</div>
+          <div class="who-bio">Not a sales rep. Not a junior account manager. The person you talk to is the person who scopes, builds, and maintains your automation. 15 years in Roanoke. Direct.</div>
+        </div>
+      </div>
+
+      <!-- TRUST BULLETS -->
+      <div class="trust-list">
+        <div class="trust-item">You'll talk to the founder — not a sales team</div>
+        <div class="trust-item">We'll tell you if automation isn't the right move</div>
+        <div class="trust-item">No pitch deck. No follow-up harassment if it's not a fit</div>
+        <div class="trust-item">Local to Roanoke — we know this market and its businesses</div>
+        <div class="trust-item">30 minutes. Respects your time.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM SIDE -->
+    <div class="form-side" id="cta">
+      <div class="form-card" id="form-wrap">
+        <div class="form-headline">Book the<br>Free Call.</div>
+        <div class="form-sub">We respond within 1 business day to confirm your slot</div>
+        <div class="form-fields" id="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-name">Your name</label>
+              <input class="form-input" type="text" id="cf-name" name="name" placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-phone">Phone number</label>
+              <input class="form-input" type="tel" id="cf-phone" name="phone" placeholder="540-555-0100" autocomplete="tel">
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-email">Work email</label>
+            <input class="form-input" type="email" id="cf-email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-biz">Business name</label>
+            <input class="form-input" type="text" id="cf-biz" name="business" placeholder="Acme HVAC &amp; Mechanical">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-city">City</label>
+            <input class="form-input" type="text" id="cf-city" name="city" placeholder="Salem, VA">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-size">How many people are on your team?</label>
+            <select class="form-input" id="cf-size" name="team_size">
+              <option value="" disabled selected>Select team size</option>
+              <option value="1-3">Just me / 1–3 people</option>
+              <option value="4-10">4–10 people</option>
+              <option value="11-25">11–25 people</option>
+              <option value="26-50">26–50 people</option>
+              <option value="50+">50+ people</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-msg">What's taking up the most time in your business right now?</label>
+            <textarea class="form-input form-textarea" id="cf-msg" name="message" placeholder="e.g. We manually enter every new patient into our system after they fill out a paper form. It takes our front desk about 20 minutes per patient..."></textarea>
+          </div>
+        </div>
+        <button class="form-submit" id="form-submit-btn" type="button" onclick="submitForm(this)">Book My Free Discovery Call &rarr;</button>
+        <div class="form-guarantee" id="form-guarantee">Free &nbsp;·&nbsp; No obligation &nbsp;·&nbsp; No pitch if it's not a fit<br>We respond within 1 business day</div>
+        <div class="form-success" id="form-success" style="display:none;">
+          <span class="success-icon">✓</span>
+          <strong style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;display:block;margin-bottom:0.5rem;">You're On the List.</strong>
+          We'll be in touch within one business day to confirm your discovery call slot. Check your email — including spam just in case.<br><br>
+          <span style="color:var(--rust);">— DeShea Witcher, Ridgeline Automation</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CALL OUTCOMES -->
+<section class="outcomes-section">
+  <div class="outcomes-inner">
+    <p class="section-tag">// What you walk away with</p>
+    <h2 class="section-headline">Either Way,<br>You'll Know.</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-label">// If it's a fit</div>
+        <div class="outcome-title">A Clear Path Forward</div>
+        <div class="outcome-body">You'll understand exactly what we'd automate, roughly what it would cost, and what the ROI case looks like. <strong>No vague proposals. No "we'll get back to you with a quote."</strong> A real answer by the end of the call.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-label">// If it's not a fit</div>
+        <div class="outcome-title">An Honest Answer</div>
+        <div class="outcome-body">If your operation doesn't have a strong automation ROI case, we'll tell you on the call. <strong>You won't get a soft pitch for a project that won't pay for itself.</strong> You'll walk away with 30 minutes spent and a clear answer either way.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-label">// If you need to think about it</div>
+        <div class="outcome-title">No Pressure, No Follow-Up Harassment</div>
+        <div class="outcome-body">If the timing isn't right, we're not going to drip-email you for six months. <strong>When you're ready, you know where to find us.</strong> Several clients booked a call, thought about it for 6 months, and came back. That's fine.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IS THIS RIGHT FOR YOU -->
+<section class="fit-section">
+  <div class="fit-inner">
+    <div>
+      <p class="section-tag">// Is this call right for you</p>
+      <h2 class="section-headline" style="color:var(--paper);">Worth 30<br>Minutes If…</h2>
+      <div class="fit-body">
+        <p>The discovery call is designed for business owners who have a sense that something could be more efficient — but don't know exactly what, or whether the investment makes sense.</p>
+        <p>If that's you, it's worth 30 minutes. You'll know more leaving the call than you do right now.</p>
+        <p><strong>If you already know exactly what you want to automate</strong> and have a clear tool stack in mind, you can skip straight to the paid discovery audit. Reach out and describe what you have — we'll tell you whether we can scope it directly.</p>
+      </div>
+    </div>
+    <div class="fit-lists">
+      <div>
+        <div class="fit-list-title good">// Good fit for this call</div>
+        <div class="fit-list">
+          <div class="fit-item good">You know you're losing time but aren't sure where to start</div>
+          <div class="fit-item good">You've thought about automation but don't know what it costs</div>
+          <div class="fit-item good">You tried automation before and it broke — you want a better approach</div>
+          <div class="fit-item good">You're growing and your back-office isn't keeping up</div>
+          <div class="fit-item good">You want to talk to a local person who knows the market</div>
+          <div class="fit-item good">You want an honest read, not a sales pitch</div>
+        </div>
+      </div>
+      <div>
+        <div class="fit-list-title bad">// Probably not what you need</div>
+        <div class="fit-list">
+          <div class="fit-item bad">You want a free audit — that's a paid service, starts after this call</div>
+          <div class="fit-item bad">You want someone to build something immediately with no scoping</div>
+          <div class="fit-item bad">You're looking for the cheapest possible option</div>
+          <div class="fit-item bad">You want automation built on a proprietary platform we can't maintain</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <p class="section-tag">// Common questions</p>
+    <h2 class="section-headline" style="color:var(--paper);">Before You<br>Book the Call.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is it really free? What's the catch?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">It's free. No catch. We invest 30 minutes because it's the most efficient way for us to determine whether we can actually help you — and if we can, what the right solution looks like. We'd rather have a real conversation than send you a 12-page PDF proposal that doesn't fit your situation. If you're not a good fit, we'll tell you and we both move on.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Who will I actually be speaking with?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">DeShea Witcher — founder of Ridgeline Automation. Not a sales rep. Not a junior account manager. The person on the call is the person who would scope, build, and maintain your automation. That's intentional. You get more useful information from the person doing the work than from someone reading a discovery script.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need to prepare anything before the call?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">Nothing formal. The most useful thing is to have a rough sense of the 2–3 tasks your team does most repeatedly — the stuff that happens every day or every week. But even if you come in unprepared, we'll find the opportunities through the conversation. That's what the call is for.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is the call in person or on the phone?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">Typically phone or video call. For businesses in the Roanoke Valley who prefer to meet in person, we can arrange that — especially if it would help us understand your operation better. In-person is actually preferred for the paid discovery audit that follows if you decide to move forward.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What happens after the call if I want to move forward?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">If we're a good fit, the next step is the paid Workflow Discovery Audit — a 90-minute on-site session that maps every workflow in detail and delivers a written roadmap with ROI estimates. The audit fee is $750 flat, credited in full toward any build you proceed with. We'll explain this on the call so you know exactly what you're deciding.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How soon can I book a call?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-a">Submit the form and we'll respond within one business day with available slots. We typically have openings within 3–5 business days. If your situation is time-sensitive, mention that in the form and we'll prioritize.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES NAV -->
+<section class="services-nav">
+  <div class="services-nav-inner">
+    <p class="services-nav-label">// What comes after the call</p>
+    <div class="services-nav-grid">
+      <a href="/services/discovery-audit/" class="service-nav-card">
+        <div class="service-nav-step">// Step 01</div>
+        <div class="service-nav-title">Discovery Audit</div>
+        <div class="service-nav-price">$750 flat · 90 min on-site</div>
+      </a>
+      <a href="/services/automation-build/" class="service-nav-card">
+        <div class="service-nav-step">// Step 02</div>
+        <div class="service-nav-title">Custom Build</div>
+        <div class="service-nav-price">$3,000 – $12,000 flat fee</div>
+      </a>
+      <a href="/services/maintenance-retainer/" class="service-nav-card">
+        <div class="service-nav-step">// Step 03</div>
+        <div class="service-nav-title">Maintenance Retainer</div>
+        <div class="service-nav-price">$400 – $1,200 / month</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section class="sitemap-section">
+  <div class="sitemap-inner">
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Service Areas</div>
+      <a href="/roanoke/" class="sitemap-link">AI Automation — Roanoke, VA</a>
+      <a href="/salem/" class="sitemap-link">AI Automation — Salem, VA</a>
+      <a href="/blacksburg/" class="sitemap-link">AI Automation — Blacksburg, VA</a>
+      <a href="/christiansburg/" class="sitemap-link">AI Automation — Christiansburg, VA</a>
+      <a href="/vinton/" class="sitemap-link">AI Automation — Vinton, VA</a>
+      <a href="/lynchburg/" class="sitemap-link">AI Automation — Lynchburg, VA</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Services</div>
+      <a href="/services/discovery-audit/" class="sitemap-link">Workflow Discovery Audit</a>
+      <a href="/services/automation-build/" class="sitemap-link">Custom Automation Build</a>
+      <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
+      <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
+      <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Industries</div>
+      <a href="/roanoke/healthcare/" class="sitemap-link">Healthcare Automation — Roanoke</a>
+      <a href="/salem/manufacturing/" class="sitemap-link">Manufacturing Automation — Salem</a>
+      <a href="/blacksburg/startups/" class="sitemap-link">Startup Ops Automation — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" class="sitemap-link">Healthcare Automation — Lynchburg</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">RIDGELINE<span>.</span></div>
+  <div class="footer-info">Roanoke, Virginia &nbsp;·&nbsp; AI Automation for Local Business</div>
+  <a class="footer-link" href="/about/" style="margin-right:1.5rem;">About</a>
+  <a class="footer-link" href="mailto:hello@ridgelineautomation.io">hello@ridgelineautomation.io</a>
+</footer>
+</html>

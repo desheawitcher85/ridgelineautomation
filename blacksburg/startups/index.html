@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Ops Automation — Blacksburg, VA | Ridgeline</title>
+<meta name="description" content="AI automation for Blacksburg startups and VT spinoffs — onboarding, lead routing, reporting pipelines, LLM-powered workflows. Technical builds. Free call.">
+<meta property="og:title" content="Startup Ops Automation — Blacksburg, VA">
+<meta property="og:description" content="Ship product, not spreadsheets. We build and maintain the ops workflows Blacksburg startups don't have bandwidth to build themselves.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ridgelineautomation.io/blacksburg/startups/">
+<meta property="og:site_name" content="Ridgeline Automation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Startup Ops Automation — Blacksburg, VA">
+<meta name="twitter:description" content="Ship product, not spreadsheets. We build and maintain the ops workflows Blacksburg startups don't have bandwidth to build themselves.">
+<link rel="canonical" href="https://ridgelineautomation.io/blacksburg/startups/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Ridgeline Automation","url":"https://ridgelineautomation.io/blacksburg/startups/","description":"AI workflow automation for Blacksburg VA startups and tech companies. Customer onboarding, ops reporting, lead routing, and internal workflow automation.","address":{"@type":"PostalAddress","addressLocality":"Blacksburg","addressRegion":"VA","addressCountry":"US"},"areaServed":{"@type":"City","name":"Blacksburg"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you integrate with our existing tech stack in Blacksburg?","acceptedAnswer":{"@type":"Answer","text":"Yes. We build with Make, n8n, Zapier, and direct REST API integrations. We work with whatever you're running — CRMs, billing tools, project management, communication platforms, or custom databases."}},{"@type":"Question","name":"We're a lean startup. What's the minimum viable automation engagement?","acceptedAnswer":{"@type":"Answer","text":"Start with the discovery audit (50, credited to build). It produces a prioritized roadmap. Most lean startups start with one high-ROI automation — usually customer onboarding or lead routing — and expand from there."}},{"@type":"Question","name":"Can you handle automation that involves AI or LLMs in the workflow?","acceptedAnswer":{"@type":"Answer","text":"Yes. We build workflows that incorporate LLM calls (OpenAI, Claude, open-source models) for tasks like lead qualification, document summarization, customer communication drafting, and data extraction. We scope the AI component carefully to ensure reliability."}}]}</script>
+<script>
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+<script>
+function submitForm(btn) {
+  var name = document.getElementById('cf-name') ? document.getElementById('cf-name').value.trim() : '';
+  var email = document.getElementById('cf-email') ? document.getElementById('cf-email').value.trim() : '';
+  var phone = document.getElementById('cf-phone') ? document.getElementById('cf-phone').value.trim() : '';
+  var biz = document.getElementById('cf-biz') ? document.getElementById('cf-biz').value.trim() : '';
+  var city = document.getElementById('cf-city') ? document.getElementById('cf-city').value.trim() : '';
+  var size = document.getElementById('cf-size') ? document.getElementById('cf-size').value : '';
+  var msg = document.getElementById('cf-msg') ? document.getElementById('cf-msg').value.trim() : '';
+
+  if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+
+  // Clear previous errors
+  document.querySelectorAll('.cta-form-input').forEach(function(el) { el.classList.remove('error'); });
+
+  var valid = true;
+
+  if (!name) {
+    var nameEl = document.getElementById('cf-name');
+    if (nameEl) nameEl.classList.add('error');
+    valid = false;
+  }
+
+  var emailOk = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    var emailEl = document.getElementById('cf-email');
+    if (emailEl) emailEl.classList.add('error');
+    valid = false;
+  }
+
+  var phoneOk = !phone || /^[\d\s\(\)\-\+\.]{7,15}$/.test(phone);
+  if (phone && !phoneOk) {
+    var phoneEl = document.getElementById('cf-phone');
+    if (phoneEl) phoneEl.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    btn.textContent = 'Please fix the fields above';
+    setTimeout(function(){ btn.textContent = btn.dataset.orig; }, 2500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  function showSuccess() {
+    ['contact-form','form-wrap'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+    var s = document.getElementById('form-success');
+    if (s) { s.style.display='block'; s.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+
+  fetch('https://formspree.io/f/xdayodbr', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name:name, email:email, phone:phone, business:biz, city:city, team_size:size, message:msg, page:window.location.pathname })
+  })
+  .then(function(r) {
+    if (r.ok) { showSuccess(); }
+    else { btn.disabled=false; btn.textContent='Something went wrong, try again'; setTimeout(function(){ btn.textContent=btn.dataset.orig; },3000); }
+  })
+  .catch(function() {
+    var subj = encodeURIComponent('Discovery Call - ' + (biz||name));
+    var body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nBusiness: '+biz+'\nCity: '+city+'\n\n'+msg);
+    window.location.href = 'mailto:hello@ridgelineautomation.io?subject='+subj+'&body='+body;
+    btn.disabled=false; btn.textContent=btn.dataset.orig;
+  });
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #0e0e0e; --paper: #f2ede6; --rust: #c94f2a; --steel: #3a4a56; --mist: #8a9aa6; --cream: #e8e2d8; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 60px;
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--paper);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--rust); }
+
+  /* ── NAV LINKS ── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0 1.1rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .nav-link:hover, .nav-item:hover > .nav-link { color: var(--paper); }
+  .nav-link .nav-arrow {
+    font-size: 0.5rem;
+    transition: transform 0.2s;
+    opacity: 0.5;
+  }
+  .nav-item:hover > .nav-link .nav-arrow { transform: rotate(180deg); opacity: 1; }
+
+  /* ── DROPDOWNS ── */
+  .nav-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    border-top: 2px solid var(--rust);
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.45);
+    text-decoration: none;
+    padding: 0.75rem 1.2rem;
+    border-bottom: 1px solid rgba(242,237,230,0.04);
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-dropdown-link:last-child { border-bottom: none; }
+  .nav-dropdown-link:hover { background: rgba(242,237,230,0.05); color: var(--paper); }
+  .nav-dropdown-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.2rem 0.3rem;
+    opacity: 0.8;
+  }
+
+  /* ── NAV CTA ── */
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--rust);
+    border: none;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: #e05a30; }
+
+  /* ── HAMBURGER (mobile) ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.25s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: #0e0e0e;
+    border-bottom: 1px solid rgba(242,237,230,0.07);
+    padding: 1rem 0 1.5rem;
+    z-index: 99;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .nav-mobile.open { display: block; }
+  .nav-mobile-section { padding: 0.5rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .nav-mobile-section:last-child { border-bottom: none; }
+  .nav-mobile-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    padding: 0.6rem 1.5rem 0.3rem;
+  }
+  .nav-mobile-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    text-decoration: none;
+    padding: 0.65rem 1.5rem;
+    transition: color 0.15s;
+  }
+  .nav-mobile-link:hover { color: var(--paper); }
+  .nav-mobile-cta {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--rust);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    margin: 1rem 1.5rem 0;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
+  .page-hero { padding: 10rem 3rem 6rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--rust); text-decoration: none; }
+  .page-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .page-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 6vw, 6.5rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 1.5rem; }
+  .page-headline .accent { color: var(--rust); display: block; }
+  .page-sub { font-size: 1.05rem; line-height: 1.7; color: var(--mist); margin-bottom: 2.5rem; }
+  .btn-primary { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--rust); color: var(--ink); padding: 1rem 2rem; text-decoration: none; font-weight: 500; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: #e05a30; transform: translateY(-1px); }
+  .hero-facts { display: flex; flex-direction: column; gap: 1px; padding-top: 4rem; }
+  .fact-card { background: #141414; padding: 1.8rem 2rem; border-left: 3px solid transparent; transition: border-color 0.2s; }
+  .fact-card:hover { border-left-color: var(--rust); }
+  .fact-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--paper); line-height: 1; margin-bottom: 0.3rem; }
+  .fact-num span { color: var(--rust); }
+  .fact-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); }
+  .divider { height: 1px; background: rgba(242,237,230,0.07); margin: 0 3rem; }
+  .section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .section-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 1.5rem; }
+  .industry-section { background: #0a0a0a; }
+  .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(242,237,230,0.06); margin-top: 3rem; }
+  .industry-card { background: #0a0a0a; padding: 2.5rem; transition: background 0.2s; }
+  .industry-card:hover { background: #111; }
+  .industry-icon { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .industry-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.75rem; }
+  .industry-body { font-size: 0.88rem; line-height: 1.65; color: var(--mist); }
+  .industry-automations { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .automation-item { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(242,237,230,0.4); text-transform: uppercase; padding-left: 1rem; position: relative; }
+  .automation-item::before { content: '→'; position: absolute; left: 0; color: var(--rust); }
+  .local-section { background: var(--paper); }
+  .local-section .section-headline { color: var(--ink); }
+  .local-section .section-tag { color: var(--rust); }
+  .local-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+  .local-body p { font-size: 1rem; line-height: 1.75; color: #444; margin-bottom: 1.2rem; }
+  .local-body p strong { color: var(--ink); font-weight: 500; }
+  .local-aside { display: flex; flex-direction: column; gap: 1px; }
+  .aside-item { background: var(--cream); padding: 1.5rem; transition: background 0.2s; }
+  .aside-item:hover { background: #ddd8ce; }
+  .aside-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem; }
+  .aside-text { font-size: 0.9rem; line-height: 1.5; color: #333; }
+  .pricing-section { background: var(--ink); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(242,237,230,0.06); margin-top: 3rem; }
+  .pricing-card { background: var(--ink); padding: 2.5rem; }
+  .pricing-step { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .pricing-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--paper); letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+  .pricing-price { font-family: 'DM Mono', monospace; font-size: 1rem; color: var(--rust); margin-bottom: 1rem; }
+  .pricing-body { font-size: 0.88rem; line-height: 1.65; color: var(--mist); }
+  .faq-section { background: #0a0a0a; }
+  .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1px; }
+  .faq-item { background: #111; }
+  .faq-q { padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+  .faq-q:hover { background: #161616; }
+  .faq-q-text { font-size: 0.95rem; color: var(--paper); font-weight: 400; }
+  .faq-toggle { font-family: 'DM Mono', monospace; color: var(--rust); font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem; transition: transform 0.2s; }
+  .faq-a { display: none; padding: 0 2rem 1.5rem; font-size: 0.9rem; line-height: 1.7; color: var(--mist); }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .areas-section { background: #080808; padding: 4rem 3rem; }
+  .areas-inner { max-width: 1100px; margin: 0 auto; }
+  .areas-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); margin-bottom: 1.5rem; }
+  .areas-list { display: flex; flex-wrap: wrap; gap: 1px; }
+  .area-pill { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.6rem 1.2rem; background: #111; color: var(--mist); text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .area-pill:hover { background: #1a1a1a; color: var(--paper); }
+  .area-pill.active { background: var(--rust); color: var(--ink); }
+  .cta-section { padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-bg-rust { background: var(--rust); }
+  .cta-bg-steel { background: var(--steel); }
+  .cta-section::before { font-family: 'Bebas Neue', sans-serif; font-size: 18rem; color: rgba(0,0,0,0.07); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; letter-spacing: 0.05em; }
+  .cta-bg-rust .cta-headline { color: var(--ink); }
+  .cta-bg-rust .cta-sub { color: rgba(14,14,14,0.65); }
+  .cta-bg-rust .cta-note { color: rgba(14,14,14,0.5); }
+  .cta-bg-steel .cta-headline { color: var(--paper); }
+  .cta-bg-steel .cta-sub { color: rgba(242,237,230,0.65); }
+  .cta-bg-steel .cta-note { color: rgba(242,237,230,0.4); }
+  .cta-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.95; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+  .cta-sub { font-size: 1.1rem; margin-bottom: 3rem; line-height: 1.6; }
+  .btn-dark { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 1.2rem 2.8rem; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-dark:hover { background: #222; transform: translateY(-2px); }
+  .cta-note { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 1.2rem; text-transform: uppercase; }
+  footer { background: #080808; padding: 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(242,237,230,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--paper); }
+  .footer-logo span { color: var(--rust); }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mist); text-align: center; text-transform: uppercase; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); text-decoration: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .page-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+    .hero-facts { padding-top: 0; }
+    .section { padding: 4rem 1.5rem; }
+    .industry-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .local-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .cta-section::before { font-size: 5rem; }
+  }
+.cta-section::before { content: "STARTUPS"; font-size: 14rem; }
+
+  .cta-form { max-width: 560px; margin: 0 auto 1.5rem; text-align: left; }
+  .cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+  .cta-form-field { display: flex; flex-direction: column; }
+  .cta-form-label { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 0.8rem 0.25rem; }
+  .cta-bg-rust .cta-form-label { color: rgba(14,14,14,0.5); background: rgba(14,14,14,0.1); }
+  .cta-bg-steel .cta-form-label { color: rgba(242,237,230,0.4); background: rgba(242,237,230,0.06); }
+  .cta-form-input { border: none; font-family: "DM Sans", sans-serif; font-size: 0.9rem; padding: 0.7rem 0.8rem; outline: none; transition: background 0.2s; resize: none; }
+  .cta-bg-rust .cta-form-input { background: rgba(14,14,14,0.12); color: var(--ink); border-bottom: 1px solid rgba(14,14,14,0.18); }
+  .cta-bg-rust .cta-form-input::placeholder { color: rgba(14,14,14,0.32); }
+  .cta-bg-rust .cta-form-input:focus { background: rgba(14,14,14,0.2); }
+  .cta-bg-steel .cta-form-input { background: rgba(242,237,230,0.08); color: var(--paper); border-bottom: 1px solid rgba(242,237,230,0.15); }
+  .cta-bg-steel .cta-form-input::placeholder { color: rgba(242,237,230,0.28); }
+  .cta-bg-steel .cta-form-input:focus { background: rgba(242,237,230,0.13); }
+  .cta-form-textarea { min-height: 80px; }
+  .cta-form-submit { width: 100%; margin-top: 1px; font-family: "DM Mono", monospace; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; padding: 1.1rem 2rem; cursor: pointer; transition: opacity 0.2s, transform 0.15s; font-weight: 500; }
+  .cta-bg-rust .cta-form-submit { background: var(--ink); color: var(--paper); }
+  .cta-bg-steel .cta-form-submit { background: var(--rust); color: var(--ink); }
+  .cta-form-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+  
+  .cta-form-input select, select.cta-form-input { appearance: none; -webkit-appearance: none; cursor: pointer; }
+  .cta-form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .cta-form-note { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem; text-align: center; }
+  .cta-bg-rust .cta-form-note { color: rgba(14,14,14,0.42); }
+  .cta-bg-steel .cta-form-note { color: rgba(242,237,230,0.32); }
+  .cta-form-success { font-family: "DM Mono", monospace; font-size: 0.82rem; letter-spacing: 0.06em; text-align: center; padding: 1.2rem; margin-top: 0.5rem; }
+  .cta-bg-rust .cta-form-success { color: var(--ink); background: rgba(14,14,14,0.1); }
+  .cta-bg-steel .cta-form-success { color: var(--paper); background: rgba(242,237,230,0.09); }
+
+  .cta-form-input.error { border-bottom: 2px solid #e05a30 !important; background: rgba(201,79,42,0.06) !important; }
+  .cta-form-error { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: #e05a30; padding: 0.3rem 0.8rem; display: none; }
+  .cta-form-error.show { display: block; }
+  @media (max-width: 600px) { .cta-form-row { grid-template-columns: 1fr; } }
+
+  /* ── SITEMAP FOOTER ── */
+  .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .sitemap-heading { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .sitemap-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: rgba(242,237,230,0.35); text-decoration: none; margin-bottom: 0.45rem; transition: color 0.2s; line-height: 1.4; }
+  .sitemap-link:hover { color: var(--paper); }
+  @media (max-width: 900px) { .sitemap-inner { grid-template-columns: 1fr; gap: 2rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
+
+  <div class="nav-links">
+
+    <!-- Services -->
+    <div class="nav-item">
+      <span class="nav-link">Services <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Our process</div>
+        <a href="/free-discovery-call/" class="nav-dropdown-link">Free Discovery Call</a>
+        <a href="/services/discovery-audit/" class="nav-dropdown-link">Workflow Discovery Audit</a>
+        <a href="/services/automation-build/" class="nav-dropdown-link">Custom Automation Build</a>
+        <a href="/services/maintenance-retainer/" class="nav-dropdown-link">Maintenance Retainer</a>
+      </div>
+    </div>
+
+    <!-- Service Areas -->
+    <div class="nav-item">
+      <span class="nav-link">Service Areas <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Roanoke Valley &amp; NRV</div>
+        <a href="/roanoke/" class="nav-dropdown-link">Roanoke, VA</a>
+        <a href="/salem/" class="nav-dropdown-link">Salem, VA</a>
+        <a href="/blacksburg/" class="nav-dropdown-link">Blacksburg, VA</a>
+        <a href="/christiansburg/" class="nav-dropdown-link">Christiansburg, VA</a>
+        <a href="/vinton/" class="nav-dropdown-link">Vinton, VA</a>
+        <a href="/lynchburg/" class="nav-dropdown-link">Lynchburg, VA</a>
+      </div>
+    </div>
+
+    <!-- Industries -->
+    <div class="nav-item">
+      <span class="nav-link">Industries <span class="nav-arrow">▼</span></span>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Specialized pages</div>
+        <a href="/roanoke/healthcare/" class="nav-dropdown-link">Healthcare — Roanoke</a>
+        <a href="/salem/manufacturing/" class="nav-dropdown-link">Manufacturing — Salem</a>
+        <a href="/blacksburg/startups/" class="nav-dropdown-link">Startups — Blacksburg</a>
+        <a href="/lynchburg/healthcare/" class="nav-dropdown-link">Healthcare — Lynchburg</a>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="nav-item">
+      <a href="/about/" class="nav-link">About</a>
+    </div>
+
+  </div>
+
+  <a class="nav-cta" href="#cta">Free Discovery Call</a>
+
+  <!-- Hamburger -->
+  <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Services</div>
+    <a href="/free-discovery-call/" class="nav-mobile-link">Free Discovery Call</a>
+    <a href="/services/discovery-audit/" class="nav-mobile-link">Workflow Discovery Audit</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Custom Automation Build</a>
+    <a href="/services/maintenance-retainer/" class="nav-mobile-link">Maintenance Retainer</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Service Areas</div>
+    <a href="/roanoke/" class="nav-mobile-link">Roanoke, VA</a>
+    <a href="/salem/" class="nav-mobile-link">Salem, VA</a>
+    <a href="/blacksburg/" class="nav-mobile-link">Blacksburg, VA</a>
+    <a href="/christiansburg/" class="nav-mobile-link">Christiansburg, VA</a>
+    <a href="/vinton/" class="nav-mobile-link">Vinton, VA</a>
+    <a href="/lynchburg/" class="nav-mobile-link">Lynchburg, VA</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-heading">Industries</div>
+    <a href="/roanoke/healthcare/" class="nav-mobile-link">Healthcare — Roanoke</a>
+    <a href="/salem/manufacturing/" class="nav-mobile-link">Manufacturing — Salem</a>
+    <a href="/blacksburg/startups/" class="nav-mobile-link">Startups — Blacksburg</a>
+    <a href="/lynchburg/healthcare/" class="nav-mobile-link">Healthcare — Lynchburg</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="/about/" class="nav-mobile-link">About DeShea Witcher</a>
+  </div>
+  <a href="#cta" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Free Discovery Call &rarr;</a>
+</div>
+
+
+<div class="page-hero">
+  <div>
+    <p class="breadcrumb"><a href="/">Ridgeline Automation</a> / <a href="/blacksburg/">Blacksburg</a> / Startups & Tech</p>
+    <p class="page-eyebrow">// Startup Ops Automation · Blacksburg, VA</p>
+    <h1 class="page-headline">Ship Product.<br>Not<br><span class="accent">Spreadsheets.</span></h1>
+    <p class="page-sub">Blacksburg startups and VT spinoffs are building serious technology — and losing serious hours to manual ops. Customer onboarding by hand. Reporting compiled in Google Sheets. Lead routing done by Slack message. We automate the ops layer so your team stays focused on what actually moves the needle.</p>
+    <a href="#cta" class="btn-primary">Book Free Discovery Call</a>
+  </div>
+  <div class="hero-facts">
+    <div class="fact-card"><div class="fact-num">8<span>hrs</span></div><div class="fact-label">Weekly ops time recovered — Blacksburg SaaS company, automated onboarding</div></div>
+    <div class="fact-card"><div class="fact-num">3x</div><div class="fact-label">Lead response speed after automated qualification and routing deployed</div></div>
+    <div class="fact-card"><div class="fact-num">$<span>0</span></div><div class="fact-label">Additional headcount needed to scale ops 3x — automation handles the volume</div></div>
+    <div class="fact-card"><div class="fact-num">11<span>days</span></div><div class="fact-label">Average from discovery to first automation live</div></div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<section class="section industry-section">
+  <div class="section-inner">
+    <p class="section-tag">// What we automate</p>
+    <h2 class="section-headline">The Ops Work<br>That's Eating<br>Your Sprint.</h2>
+    <div class="industry-grid">
+      <div class="industry-card">
+        <div class="industry-icon">// Customer Onboarding</div>
+        <div class="industry-name">Onboarding & Activation</div>
+        <div class="industry-body">Manual customer onboarding is a scaling bottleneck disguised as a people problem. Every new customer that requires a human to send setup emails, provision accounts, schedule calls, and chase documents is a customer that can't be onboarded at 10x volume without 10x headcount. We automate the entire flow.</div>
+        <div class="industry-automations">
+          <div class="automation-item">Welcome & setup email sequences</div>
+          <div class="automation-item">Account provisioning triggers</div>
+          <div class="automation-item">Kickoff call scheduling</div>
+          <div class="automation-item">Document collection & routing</div>
+        </div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">// Lead & Sales Ops</div>
+        <div class="industry-name">Lead Qualification & Routing</div>
+        <div class="industry-body">Inbound leads sitting in a form submission inbox waiting for a human to qualify and route them is one of the most expensive manual steps in a startup's ops stack. Speed-to-lead is a proven conversion driver. Automated qualification and routing cuts response time from hours to minutes.</div>
+        <div class="industry-automations">
+          <div class="automation-item">AI-assisted lead scoring</div>
+          <div class="automation-item">CRM auto-population</div>
+          <div class="automation-item">Rep assignment & notification</div>
+          <div class="automation-item">Follow-up sequence triggering</div>
+        </div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">// Internal Ops & Reporting</div>
+        <div class="industry-name">Ops Reporting & Intelligence</div>
+        <div class="industry-body">Weekly metrics decks built manually. KPI dashboards that require someone to update them. Status reports assembled from five different tools. This is the invisible overhead that eats engineering and ops leads' time every single week. We build pipelines that assemble and deliver it automatically.</div>
+        <div class="industry-automations">
+          <div class="automation-item">Automated metrics aggregation</div>
+          <div class="automation-item">Weekly report generation</div>
+          <div class="automation-item">Cross-tool data pipelines</div>
+          <div class="automation-item">Anomaly detection & alerting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section local-section">
+  <div class="section-inner">
+    <p class="section-tag">// The Blacksburg startup context</p>
+    <h2 class="section-headline">Technical Team.<br>Manual Ops.<br>That's the<br>Gap We Fill.</h2>
+    <div class="local-grid">
+      <div class="local-body">
+        <p>The VT corridor has produced a genuine cluster of technical companies — spinoffs, SaaS businesses, research commercializations, and consulting firms that are building real technology. The founding teams are engineers, researchers, and domain experts. Ops automation is something they know they should do.</p>
+        <p><strong>The reason it doesn't happen internally</strong> is straightforward: the same engineers who could build the automation are the ones building the product. Pulling them off product work to build internal tooling is a trade most technical founders won't make — and shouldn't have to.</p>
+        <p>We come in as the ops automation partner. We scope it, build it, and run it. You keep full ownership of the systems we build. We don't create lock-in — we create documented, maintainable workflows that your team can take over at any point if you choose to bring it in-house.</p>
+        <p><strong>For teams with AI in the product:</strong> we can incorporate LLM calls into automation workflows — lead qualification by Claude, document summarization by GPT-4o, customer communication drafting with model-in-the-loop review. We build this thoughtfully, with fallback logic for when the model misbehaves.</p>
+      </div>
+      <div class="local-aside">
+        <div class="aside-item"><div class="aside-label">Most common first automation</div><div class="aside-text">Customer onboarding flow. It's usually the first place a growing startup feels the manual ops pain — and it's one of the cleanest to automate because the steps are well-defined.</div></div>
+        <div class="aside-item"><div class="aside-label">Highest leverage automation</div><div class="aside-text">Lead qualification and routing. Cutting response time from hours to minutes on inbound leads directly impacts conversion rate. Most Blacksburg teams see measurable pipeline impact within 30 days.</div></div>
+        <div class="aside-item"><div class="aside-label">For VT research spinoffs</div><div class="aside-text">Grant reporting, partner communication, and IP licensing workflows are all highly automatable. Research teams shouldn't be spending hours compiling progress reports.</div></div>
+        <div class="aside-item"><div class="aside-label">Stack compatibility</div><div class="aside-text">HubSpot, Salesforce, Notion, Linear, Jira, Slack, Stripe, GitHub, Airtable, Postgres, custom REST APIs — we've connected all of these. If it has an API, we can integrate it.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing-section">
+  <div class="section-inner">
+    <p class="section-tag">// Transparent pricing</p>
+    <h2 class="section-headline">Engineer Time<br>Is Too Expensive<br>for This.</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card"><div class="pricing-step">// Step 01</div><div class="pricing-name">Discovery Audit</div><div class="pricing-price">50 flat — credited to build</div><div class="pricing-body">90-minute session. We map your ops workflows, find automation opportunities, and deliver a prioritized roadmap with ROI estimates. You keep it regardless of what you decide.</div></div>
+      <div class="pricing-card"><div class="pricing-step">// Step 02</div><div class="pricing-name">Custom Build</div><div class="pricing-price">,000 – 2,000 flat fee</div><div class="pricing-body">Scoped after discovery. Flat fee. We build, test, document, and hand off. Full ownership transfers to you. Average delivery 11 days. 30-day post-launch support included.</div></div>
+      <div class="pricing-card"><div class="pricing-step">// Step 03</div><div class="pricing-name">Maintenance Retainer</div><div class="pricing-price">00 – ,200 / month</div><div class="pricing-body">Monthly monitoring and updates. API deprecations, tool changes, and workflow edge cases handled proactively. We alert you before anything breaks production ops.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="section-inner">
+    <p class="section-tag">// Common questions</p>
+    <h2 class="section-headline">Blacksburg<br>Founders<br>Usually Ask:</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">We have a developer on staff. Why wouldn't they just build this?</span><span class="faq-toggle">+</span></div><div class="faq-a">They could. The real question is whether their time is worth more on your product or on internal ops tooling. Most technical founders answer that quickly. We also specialize in automation tooling specifically — we build and maintain these workflows constantly, which means faster delivery and fewer edge cases than someone building their first automation between product sprints.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can you build automation that uses AI/LLMs in the workflow?</span><span class="faq-toggle">+</span></div><div class="faq-a">Yes. We build workflows with LLM steps for lead qualification, document analysis, customer communication drafting, and data extraction. We build with fallback logic — if the model returns something unexpected, the workflow handles it gracefully instead of silently failing. We're careful about where AI steps belong in a workflow and where deterministic logic is more appropriate.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">We're pre-revenue and cash-constrained. Is there a minimal engagement?</span><span class="faq-toggle">+</span></div><div class="faq-a">Start with the discovery audit. 50, 90 minutes, you get a written roadmap. If the highest-ROI automation is a ,500 build with a 60-day payback, the math is usually clear enough. We also offer milestone-based payment on builds for early-stage companies when it makes sense — ask in the discovery call.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Our data is sensitive. How do you handle security?</span><span class="faq-toggle">+</span></div><div class="faq-a">We scope data security requirements in the discovery audit. For sensitive data, we favor self-hosted solutions (n8n self-hosted on your infrastructure), minimize data in transit, and avoid third-party platforms that require data residency compromises. We work under NDA and can build to SOC 2 or HIPAA-adjacent requirements when needed.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="areas-section"><div class="areas-inner"><p class="areas-label">// Explore by city or industry</p><div class="areas-list"><a href="/blacksburg/" class="area-pill active">Blacksburg</a><a href="/roanoke/" class="area-pill">Roanoke</a><a href="/christiansburg/" class="area-pill">Christiansburg</a><a href="/roanoke/healthcare/" class="area-pill">Healthcare — Roanoke</a><a href="/salem/manufacturing/" class="area-pill">Manufacturing — Salem</a><a href="/lynchburg/healthcare/" class="area-pill">Healthcare — Lynchburg</a></div></div></section>
+
+<section class="cta-section cta-bg-steel" id="cta"><div class="cta-inner"><h2 class="cta-headline">Stop Doing<br>Ops Work<br>by Hand.</h2><p class="cta-sub">30 minutes. We map your ops workflows and prioritize what's worth automating first — with ROI estimates your CFO can check. No obligation.</p><div class="cta-form" id="contact-form">
+    <div class="cta-form-row">
+    <div class="cta-form-field">
+      <label class="cta-form-label" for="cf-name">Your name</label>
+      <input class="cta-form-input" type="text" id="cf-name" name="name" placeholder="Jane Smith" autocomplete="name">
+    </div>
+    <div class="cta-form-field">
+      <label class="cta-form-label" for="cf-phone">Phone number</label>
+      <input class="cta-form-input" type="tel" id="cf-phone" name="phone" placeholder="540-555-0100" autocomplete="tel">
+    </div>
+  </div>
+  <div class="cta-form-field" style="margin-top:1px;">
+    <label class="cta-form-label" for="cf-email">Work email</label>
+    <input class="cta-form-input" type="email" id="cf-email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email">
+  </div>
+  <div class="cta-form-row" style="margin-top:1px;">
+    <div class="cta-form-field">
+      <label class="cta-form-label" for="cf-biz">Business name</label>
+      <input class="cta-form-input" type="text" id="cf-biz" name="business" placeholder="Acme HVAC &amp; Mechanical">
+    </div>
+    <div class="cta-form-field">
+      <label class="cta-form-label" for="cf-city">City</label>
+      <input class="cta-form-input" type="text" id="cf-city" name="city" placeholder="Salem, VA">
+    </div>
+  </div>
+  <div class="cta-form-field" style="margin-top:1px;">
+    <label class="cta-form-label" for="cf-size">Team size</label>
+    <select class="cta-form-input" id="cf-size" name="team_size">
+      <option value="" disabled selected>Select team size</option>
+      <option value="1-3">Just me / 1–3 people</option>
+      <option value="4-10">4–10 people</option>
+      <option value="11-25">11–25 people</option>
+      <option value="26-50">26–50 people</option>
+      <option value="50+">50+ people</option>
+    </select>
+  </div>
+  <div class="cta-form-field" style="margin-top:1px;">
+    <label class="cta-form-label" for="cf-msg">What workflows are eating your time?</label>
+    <textarea class="cta-form-input cta-form-textarea" id="cf-msg" name="message" placeholder="e.g. We manually enter invoices into QuickBooks every day, takes 2 hours..."></textarea>
+  </div>
+  <button class="cta-form-submit" type="button" onclick="submitForm(this)">Book Free Discovery Call &rarr;</button>
+  <div class="cta-form-note">We respond within 1 business day &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; No pitch deck</div>
+  <div class="cta-form-success" id="form-success" style="display:none;">&#10003; Got it. We will reach out within one business day.</div>
+</div><p class="cta-note">Serving Blacksburg startups &amp; VT spinoffs &nbsp;·&nbsp; Technical builds &nbsp;·&nbsp; <a href="mailto:hello@ridgelineautomation.io" class="__cf_email__" data-cfemail="234b464f4f4c63514a4744464f4a4d464256574c4e42574a4c4d0d4a4c">[email&#160;protected]</a></p></div></section>
+
+
+<section class="sitemap-section">
+  <div class="sitemap-inner">
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Service Areas</div>
+      <a href="/roanoke/" class="sitemap-link">AI Automation — Roanoke, VA</a>
+      <a href="/salem/" class="sitemap-link">AI Automation — Salem, VA</a>
+      <a href="/blacksburg/" class="sitemap-link">AI Automation — Blacksburg, VA</a>
+      <a href="/christiansburg/" class="sitemap-link">AI Automation — Christiansburg, VA</a>
+      <a href="/vinton/" class="sitemap-link">AI Automation — Vinton, VA</a>
+      <a href="/lynchburg/" class="sitemap-link">AI Automation — Lynchburg, VA</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Services</div>
+      <a href="/services/discovery-audit/" class="sitemap-link">Workflow Discovery Audit</a>
+      <a href="/services/automation-build/" class="sitemap-link">Custom Automation Build</a>
+      <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
+      <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
+      <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-heading">Industries</div>
+      <a href="/roanoke/healthcare/" class="sitemap-link">Healthcare Automation — Roanoke</a>
+      <a href="/salem/manufacturing/" class="sitemap-link">Manufacturing Automation — Salem</a>
+      <a href="/blacksburg/startups/" class="sitemap-link">Startup Ops Automation — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" class="sitemap-link">Healthcare Automation — Lynchburg</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">RIDGELINE<span>.</span></div>
+  <div class="footer-info">Roanoke, Virginia &nbsp;·&nbsp; AI Automation for Local Business</div>
+  <a class="footer-link" href="/about/" style="margin-right:1.5rem;">About</a>
+  <a class="footer-link" href="mailto:hello@ridgelineautomation.io">hello@ridgelineautomation.io</a>
+</footer>
+</html>
