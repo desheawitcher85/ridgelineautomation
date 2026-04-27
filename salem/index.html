@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -208,20 +208,23 @@ function submitForm(btn) {
   /* ── NAV CTA ── */
   .nav-cta {
     font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink);
     background: var(--rust);
     border: none;
-    padding: 0.55rem 1.2rem;
+    border-radius: 3px;
+    padding: 0.7rem 1.5rem;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
     flex-shrink: 0;
     white-space: nowrap;
+    font-weight: 500;
+    box-shadow: 0 2px 14px rgba(201,79,42,0.4);
   }
-  .nav-cta:hover { background: #e05a30; }
+  .nav-cta:hover { background: #e05a30; box-shadow: 0 4px 22px rgba(201,79,42,0.6); }
 
   /* ── HAMBURGER (mobile) ── */
   .nav-hamburger {
@@ -394,6 +397,31 @@ function submitForm(btn) {
   }
 .cta-section::before { content: "SALEM"; }
 
+  /* ── FOOTER CTA BAND ── */
+  .footer-cta-band {
+    background: #111;
+    border-top: 3px solid var(--rust);
+    padding: 5rem 3rem;
+    text-align: center;
+  }
+  .footer-cta-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .footer-cta-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+  }
+  @media (max-width: 900px) {
+    .footer-cta-band { padding: 4rem 1.5rem; }
+  }
   /* ── SITEMAP ── */
   .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
   .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
@@ -436,59 +464,40 @@ function submitForm(btn) {
   .cta-form-error.show { display: block; }
   @media (max-width: 600px) { .cta-form-row { grid-template-columns: 1fr; } }
 </style>
+<script>
+function toggleMobileNav(btn) {
+  var nav = document.getElementById('nav-mobile');
+  nav.classList.toggle('open');
+  var spans = btn.querySelectorAll('span');
+  if (nav.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+}
+</script>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
 
   <div class="nav-links">
-
-    <!-- Services -->
     <div class="nav-item">
-      <span class="nav-link">Services <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Our process</div>
-        <a href="/free-discovery-call/" class="nav-dropdown-link">Free Discovery Call</a>
-        <a href="/services/discovery-audit/" class="nav-dropdown-link">Workflow Discovery Audit</a>
-        <a href="/services/automation-build/" class="nav-dropdown-link">Custom Automation Build</a>
-        <a href="/services/maintenance-retainer/" class="nav-dropdown-link">Maintenance Retainer</a>
-      </div>
+      <a href="/#how" class="nav-link">How It Works</a>
     </div>
-
-    <!-- Service Areas -->
     <div class="nav-item">
-      <span class="nav-link">Service Areas <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Roanoke Valley &amp; NRV</div>
-        <a href="/roanoke/" class="nav-dropdown-link">Roanoke, VA</a>
-        <a href="/salem/" class="nav-dropdown-link">Salem, VA</a>
-        <a href="/blacksburg/" class="nav-dropdown-link">Blacksburg, VA</a>
-        <a href="/christiansburg/" class="nav-dropdown-link">Christiansburg, VA</a>
-        <a href="/vinton/" class="nav-dropdown-link">Vinton, VA</a>
-        <a href="/lynchburg/" class="nav-dropdown-link">Lynchburg, VA</a>
-      </div>
+      <a href="/services/automation-build/" class="nav-link">Pricing</a>
     </div>
-
-    <!-- Industries -->
-    <div class="nav-item">
-      <span class="nav-link">Industries <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Specialized pages</div>
-        <a href="/roanoke/healthcare/" class="nav-dropdown-link">Healthcare — Roanoke</a>
-        <a href="/salem/manufacturing/" class="nav-dropdown-link">Manufacturing — Salem</a>
-        <a href="/blacksburg/startups/" class="nav-dropdown-link">Startups — Blacksburg</a>
-        <a href="/lynchburg/healthcare/" class="nav-dropdown-link">Healthcare — Lynchburg</a>
-      </div>
-    </div>
-
-    <!-- About -->
     <div class="nav-item">
       <a href="/about/" class="nav-link">About</a>
     </div>
-
   </div>
 
-  <a class="nav-cta" href="#cta">Free Discovery Call</a>
+  <a class="nav-cta" href="/free-discovery-call/">Book Free Call &#x2192;</a>
 
   <!-- Hamburger -->
   <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
@@ -499,32 +508,11 @@ function submitForm(btn) {
 <!-- Mobile Nav -->
 <div class="nav-mobile" id="nav-mobile">
   <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Services</div>
-    <a href="/free-discovery-call/" class="nav-mobile-link">Free Discovery Call</a>
-    <a href="/services/discovery-audit/" class="nav-mobile-link">Workflow Discovery Audit</a>
-    <a href="/services/automation-build/" class="nav-mobile-link">Custom Automation Build</a>
-    <a href="/services/maintenance-retainer/" class="nav-mobile-link">Maintenance Retainer</a>
+    <a href="/#how" class="nav-mobile-link">How It Works</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Pricing</a>
+    <a href="/about/" class="nav-mobile-link">About</a>
   </div>
-  <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Service Areas</div>
-    <a href="/roanoke/" class="nav-mobile-link">Roanoke, VA</a>
-    <a href="/salem/" class="nav-mobile-link">Salem, VA</a>
-    <a href="/blacksburg/" class="nav-mobile-link">Blacksburg, VA</a>
-    <a href="/christiansburg/" class="nav-mobile-link">Christiansburg, VA</a>
-    <a href="/vinton/" class="nav-mobile-link">Vinton, VA</a>
-    <a href="/lynchburg/" class="nav-mobile-link">Lynchburg, VA</a>
-  </div>
-  <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Industries</div>
-    <a href="/roanoke/healthcare/" class="nav-mobile-link">Healthcare — Roanoke</a>
-    <a href="/salem/manufacturing/" class="nav-mobile-link">Manufacturing — Salem</a>
-    <a href="/blacksburg/startups/" class="nav-mobile-link">Startups — Blacksburg</a>
-    <a href="/lynchburg/healthcare/" class="nav-mobile-link">Healthcare — Lynchburg</a>
-  </div>
-  <div class="nav-mobile-section">
-    <a href="/about/" class="nav-mobile-link">About DeShea Witcher</a>
-  </div>
-  <a href="#cta" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Free Discovery Call &rarr;</a>
+  <a href="/free-discovery-call/" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Book Free Call &rarr;</a>
 </div>
 
 
@@ -720,6 +708,8 @@ function submitForm(btn) {
       <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
       <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
       <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+      <a href="/owner-path/" class="sitemap-link">For Business Owners</a>
+      <a href="/ops-path/" class="sitemap-link">For Operations Managers</a>
     </div>
     <div class="sitemap-col">
       <div class="sitemap-heading">Industries</div>

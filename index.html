@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -214,14 +214,37 @@ function submitForm(btn) {
 </script>
 <script>
 function calcROI() {
-  var hours = parseFloat(document.getElementById('hours').value) || 0;
-  var rate = parseFloat(document.getElementById('rate').value) || 0;
-  var annual = hours * rate * 52;
-  var formatted = '$' + annual.toLocaleString('en-US', {maximumFractionDigits: 0});
-  var resultEl = document.getElementById('result');
-  var subEl = document.getElementById('result-sub');
+  var hours = parseFloat(document.getElementById(‘hours’).value) || 0;
+  var rate = parseFloat(document.getElementById(‘rate’).value) || 0;
+  var teamSizeEl = document.getElementById(‘calc-team-size’);
+  var teamSize = teamSizeEl ? teamSizeEl.value : ‘’;
+  var bizTypeEl = document.getElementById(‘calc-biz-type’);
+  var bizType = bizTypeEl ? bizTypeEl.value : ‘’;
 
-  resultEl.textContent = formatted;
+  var annual = hours * rate * 52;
+  var monthly = hours * rate * (52 / 12);
+
+  var resultEl = document.getElementById(‘result’);
+  var subEl = document.getElementById(‘result-sub’);
+  var paybackEl = document.getElementById(‘result-payback’);
+  var paybackNumEl = document.getElementById(‘payback-number’);
+  var recEl = document.getElementById(‘result-rec’);
+
+  resultEl.textContent = ‘$’ + annual.toLocaleString(‘en-US’, {maximumFractionDigits: 0});
+
+  var buildCosts = { ‘1-3’: 3000, ‘4-10’: 5000, ‘11-25’: 8000, ‘26-50’: 10000, ‘50+’: 12000 };
+  var teamRecs = {
+    ‘1-3’:   ‘invoice automation, appointment scheduling, lead follow-up’,
+    ‘4-10’:  ‘client intake, payment reminders, report generation’,
+    ‘11-25’: ‘CRM data sync, inventory alerts, vendor communication’,
+    ‘26-50’: ‘contract routing, payroll prep, multi-system data flows’,
+    ‘50+’:   ‘cross-departmental workflows, custom AI agents, full ops integration’
+  };
+  var bizRecs = {
+    ‘healthcare’:    ‘Most healthcare practices we work with start with patient intake and appointment automation.’,
+    ‘manufacturing’: ‘Manufacturers typically see fastest ROI on inventory alerts and vendor communication automation.’,
+    ‘professional’:  ‘Professional services firms get the biggest wins from client intake and document routing.’
+  };
 
   var buildMin = 3000;
   var retainerAnnual = 400 * 12;
@@ -229,23 +252,63 @@ function calcROI() {
   var savings = annual - totalAutomation;
 
   if (annual === 0) {
-    subEl.textContent = 'Enter your numbers above to see the cost of doing nothing.';
-  } else if (savings > 0) {
-    subEl.textContent = 'vs. ~$' + totalAutomation.toLocaleString() + ' to automate it — net savings: $' + savings.toLocaleString() + ' in year one';
+    subEl.textContent = ‘Enter your numbers above to see the cost of doing nothing.’;
+    if (paybackEl) paybackEl.style.display = ‘none’;
+    if (recEl) recEl.style.display = ‘none’;
   } else {
-    subEl.textContent = 'vs. a one-time build starting at $3,000 + $400/mo to maintain';
+    subEl.textContent = savings > 0
+      ? ‘vs. ~$’ + totalAutomation.toLocaleString() + ‘ to automate it — net savings: $’ + savings.toLocaleString() + ‘ in year one’
+      : ‘vs. a one-time build starting at $3,000 + $400/mo to maintain’;
+
+    var hasPayback = teamSize && buildCosts[teamSize] && monthly > 0;
+    var hasBizRec = bizType && bizRecs[bizType];
+
+    if (hasPayback) {
+      var payback = (buildCosts[teamSize] / monthly).toFixed(1);
+      if (paybackEl) paybackEl.style.display = ‘block’;
+      if (paybackNumEl) paybackNumEl.textContent = payback;
+    } else {
+      if (paybackEl) paybackEl.style.display = ‘none’;
+    }
+
+    if (hasBizRec || hasPayback) {
+      if (recEl) {
+        recEl.style.display = ‘block’;
+        if (hasBizRec) {
+          recEl.textContent = bizRecs[bizType];
+        } else {
+          var payback = (buildCosts[teamSize] / monthly).toFixed(1);
+          recEl.textContent = ‘At your team size and cost, you’d break even on a Ridgeline build in ‘ + payback + ‘ months. Top automation candidates for a team your size: ‘ + teamRecs[teamSize] + ‘.’;
+        }
+      }
+    } else {
+      if (recEl) recEl.style.display = ‘none’;
+    }
   }
 
-  // Pulse the result so it's clear it updated live
-  resultEl.style.transition = 'color 0.15s';
-  resultEl.style.color = 'var(--rust)';
+  resultEl.style.transition = ‘color 0.15s’;
+  resultEl.style.color = ‘var(--rust)’;
   clearTimeout(resultEl._t);
-  resultEl._t = setTimeout(function() {
-    resultEl.style.color = 'var(--paper)';
-  }, 300);
+  resultEl._t = setTimeout(function() { resultEl.style.color = ‘var(--paper)’; }, 300);
 }
-calcROI(); // initial render
-document.addEventListener('DOMContentLoaded', function() { calcROI(); });
+calcROI();
+document.addEventListener(‘DOMContentLoaded’, function() { calcROI(); });
+</script>
+<script>
+function toggleMobileNav(btn) {
+  var nav = document.getElementById('nav-mobile');
+  nav.classList.toggle('open');
+  var spans = btn.querySelectorAll('span');
+  if (nav.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -380,20 +443,23 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   /* ── NAV CTA ── */
   .nav-cta {
     font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink);
     background: var(--rust);
     border: none;
-    padding: 0.55rem 1.2rem;
+    border-radius: 3px;
+    padding: 0.7rem 1.5rem;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
     flex-shrink: 0;
     white-space: nowrap;
+    font-weight: 500;
+    box-shadow: 0 2px 14px rgba(201,79,42,0.4);
   }
-  .nav-cta:hover { background: #e05a30; }
+  .nav-cta:hover { background: #e05a30; box-shadow: 0 4px 22px rgba(201,79,42,0.6); }
 
   /* ── HAMBURGER (mobile) ── */
   .nav-hamburger {
@@ -473,19 +539,43 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
     min-height: 60vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     position: relative;
     overflow: hidden;
+  }
+
+  .hero-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
 
   .hero-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 5rem 3rem 3rem 3rem;
+    padding: 7rem 3rem 3rem 3rem;
     position: relative;
     z-index: 2;
   }
+
+  .hero-visual {
+    padding: 7rem 3rem 3rem 0;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid rgba(242,237,230,0.08);
+    border-top: 2px solid var(--rust);
+    opacity: 0.92;
+    transition: opacity 0.3s;
+  }
+  .hero-img:hover { opacity: 1; }
 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
@@ -630,6 +720,72 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
     flex-shrink: 0;
   }
   .marquee-dot { color: var(--mist); margin: 0 0.5rem; }
+
+  /* ── CREDENTIAL LINE ── */
+  .credential-line {
+    padding: 2rem 3rem;
+    text-align: center;
+    border-top: 1px solid rgba(242,237,230,0.08);
+    border-bottom: 1px solid rgba(242,237,230,0.08);
+    background: var(--ink);
+  }
+  .credential-line p {
+    font-size: 0.95rem;
+    color: var(--mist);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── BEFORE / AFTER ── */
+  .before-after-section {
+    background: #0a0a0a;
+    padding: 5rem 3rem;
+  }
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(242,237,230,0.06);
+    margin-top: 2rem;
+  }
+  .ba-col {
+    background: #0a0a0a;
+    padding: 2.5rem;
+  }
+  .ba-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .ba-before .ba-header { color: var(--mist); }
+  .ba-after .ba-header { color: var(--rust); }
+  .ba-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(160deg, #1c1c1c 0%, #141414 100%);
+    border: 1px solid rgba(242,237,230,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ba-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid rgba(242,237,230,0.08);
+  }
+  .ba-placeholder-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.18);
+    text-align: center;
+    padding: 2rem;
+    line-height: 1.8;
+  }
 
   /* ── PROBLEM SECTION ── */
   .section { padding: 7rem 3rem; }
@@ -792,6 +948,52 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   }
   .proof-author span { color: var(--mist); display: block; margin-top: 0.2rem; font-size: 0.62rem; }
 
+  /* ── TESTIMONIALS ── */
+  .testimonial-section {
+    background: #0a0a0a;
+    padding: 6rem 3rem;
+  }
+  .testimonial-section .section-headline { color: var(--paper); }
+  .testimonial-card {
+    background: #111;
+    padding: 2.5rem;
+    border-top: 2px solid rgba(242,237,230,0.06);
+    max-width: 680px;
+    margin-top: 3rem;
+  }
+  .testimonial-headshot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #1c1c1c;
+    border: 1px solid rgba(242,237,230,0.1);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .testimonial-headshot-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: rgba(242,237,230,0.2);
+    text-transform: uppercase;
+  }
+  .testimonial-quote {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(242,237,230,0.65);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-attribution {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+
   /* ── ROI CALC ── */
   .roi-section {
     background: var(--steel);
@@ -863,6 +1065,30 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
     font-size: 0.85rem;
     color: rgba(242,237,230,0.5);
     margin-top: 0.5rem;
+  }
+  select.calc-input { appearance: none; -webkit-appearance: none; cursor: pointer; }
+  .calc-team-field { margin-bottom: 2rem; }
+  .calc-payback {
+    border-top: 1px solid rgba(242,237,230,0.08);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  .calc-payback-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--paper);
+    line-height: 1;
+    margin-top: 0.4rem;
+  }
+  .calc-payback-number span { color: var(--rust); font-size: 1.4rem; }
+  .calc-rec {
+    border-top: 1px solid rgba(242,237,230,0.08);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(242,237,230,0.55);
+    text-align: left;
   }
 
   /* ── CTA SECTION ── */
@@ -1021,15 +1247,45 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-body { grid-template-columns: 1fr; }
     .hero-left { padding: 7rem 1.5rem 2rem; }
+    .hero-visual { padding: 0 1.5rem 2rem; }
     .hero-stat-bar { grid-template-columns: 1fr; }
     .hero-stat-divider { display: none; }
     .hero-stat { padding: 1.5rem; border-top: 1px solid rgba(242,237,230,0.07); }
     .section { padding: 5rem 1.5rem; }
+    .before-after-section { padding: 4rem 1.5rem; }
+    .before-after-grid { grid-template-columns: 1fr; }
+    .credential-line { padding: 1.5rem; }
     .problem-grid, .steps-grid, .proof-grid, .area-grid { grid-template-columns: 1fr; }
     .calc-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ── FOOTER CTA BAND ── */
+  .footer-cta-band {
+    background: #111;
+    border-top: 3px solid var(--rust);
+    padding: 5rem 3rem;
+    text-align: center;
+  }
+  .footer-cta-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .footer-cta-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+  }
+  @media (max-width: 900px) {
+    .footer-cta-band { padding: 4rem 1.5rem; }
   }
 
   /* ── SITEMAP ── */
@@ -1082,53 +1338,18 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
 
   <div class="nav-links">
-
-    <!-- Services -->
     <div class="nav-item">
-      <span class="nav-link">Services <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Our process</div>
-        <a href="/free-discovery-call/" class="nav-dropdown-link">Free Discovery Call</a>
-        <a href="/services/discovery-audit/" class="nav-dropdown-link">Workflow Discovery Audit</a>
-        <a href="/services/automation-build/" class="nav-dropdown-link">Custom Automation Build</a>
-        <a href="/services/maintenance-retainer/" class="nav-dropdown-link">Maintenance Retainer</a>
-      </div>
+      <a href="#how" class="nav-link">How It Works</a>
     </div>
-
-    <!-- Service Areas -->
     <div class="nav-item">
-      <span class="nav-link">Service Areas <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Roanoke Valley &amp; NRV</div>
-        <a href="/roanoke/" class="nav-dropdown-link">Roanoke, VA</a>
-        <a href="/salem/" class="nav-dropdown-link">Salem, VA</a>
-        <a href="/blacksburg/" class="nav-dropdown-link">Blacksburg, VA</a>
-        <a href="/christiansburg/" class="nav-dropdown-link">Christiansburg, VA</a>
-        <a href="/vinton/" class="nav-dropdown-link">Vinton, VA</a>
-        <a href="/lynchburg/" class="nav-dropdown-link">Lynchburg, VA</a>
-      </div>
+      <a href="/services/automation-build/" class="nav-link">Pricing</a>
     </div>
-
-    <!-- Industries -->
-    <div class="nav-item">
-      <span class="nav-link">Industries <span class="nav-arrow">▼</span></span>
-      <div class="nav-dropdown">
-        <div class="nav-dropdown-label">Specialized pages</div>
-        <a href="/roanoke/healthcare/" class="nav-dropdown-link">Healthcare — Roanoke</a>
-        <a href="/salem/manufacturing/" class="nav-dropdown-link">Manufacturing — Salem</a>
-        <a href="/blacksburg/startups/" class="nav-dropdown-link">Startups — Blacksburg</a>
-        <a href="/lynchburg/healthcare/" class="nav-dropdown-link">Healthcare — Lynchburg</a>
-      </div>
-    </div>
-
-    <!-- About -->
     <div class="nav-item">
       <a href="/about/" class="nav-link">About</a>
     </div>
-
   </div>
 
-  <a class="nav-cta" href="#cta">Free Discovery Call</a>
+  <a class="nav-cta" href="/free-discovery-call/">Book Free Call →</a>
 
   <!-- Hamburger -->
   <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
@@ -1139,108 +1360,91 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
 <!-- Mobile Nav -->
 <div class="nav-mobile" id="nav-mobile">
   <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Services</div>
-    <a href="/free-discovery-call/" class="nav-mobile-link">Free Discovery Call</a>
-    <a href="/services/discovery-audit/" class="nav-mobile-link">Workflow Discovery Audit</a>
-    <a href="/services/automation-build/" class="nav-mobile-link">Custom Automation Build</a>
-    <a href="/services/maintenance-retainer/" class="nav-mobile-link">Maintenance Retainer</a>
+    <a href="#how" class="nav-mobile-link" onclick="document.getElementById('nav-mobile').classList.remove('open')">How It Works</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Pricing</a>
+    <a href="/about/" class="nav-mobile-link">About</a>
   </div>
-  <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Service Areas</div>
-    <a href="/roanoke/" class="nav-mobile-link">Roanoke, VA</a>
-    <a href="/salem/" class="nav-mobile-link">Salem, VA</a>
-    <a href="/blacksburg/" class="nav-mobile-link">Blacksburg, VA</a>
-    <a href="/christiansburg/" class="nav-mobile-link">Christiansburg, VA</a>
-    <a href="/vinton/" class="nav-mobile-link">Vinton, VA</a>
-    <a href="/lynchburg/" class="nav-mobile-link">Lynchburg, VA</a>
-  </div>
-  <div class="nav-mobile-section">
-    <div class="nav-mobile-heading">Industries</div>
-    <a href="/roanoke/healthcare/" class="nav-mobile-link">Healthcare — Roanoke</a>
-    <a href="/salem/manufacturing/" class="nav-mobile-link">Manufacturing — Salem</a>
-    <a href="/blacksburg/startups/" class="nav-mobile-link">Startups — Blacksburg</a>
-    <a href="/lynchburg/healthcare/" class="nav-mobile-link">Healthcare — Lynchburg</a>
-  </div>
-  <div class="nav-mobile-section">
-    <a href="/about/" class="nav-mobile-link">About DeShea Witcher</a>
-  </div>
-  <a href="#cta" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Free Discovery Call &rarr;</a>
+  <a href="/free-discovery-call/" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Book Free Call &rarr;</a>
 </div>
 
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">// For Roanoke Business Owners</p>
-    <h1 class="hero-headline">Get Back <span class="accent">20 Hours</span> A Week.</h1>
-    <p class="hero-sub">
-      We find the manual work killing your productivity and automate it — in under 2 weeks. <span class="hero-sub-locals">Local to Roanoke. No tech knowledge required.</span>
-    </p>
-    <div class="hero-cta-group">
-      <a href="#cta" class="btn-primary">Book Free Discovery Call</a>
-      <a href="#how" class="btn-ghost">See how it works →</a>
+  <div class="hero-body">
+    <div class="hero-left">
+      <p class="hero-eyebrow">// For Roanoke Business Owners</p>
+      <h1 class="hero-headline">Enterprise automation. <span class="accent">Roanoke prices.</span></h1>
+      <p class="hero-sub">
+        We find the manual work killing your productivity and eliminate it — in under 2 weeks. <span class="hero-sub-locals">Local. No tech knowledge required.</span>
+      </p>
+      <div class="hero-cta-group">
+        <a href="#cta" class="btn-primary">Book Free Discovery Call</a>
+        <a href="#how" class="btn-ghost">See how it works →</a>
+      </div>
+
+      <!-- A/B TEST VARIANT — currently disabled. Uncomment to test:
+      <div class="hero-cta-group" style="margin-top:0.75rem;">
+        <a href="/owner-path/" class="btn-ghost">I own the business →</a>
+        <a href="/ops-path/" class="btn-ghost">I manage operations →</a>
+      </div>
+      -->
+    </div>
+    <div class="hero-visual">
+      <img
+        src="/roanoke-va-n8n-advanced-automation.jpg"
+        alt="n8n multi-agent automation workflow built for a Roanoke Valley business"
+        class="hero-img"
+      >
     </div>
   </div>
   <div class="hero-stat-bar">
     <div class="hero-stat">
       <div class="stat-number">23<span>hrs</span></div>
-      <div class="stat-label">Avg. hours saved per week — medical practice in Roanoke</div>
+      <div class="stat-label">Saved per week — within 14 days of kickoff. Medical practice in Roanoke.</div>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
       <div class="stat-number">$<span>84k</span></div>
-      <div class="stat-label">Annual labor cost eliminated — distribution company in Salem</div>
+      <div class="stat-label">Annual labor cost eliminated — automation live in 18 days. Distribution company in Salem.</div>
     </div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat">
       <div class="stat-number">11<span>days</span></div>
-      <div class="stat-label">Time to first automation live — accounting firm in Roanoke</div>
+      <div class="stat-label">Avg. time from kickoff to live automation. No waiting months. Accounting firm in Roanoke.</div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">Invoice Automation<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Appointment Scheduling<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Customer Follow-Ups<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Data Entry Elimination<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Report Generation<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Lead Qualification<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Document Processing<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Staff Onboarding<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Estimate Follow-Up<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Payment Reminders<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Review Requests<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">No-Show Reduction<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Vendor Communication<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Contract Routing<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Inventory Alerts<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Job Dispatch<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Payroll Prep<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Client Intake<span class="marquee-dot">◆</span></span>
-    <!-- Dupe for seamless loop -->
-    <span class="marquee-item">Invoice Automation<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Appointment Scheduling<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Customer Follow-Ups<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Data Entry Elimination<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Report Generation<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Lead Qualification<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Document Processing<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Staff Onboarding<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Estimate Follow-Up<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Payment Reminders<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Review Requests<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">No-Show Reduction<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Vendor Communication<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Contract Routing<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Inventory Alerts<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Job Dispatch<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Payroll Prep<span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Client Intake<span class="marquee-dot">◆</span></span>
-  </div>
+<!-- CREDENTIAL LINE -->
+<div class="credential-line">
+  <p>We've automated 40+ workflows across healthcare, manufacturing, and professional services in the Roanoke Valley.</p>
 </div>
+
+<!-- BEFORE / AFTER -->
+<section class="before-after-section">
+  <div class="section-inner">
+    <p class="section-tag">// The transformation</p>
+    <div class="before-after-grid">
+      <div class="ba-col ba-before">
+        <div class="ba-header">Before</div>
+        <img
+          src="/stressed-dental-receptionist-without-ai.jpg"
+          alt="Stressed dental receptionist managing manual scheduling and paperwork without automation"
+          class="ba-img"
+        >
+      </div>
+      <div class="ba-col ba-after">
+        <div class="ba-header">After</div>
+        <img
+          src="/dental-ai-agent-workflow.jpg"
+          alt="n8n dental AI agent — automated appointment scheduling and patient intake workflow"
+          class="ba-img"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- PROBLEM -->
 <section class="section problem-section">
@@ -1326,12 +1530,39 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<!-- TODO: Replace with named testimonial from real client. Anonymous stats are good — named local business owner with quote and headshot is better. -->
+<section class="testimonial-section" style="display:none;">
+  <div class="section-inner">
+    <p class="section-tag">// What Roanoke businesses are saying</p>
+    <h2 class="section-headline">What Roanoke<br>Businesses Are Saying.</h2>
+    <div class="testimonial-card">
+      <!-- TODO: Replace with real circular headshot photo -->
+      <div class="testimonial-headshot">
+        <span class="testimonial-headshot-label">Photo</span>
+      </div>
+      <p class="testimonial-quote">"[Real testimonial quote — to be added]"</p>
+      <div class="testimonial-attribution">[Name, Title — Business Name, Roanoke]</div>
+    </div>
+  </div>
+</section>
+
 <!-- ROI CALC -->
 <section class="roi-section">
   <div class="roi-inner">
     <p class="section-tag">// Do the math</p>
     <h2 class="section-headline" style="color:var(--paper); font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,4vw,4rem); line-height:1; letter-spacing:0.02em; margin-bottom:0.5rem;">What Is This Problem<br>Costing You?</h2>
     <p class="roi-sub">Enter your numbers. See what manual work actually costs.</p>
+    <div class="calc-field calc-team-field">
+      <label class="calc-label" for="calc-biz-type">What kind of business? (optional)</label>
+      <select class="calc-input" id="calc-biz-type" onchange="calcROI()">
+        <option value="">Select to customize your estimate</option>
+        <option value="healthcare">Healthcare practice</option>
+        <option value="manufacturing">Manufacturing / distribution</option>
+        <option value="professional">Professional services</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
     <div class="calc-grid">
       <div class="calc-field">
         <label class="calc-label" for="hours">Hours/week spent on manual tasks</label>
@@ -1342,10 +1573,26 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
         <input class="calc-input" id="rate" type="number" value="25" min="10" max="500" oninput="calcROI()">
       </div>
     </div>
+    <div class="calc-field calc-team-field">
+      <label class="calc-label" for="calc-team-size">Team size</label>
+      <select class="calc-input" id="calc-team-size" onchange="calcROI()">
+        <option value="">Select team size to see payback estimate</option>
+        <option value="1-3">Just me / 1–3 people</option>
+        <option value="4-10">4–10 people</option>
+        <option value="11-25">11–25 people</option>
+        <option value="26-50">26–50 people</option>
+        <option value="50+">50+ people</option>
+      </select>
+    </div>
     <div class="calc-result">
       <div class="calc-result-label">// Annual cost of doing nothing</div>
       <div class="calc-result-number" id="result">$13,000</div>
       <div class="calc-result-sub" id="result-sub">vs. a one-time build starting at $3,000 + $400/mo to maintain</div>
+      <div class="calc-payback" id="result-payback" style="display:none;">
+        <div class="calc-result-label">// Estimated payback period</div>
+        <div class="calc-payback-number"><span id="payback-number">—</span> <span>months</span></div>
+      </div>
+      <div class="calc-rec" id="result-rec" style="display:none;"></div>
     </div>
     <a href="#cta" class="btn-primary" style="display:inline-block;margin-top:2rem;">Find Out What It's Costing You →</a>
   </div>
@@ -1445,7 +1692,13 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER CTA -->
+<section class="footer-cta-band">
+  <div class="footer-cta-inner">
+    <h2 class="footer-cta-heading">Ready to stop doing it manually?</h2>
+    <a href="/free-discovery-call/" class="btn-primary">Book Free Discovery Call →</a>
+  </div>
+</section>
 
 <section class="sitemap-section">
   <div class="sitemap-inner">
@@ -1465,6 +1718,8 @@ document.addEventListener('DOMContentLoaded', function() { calcROI(); });
       <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
       <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
       <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+      <a href="/owner-path/" class="sitemap-link">For Business Owners</a>
+      <a href="/ops-path/" class="sitemap-link">For Operations Managers</a>
     </div>
     <div class="sitemap-col">
       <div class="sitemap-heading">Industries</div>
