@@ -9,6 +9,15 @@
   gtag('js', new Date());
   gtag('config', 'G-SJYKM7XKPW');
 </script>
+<script>
+  window.addEventListener('load', function() {
+    gtag('event', 'generate_lead', {
+      event_category: 'conversion',
+      event_label: 'discovery_call_request',
+      page: window.location.pathname
+    });
+  });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>You're Booked | Ridgeline Automation</title>

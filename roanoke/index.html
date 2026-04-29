@@ -9,6 +9,28 @@
   gtag('js', new Date());
   gtag('config', 'G-SJYKM7XKPW');
 </script>
+<script>
+  (function() {
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('.nav-cta, .btn-primary, .dual-card-cta, .cta-form-submit');
+      if (!el) return;
+      var text = el.textContent.trim().slice(0, 60);
+      var loc = el.closest('nav') ? 'nav' :
+                el.closest('.footer-cta-band, .blog-footer-cta') ? 'footer' :
+                el.closest('.cta-section') ? 'cta_section' :
+                el.closest('[class*="hero"]') ? 'hero' : 'page';
+      gtag('event', 'cta_click', { button_text: text, location: loc, page: window.location.pathname });
+    });
+    var formStarted = false;
+    document.addEventListener('focus', function(e) {
+      if (formStarted) return;
+      if (e.target.classList.contains('cta-form-input') || e.target.classList.contains('calc-input')) {
+        formStarted = true;
+        gtag('event', 'form_start', { page: window.location.pathname });
+      }
+    }, true);
+  })();
+</script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Automation — Roanoke, VA | Ridgeline Automation</title>
 <meta name="description" content="Ridgeline Automation builds workflow automations for Roanoke businesses — healthcare, professional services, distribution. Local expert. Free discovery call.">
