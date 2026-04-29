@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Ridgeline Automation — Roanoke, VA</title>
+<meta name="description" content="Automation insights, case studies, and practical guides for Roanoke Valley businesses. Written by DeShea Witcher, founder of Ridgeline Automation.">
+<meta property="og:title" content="Ridgeline Blog — Automation Insights for Roanoke Businesses">
+<meta property="og:description" content="Practical automation insights written for small and mid-size businesses in the Roanoke Valley.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ridgelineautomation.io/blog/">
+<link rel="canonical" href="https://ridgelineautomation.io/blog/">
+<script>
+function toggleMobileNav(btn) {
+  var nav = document.getElementById('nav-mobile');
+  nav.classList.toggle('open');
+  var spans = btn.querySelectorAll('span');
+  if (nav.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #0e0e0e; --paper: #f2ede6; --rust: #c94f2a; --steel: #3a4a56; --mist: #8a9aa6; --cream: #e8e2d8; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 60px; background: rgba(14,14,14,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(242,237,230,0.07); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--paper); text-decoration: none; flex-shrink: 0; }
+  .nav-logo span { color: var(--rust); }
+  .nav-links { display: flex; align-items: center; flex: 1; justify-content: center; }
+  .nav-link { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,237,230,0.55); text-decoration: none; padding: 0 1.1rem; height: 60px; display: flex; align-items: center; transition: color 0.2s; white-space: nowrap; }
+  .nav-link:hover, .nav-link.active { color: var(--paper); }
+  .nav-cta { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--rust); border: none; border-radius: 3px; padding: 0.7rem 1.5rem; cursor: pointer; text-decoration: none; transition: background 0.2s, box-shadow 0.2s; flex-shrink: 0; white-space: nowrap; font-weight: 500; box-shadow: 0 2px 14px rgba(201,79,42,0.4); }
+  .nav-cta:hover { background: #e05a30; box-shadow: 0 4px 22px rgba(201,79,42,0.6); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 0.5rem; background: none; border: none; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--paper); transition: all 0.25s; }
+  .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: #0e0e0e; border-bottom: 1px solid rgba(242,237,230,0.07); padding: 1rem 0 1.5rem; z-index: 99; max-height: calc(100vh - 60px); overflow-y: auto; }
+  .nav-mobile.open { display: block; }
+  .nav-mobile-section { padding: 0.5rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .nav-mobile-link { display: block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(242,237,230,0.55); text-decoration: none; padding: 0.65rem 1.5rem; transition: color 0.15s; }
+  .nav-mobile-link:hover { color: var(--paper); }
+  .nav-mobile-cta { display: block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--rust); color: var(--ink); text-decoration: none; padding: 0.9rem 1.5rem; margin: 1rem 1.5rem 0; text-align: center; }
+  @media (max-width: 900px) { nav { padding: 0 1.5rem; } .nav-links { display: none; } .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+
+  /* ── HERO ── */
+  .blog-hero { padding: 8rem 3rem 5rem; background: var(--ink); }
+  .blog-hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .blog-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 7vw, 7rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 1.2rem; }
+  .blog-hero-sub { font-size: 1.05rem; line-height: 1.7; color: var(--mist); max-width: 560px; }
+
+  /* ── AUTHOR STRIP ── */
+  .author-strip { background: var(--cream); border-bottom: 1px solid rgba(14,14,14,0.08); padding: 1.4rem 3rem; }
+  .author-strip-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+  .author-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--rust); }
+  .author-name { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+  .author-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); margin-top: 0.15rem; }
+
+  /* ── POST GRID ── */
+  .blog-main { padding: 5rem 3rem 7rem; }
+  .blog-main-inner { max-width: 900px; margin: 0 auto; }
+  .blog-section-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(14,14,14,0.1); }
+  .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(14,14,14,0.08); }
+  .post-card { background: var(--paper); padding: 2.5rem 2rem; text-decoration: none; color: inherit; display: block; border-top: 3px solid transparent; transition: background 0.2s, border-color 0.2s; }
+  .post-card:hover { background: var(--cream); border-top-color: var(--rust); }
+  .post-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; border-top: 3px solid var(--rust); }
+  .post-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .post-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); }
+  .post-date { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); }
+  .post-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; line-height: 1.05; letter-spacing: 0.03em; color: var(--ink); margin-bottom: 0.8rem; }
+  .post-card.featured .post-title { font-size: clamp(2rem, 3.5vw, 3rem); }
+  .post-excerpt { font-size: 0.92rem; line-height: 1.65; color: #555; margin-bottom: 1.2rem; }
+  .post-read-more { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); }
+  .post-card-visual { background: var(--ink); border-radius: 2px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+  .post-card-visual-label { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(242,237,230,0.06); letter-spacing: 0.1em; }
+
+  /* ── COMING SOON BADGE ── */
+  .coming-soon-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
+
+  /* ── FOOTER ── */
+  .blog-footer-cta { background: var(--ink); padding: 5rem 3rem; text-align: center; border-top: 3px solid var(--rust); }
+  .blog-footer-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .blog-footer-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1; color: var(--paper); letter-spacing: 0.02em; }
+  .btn-primary { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--rust); color: var(--ink); border: none; padding: 1rem 2rem; cursor: pointer; text-decoration: none; font-weight: 500; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-primary:hover { background: #e05a30; transform: translateY(-1px); }
+
+  /* ── SITEMAP ── */
+  .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .sitemap-heading { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .sitemap-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: rgba(242,237,230,0.35); text-decoration: none; margin-bottom: 0.45rem; transition: color 0.2s; }
+  .sitemap-link:hover { color: var(--paper); }
+
+  /* ── FOOTER ── */
+  footer { background: #080808; padding: 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(242,237,230,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--paper); }
+  .footer-logo span { color: var(--rust); }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mist); text-align: center; text-transform: uppercase; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .blog-hero { padding: 7rem 1.5rem 4rem; }
+    .author-strip { padding: 1.2rem 1.5rem; }
+    .blog-main { padding: 3.5rem 1.5rem 5rem; }
+    .post-grid { grid-template-columns: 1fr; }
+    .post-card.featured { grid-column: 1; grid-template-columns: 1fr; gap: 1.5rem; }
+    .post-card-visual { display: none; }
+    .sitemap-inner { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
+  <div class="nav-links">
+    <div class="nav-item"><a href="/#how" class="nav-link">How It Works</a></div>
+    <div class="nav-item"><a href="/services/automation-build/" class="nav-link">Pricing</a></div>
+    <div class="nav-item"><a href="/about/" class="nav-link">About</a></div>
+    <div class="nav-item"><a href="/blog/" class="nav-link active">Blog</a></div>
+  </div>
+  <a class="nav-cta" href="/free-discovery-call/">Book Free Call →</a>
+  <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile-section">
+    <a href="/#how" class="nav-mobile-link">How It Works</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Pricing</a>
+    <a href="/about/" class="nav-mobile-link">About</a>
+    <a href="/blog/" class="nav-mobile-link">Blog</a>
+  </div>
+  <a href="/free-discovery-call/" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Book Free Call →</a>
+</div>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <p class="hero-eyebrow">// Ridgeline Blog</p>
+    <h1>Automation Insights<br>For Roanoke Businesses.</h1>
+    <p class="blog-hero-sub">Practical guides, local case studies, and straight talk about what automation actually does — and doesn't do — for small and mid-size businesses in the Valley.</p>
+  </div>
+</section>
+
+<!-- AUTHOR STRIP -->
+<div class="author-strip">
+  <div class="author-strip-inner">
+    <img src="/deshea-witcher.jpg" alt="DeShea Witcher" class="author-avatar">
+    <div>
+      <div class="author-name">DeShea Witcher</div>
+      <div class="author-title">Founder, Ridgeline Automation &nbsp;·&nbsp; Roanoke, VA</div>
+    </div>
+  </div>
+</div>
+
+<!-- POST GRID -->
+<main class="blog-main">
+  <div class="blog-main-inner">
+    <p class="blog-section-label">// Latest posts</p>
+    <div class="post-grid">
+
+      <!-- FEATURED POST -->
+      <a href="/blog/automation-insights-coming-to-roanoke/" class="post-card featured">
+        <div class="post-content">
+          <div class="coming-soon-badge">First Post</div>
+          <div class="post-meta">
+            <span class="post-tag">// Announcement</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <div class="post-title">The Ridgeline Blog Is Here. Here's What We're Going To Cover.</div>
+          <p class="post-excerpt">Automation is changing how Roanoke businesses operate — quietly, practically, and faster than most people expect. This blog is where we document it: real workflows, real results, and honest takes on what's worth automating and what isn't.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual">
+          <span class="post-card-visual-label">BLOG</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER CTA -->
+<section class="blog-footer-cta">
+  <div class="blog-footer-inner">
+    <h2 class="blog-footer-heading">Ready to stop doing it manually?</h2>
+    <a href="/free-discovery-call/" class="btn-primary">Book Free Discovery Call →</a>
+  </div>
+</section>
+
+<section class="sitemap-section">
+  <div class="sitemap-inner">
+    <div>
+      <div class="sitemap-heading">Service Areas</div>
+      <a href="/roanoke/" class="sitemap-link">AI Automation — Roanoke, VA</a>
+      <a href="/salem/" class="sitemap-link">AI Automation — Salem, VA</a>
+      <a href="/blacksburg/" class="sitemap-link">AI Automation — Blacksburg, VA</a>
+      <a href="/christiansburg/" class="sitemap-link">AI Automation — Christiansburg, VA</a>
+      <a href="/vinton/" class="sitemap-link">AI Automation — Vinton, VA</a>
+      <a href="/lynchburg/" class="sitemap-link">AI Automation — Lynchburg, VA</a>
+    </div>
+    <div>
+      <div class="sitemap-heading">Services</div>
+      <a href="/services/discovery-audit/" class="sitemap-link">Workflow Discovery Audit</a>
+      <a href="/services/automation-build/" class="sitemap-link">Custom Automation Build</a>
+      <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
+      <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
+      <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+      <a href="/owner-path/" class="sitemap-link">For Business Owners</a>
+      <a href="/ops-path/" class="sitemap-link">For Operations Managers</a>
+    </div>
+    <div>
+      <div class="sitemap-heading">Industries</div>
+      <a href="/roanoke/healthcare/" class="sitemap-link">Healthcare Automation — Roanoke</a>
+      <a href="/salem/manufacturing/" class="sitemap-link">Manufacturing Automation — Salem</a>
+      <a href="/blacksburg/startups/" class="sitemap-link">Startup Ops Automation — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" class="sitemap-link">Healthcare Automation — Lynchburg</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">RIDGELINE<span>.</span></div>
+  <div class="footer-info">Roanoke, Virginia &nbsp;·&nbsp; AI Automation for Local Business</div>
+  <a class="footer-link" href="/about/" style="margin-right:1.5rem;">About</a>
+  <a class="footer-link" href="mailto:hello@ridgelineautomation.io">hello@ridgelineautomation.io</a>
+</footer>
+
+</body>
+</html>
