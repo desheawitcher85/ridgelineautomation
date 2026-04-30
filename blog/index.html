@@ -118,6 +118,25 @@ function toggleMobileNav(btn) {
   .post-card-visual { background: var(--ink); border-radius: 2px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
   .post-card-visual-label { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(242,237,230,0.06); letter-spacing: 0.1em; }
 
+  /* ── SIGNS VISUAL ── */
+  .signs-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .signs-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
+  .sign-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .sign-item:first-child { border-top: 1px solid rgba(242,237,230,0.06); }
+  .sign-n { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; color: var(--rust); flex-shrink: 0; }
+  .sign-label { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 300; color: rgba(242,237,230,0.45); letter-spacing: 0.01em; transition: color 0.2s; }
+  .post-card.featured:hover .sign-label { color: rgba(242,237,230,0.7); }
+  .sign-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .sign-item.active .sign-n { color: #e05a30; }
+
+  /* ── ANNOUNCE VISUAL ── */
+  .announce-visual { aspect-ratio: auto; align-self: stretch; display: flex; align-items: center; justify-content: center; padding: 2.5rem; }
+  .announce-topics { width: 100%; }
+  .announce-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.4rem; }
+  .announce-item { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2vw, 2rem); letter-spacing: 0.04em; color: rgba(242,237,230,0.15); line-height: 1.2; transition: color 0.2s; padding: 0.35rem 0; border-bottom: 1px solid rgba(242,237,230,0.05); }
+  .announce-item:last-child { border-bottom: none; }
+  .post-card.featured:hover .announce-item { color: rgba(242,237,230,0.3); }
+
   /* ── COMING SOON BADGE ── */
   .coming-soon-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
 
@@ -207,18 +226,31 @@ function toggleMobileNav(btn) {
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
 
-      <!-- POST: 7 Signs -->
-      <a href="/blog/7-signs-your-small-business-is-ready-to-automate/" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">// Guide</span>
-          <span class="post-date">April 2026</span>
+      <!-- FEATURED POST: 7 Signs -->
+      <a href="/blog/7-signs-your-small-business-is-ready-to-automate/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Guide</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <div class="post-title">7 Signs Your Small Business Is Ready to Automate</div>
+          <p class="post-excerpt">Repeat data entry, lost leads, hiring for rules-based work, flat margins on rising revenue — if three of these seven signs apply to your business, you're past ready.</p>
+          <span class="post-read-more">Read post →</span>
         </div>
-        <div class="post-title">7 Signs Your Small Business Is Ready to Automate</div>
-        <p class="post-excerpt">Repeat data entry, lost leads, hiring for rules-based work, flat margins on rising revenue — if three of these seven signs apply to your business, you're past ready. Here's what to look for and what to do about it.</p>
-        <span class="post-read-more">Read post →</span>
+        <div class="post-card-visual signs-visual">
+          <div class="signs-list">
+            <div class="sign-item"><span class="sign-n">01</span><span class="sign-label">Repeat Data Entry</span></div>
+            <div class="sign-item"><span class="sign-n">02</span><span class="sign-label">Leads Falling Through</span></div>
+            <div class="sign-item"><span class="sign-n">03</span><span class="sign-label">Hiring for Rules-Based Work</span></div>
+            <div class="sign-item"><span class="sign-n">04</span><span class="sign-label">Flat Margins, Rising Revenue</span></div>
+            <div class="sign-item"><span class="sign-n">05</span><span class="sign-label">Client-Facing Errors</span></div>
+            <div class="sign-item"><span class="sign-n">06</span><span class="sign-label">Reports Take Half a Day</span></div>
+            <div class="sign-item active"><span class="sign-n">07</span><span class="sign-label">Structural Overtime</span></div>
+          </div>
+        </div>
       </a>
 
-      <!-- FEATURED POST -->
+      <!-- POST: Announcement -->
       <a href="/blog/automation-insights-coming-to-roanoke/" class="post-card featured">
         <div class="post-content">
           <div class="coming-soon-badge">First Post</div>
@@ -227,11 +259,16 @@ function toggleMobileNav(btn) {
             <span class="post-date">April 2026</span>
           </div>
           <div class="post-title">The Ridgeline Blog Is Here. Here's What We're Going To Cover.</div>
-          <p class="post-excerpt">Automation is changing how Roanoke businesses operate — quietly, practically, and faster than most people expect. This blog is where we document it: real workflows, real results, and honest takes on what's worth automating and what isn't.</p>
+          <p class="post-excerpt">Real workflows, real results, and honest takes on what's worth automating for Roanoke Valley businesses.</p>
           <span class="post-read-more">Read post →</span>
         </div>
-        <div class="post-card-visual">
-          <span class="post-card-visual-label">BLOG</span>
+        <div class="post-card-visual announce-visual">
+          <div class="announce-topics">
+            <div class="announce-label">// Coming up</div>
+            <div class="announce-item">Workflow breakdowns</div>
+            <div class="announce-item">Tool comparisons</div>
+            <div class="announce-item">Roanoke-specific guides</div>
+          </div>
         </div>
       </a>
 
