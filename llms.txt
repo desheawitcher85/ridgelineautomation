@@ -92,3 +92,6 @@ Location: Roanoke, Virginia
 - Manufacturing automation (Salem): https://ridgelineautomation.io/salem/manufacturing/
 - Startup ops automation (Blacksburg): https://ridgelineautomation.io/blacksburg/startups/
 - Healthcare automation (Lynchburg): https://ridgelineautomation.io/lynchburg/healthcare/
+- Blog index: https://ridgelineautomation.io/blog/
+- Blog — The Ridgeline Blog Is Here (announcement): https://ridgelineautomation.io/blog/automation-insights-coming-to-roanoke/
+- Blog — 7 Signs Your Small Business Is Ready to Automate: https://ridgelineautomation.io/blog/7-signs-your-small-business-is-ready-to-automate/
