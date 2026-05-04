@@ -92,6 +92,21 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://ridgelineautomation.io/blog/7-signs-your-small-business-is-ready-to-automate/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ridgelineautomation.io/blog/what-manual-data-entry-is-actually-costing-you/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ridgelineautomation.io/blog/automate-lead-follow-up-small-business/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Industry pages -->
   <url>

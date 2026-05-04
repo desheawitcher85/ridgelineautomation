@@ -132,6 +132,17 @@ function toggleMobileNav(btn) {
   .sign-item.active .sign-label { color: rgba(242,237,230,0.75); }
   .sign-item.active .sign-n { color: #e05a30; }
 
+  /* ── LEAD VISUAL ── */
+  .lead-visual { aspect-ratio: auto; align-self: stretch; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .lead-steps { width: 100%; }
+  .lead-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .lead-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .lead-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .lead-item .sign-label { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 300; color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .lead-item .sign-label { color: rgba(242,237,230,0.7); }
+  .lead-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .lead-item.active .sign-n { color: #e05a30; }
+
   /* ── DATA ENTRY VISUAL ── */
   .data-entry-visual { aspect-ratio: auto; align-self: stretch; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; }
   .data-entry-costs { width: 100%; }
@@ -239,6 +250,29 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: Lead Follow-Up -->
+      <a href="/blog/automate-lead-follow-up-small-business/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Sales</span>
+            <span class="post-date">May 2026</span>
+          </div>
+          <div class="post-title">Why Your Leads Go Cold and How to Fix It</div>
+          <p class="post-excerpt">Leads contacted within 5 minutes are 21x more likely to qualify. Here is the 5-step automated follow-up system that stops cold leads before they happen.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual lead-visual">
+          <div class="lead-steps">
+            <div class="lead-label">// The 5-step system</div>
+            <div class="lead-item"><span class="sign-n">01</span><span class="sign-label">Real-Time Trigger</span></div>
+            <div class="lead-item"><span class="sign-n">02</span><span class="sign-label">CRM Record</span></div>
+            <div class="lead-item"><span class="sign-n">03</span><span class="sign-label">Multi-Channel Sequence</span></div>
+            <div class="lead-item"><span class="sign-n">04</span><span class="sign-label">Stop-on-Reply Rule</span></div>
+            <div class="lead-item active"><span class="sign-n">05</span><span class="sign-label">Weekly Review Loop</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: Manual Data Entry -->
       <a href="/blog/what-manual-data-entry-is-actually-costing-you/" class="post-card featured">
