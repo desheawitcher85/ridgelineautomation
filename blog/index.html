@@ -162,6 +162,21 @@ function toggleMobileNav(btn) {
   .announce-item:last-child { border-bottom: none; }
   .post-card.featured:hover .announce-item { color: rgba(242,237,230,0.3); }
 
+  /* ── ROI VISUAL ── */
+  .roi-visual { aspect-ratio: auto; align-self: stretch; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .roi-calc { width: 100%; }
+  .roi-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .roi-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .roi-row:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .roi-key { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(242,237,230,0.35); }
+  .roi-val { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; color: rgba(242,237,230,0.45); }
+  .roi-val.active { color: rgba(242,237,230,0.75); }
+  .roi-val.highlight { color: var(--rust); font-size: 0.9rem; }
+  .roi-divider { border-top: 1px solid rgba(242,237,230,0.15); margin: 0.4rem 0; }
+  .post-card.featured:hover .roi-key { color: rgba(242,237,230,0.55); }
+  .post-card.featured:hover .roi-val { color: rgba(242,237,230,0.65); }
+  .post-card.featured:hover .roi-val.highlight { color: #e05a30; }
+
   /* ── COMING SOON BADGE ── */
   .coming-soon-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
 
@@ -250,6 +265,29 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: ROI on Automation -->
+      <a href="/blog/how-to-calculate-roi-on-automating-a-workflow/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Operations</span>
+            <span class="post-date">May 2026</span>
+          </div>
+          <div class="post-title">How to Calculate ROI on Automating a Workflow</div>
+          <p class="post-excerpt">Most ROI calculators skip maintenance, training, and revenue impact. Here is the full formula, a 24-month cost-of-ownership table, and a real Roanoke example: 146% year-one ROI, 90-day payback.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual roi-visual">
+          <div class="roi-calc">
+            <div class="roi-label">// ROI Breakdown</div>
+            <div class="roi-row"><span class="roi-key">Annual Benefit</span><span class="roi-val active">$39,488</span></div>
+            <div class="roi-row"><span class="roi-key">Year 1 Cost</span><span class="roi-val">$16,060</span></div>
+            <div class="roi-divider"></div>
+            <div class="roi-row"><span class="roi-key">Year 1 ROI</span><span class="roi-val highlight">146%</span></div>
+            <div class="roi-row"><span class="roi-key">Payback</span><span class="roi-val active">90 days</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: Lead Follow-Up -->
       <a href="/blog/automate-lead-follow-up-small-business/" class="post-card featured">

@@ -107,6 +107,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://ridgelineautomation.io/blog/how-to-calculate-roi-on-automating-a-workflow/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Industry pages -->
   <url>
