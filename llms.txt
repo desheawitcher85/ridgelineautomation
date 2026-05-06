@@ -98,3 +98,4 @@ Location: Roanoke, Virginia
 - Blog — What Manual Data Entry Is Actually Costing You: https://ridgelineautomation.io/blog/what-manual-data-entry-is-actually-costing-you/
 - Blog — Why Your Leads Go Cold and How to Fix It: https://ridgelineautomation.io/blog/automate-lead-follow-up-small-business/
 - Blog — How to Calculate ROI on Automating a Workflow: https://ridgelineautomation.io/blog/how-to-calculate-roi-on-automating-a-workflow/
+- Blog — Kill the Monday Morning Report Scramble: https://ridgelineautomation.io/blog/kill-the-monday-morning-report-scramble/

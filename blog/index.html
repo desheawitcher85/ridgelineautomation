@@ -162,6 +162,17 @@ function toggleMobileNav(btn) {
   .announce-item:last-child { border-bottom: none; }
   .post-card.featured:hover .announce-item { color: rgba(242,237,230,0.3); }
 
+  /* ── REPORT VISUAL ── */
+  .report-visual { aspect-ratio: auto; align-self: stretch; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .report-list { width: 100%; }
+  .report-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .report-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .report-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .report-item .sign-label { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 300; color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .report-item .sign-label { color: rgba(242,237,230,0.7); }
+  .report-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .report-item.active .sign-n { color: #e05a30; }
+
   /* ── ROI VISUAL ── */
   .roi-visual { aspect-ratio: auto; align-self: stretch; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; }
   .roi-calc { width: 100%; }
@@ -265,6 +276,29 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: Monday Report Scramble -->
+      <a href="/blog/kill-the-monday-morning-report-scramble/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Operations</span>
+            <span class="post-date">May 2026</span>
+          </div>
+          <div class="post-title">Kill the Monday Morning Report Scramble</div>
+          <p class="post-excerpt">Your senior people are rebuilding the same report every Sunday night. That is not a discipline problem. It is a systems problem. Here are five reasons it is still manual and the fastest fix for each one.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual report-visual">
+          <div class="report-list">
+            <div class="report-label">// 5 reasons it stays manual</div>
+            <div class="report-item"><span class="sign-n">01</span><span class="sign-label">Data in five places</span></div>
+            <div class="report-item"><span class="sign-n">02</span><span class="sign-label">Same 80% every week</span></div>
+            <div class="report-item"><span class="sign-n">03</span><span class="sign-label">Senior people running it</span></div>
+            <div class="report-item"><span class="sign-n">04</span><span class="sign-label">Manual reports miss things</span></div>
+            <div class="report-item active"><span class="sign-n">05</span><span class="sign-label">Can't scale past 15 people</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: ROI on Automation -->
       <a href="/blog/how-to-calculate-roi-on-automating-a-workflow/" class="post-card featured">
