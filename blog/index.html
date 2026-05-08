@@ -188,6 +188,17 @@ function toggleMobileNav(btn) {
   .post-card.featured:hover .roi-val { color: rgba(242,237,230,0.65); }
   .post-card.featured:hover .roi-val.highlight { color: #e05a30; }
 
+  /* ── FAILURE VISUAL ── */
+  .failure-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .failure-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
+  .failure-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .failure-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .failure-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .failure-item .sign-label { color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .failure-item .sign-label { color: rgba(242,237,230,0.7); }
+  .failure-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .failure-item.active .sign-n { color: #e05a30; }
+
   /* ── COMING SOON BADGE ── */
   .coming-soon-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
 
@@ -276,6 +287,32 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: Why Automation Projects Fail -->
+      <a href="/blog/why-most-small-business-automation-projects-fail/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Guide</span>
+            <span class="post-date">May 2026</span>
+          </div>
+          <div class="post-title">Why Most Small Business Automation Projects Fail</div>
+          <p class="post-excerpt">Less than a third of automation initiatives meet their goals. Here are the 8 failure modes — broken process, no success criteria, wrong tool, team excluded — and how to spot each one before you sign a check.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual failure-visual">
+          <div class="failure-list">
+            <div class="failure-label">// 8 failure modes</div>
+            <div class="failure-item"><span class="sign-n">01</span><span class="sign-label">Broken process automated</span></div>
+            <div class="failure-item"><span class="sign-n">02</span><span class="sign-label">No success criteria</span></div>
+            <div class="failure-item"><span class="sign-n">03</span><span class="sign-label">Wrong tool picked first</span></div>
+            <div class="failure-item"><span class="sign-n">04</span><span class="sign-label">Team left out of design</span></div>
+            <div class="failure-item active"><span class="sign-n">05</span><span class="sign-label">Nobody owned it after launch</span></div>
+            <div class="failure-item"><span class="sign-n">06</span><span class="sign-label">Wrong metrics tracked</span></div>
+            <div class="failure-item"><span class="sign-n">07</span><span class="sign-label">Over-engineered build</span></div>
+            <div class="failure-item active"><span class="sign-n">08</span><span class="sign-label">Leadership disengaged</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: Monday Report Scramble -->
       <a href="/blog/kill-the-monday-morning-report-scramble/" class="post-card featured">
