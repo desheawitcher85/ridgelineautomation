@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJYKM7XKPW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SJYKM7XKPW');
+</script>
+<script>
+  (function() {
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('.nav-cta, .btn-primary, .dual-card-cta, .cta-form-submit');
+      if (!el) return;
+      var text = el.textContent.trim().slice(0, 60);
+      var loc = el.closest('nav') ? 'nav' :
+                el.closest('.footer-cta-band, .blog-footer-cta') ? 'footer' :
+                el.closest('.cta-section') ? 'cta_section' :
+                el.closest('[class*="hero"]') ? 'hero' : 'page';
+      gtag('event', 'cta_click', { button_text: text, location: loc, page: window.location.pathname });
+    });
+    var formStarted = false;
+    document.addEventListener('focus', function(e) {
+      if (formStarted) return;
+      if (e.target.classList.contains('cta-form-input') || e.target.classList.contains('calc-input')) {
+        formStarted = true;
+        gtag('event', 'form_start', { page: window.location.pathname });
+      }
+    }, true);
+  })();
+</script>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Spot a Broken Workflow in Your Business | Ridgeline Automation</title>
+<meta name="description" content="Eight signs your business workflow is broken — not just slow. Duplicate data entry, untrusted reports, shrinking margins, single points of failure, and more. Plus what to do about each one.">
+<meta property="og:title" content="How to Spot a Broken Workflow in Your Business">
+<meta property="og:description" content="Broken workflows rarely announce themselves. Here are eight signs your process is broken and what each one is actually costing you.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/">
+<link rel="canonical" href="https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to Spot a Broken Workflow in Your Business",
+      "author": { "@type": "Person", "name": "DeShea Witcher", "url": "https://ridgelineautomation.io/about/" },
+      "publisher": { "@type": "Organization", "name": "Ridgeline Automation", "url": "https://ridgelineautomation.io" },
+      "datePublished": "2026-05-07",
+      "description": "Eight signs your business workflow is broken — not just slow — and what each one is costing you in labor, margin, and customer trust.",
+      "url": "https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a broken workflow?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A broken workflow is a process that produces unreliable output, costs more in labor than it saves, or fails when one key person is absent. It is different from an inefficient workflow, which still works reliably but takes longer than it should. Broken workflows need to be rebuilt, not optimized. If you try to speed up a broken workflow with automation, you usually just automate the failure points faster." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you know if a business process is inefficient versus broken?",
+          "acceptedAnswer": { "@type": "Answer", "text": "An inefficient process is slow but reliable. A broken process produces wrong output, swallows hidden costs, or stops entirely when one person is unavailable. The simplest test: if you would be afraid to take a two-week vacation because of how this workflow runs, it is broken. If the workflow runs fine without you but you wish it ran faster, it is inefficient. The fixes are different." }
+        },
+        {
+          "@type": "Question",
+          "name": "What causes workflow bottlenecks?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The four most common causes are manual handoffs between systems, no single source of truth, approvals trapped in email instead of a tracked system, and unclear ownership when a workflow breaks. Each one adds friction. Stack three or four together and the workflow grinds. Most small business workflows fail because of two or three of these stacked, not one." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you fix a broken workflow?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Map every step end-to-end on paper or in a diagramming tool. Find the breaks — handoffs, single points of failure, manual re-entry, untracked approvals. Decide whether each break should be optimized or rebuilt. Automate the rebuild. Skipping the mapping step is why most automation projects fail. A Workflow Discovery Audit is built around exactly this sequence." }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I automate a broken workflow or fix it manually first?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Never automate a broken workflow as-is. You will just automate the breaks faster. Fix the design first, then automate. If your intake process drops 1 in 10 leads when done by hand, automating that same process will drop 1 in 10 leads at scale. The right sequence is always: map, redesign, then automate." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to audit and fix a broken workflow?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ridgeline's Workflow Discovery Audit is $750 flat, credited toward the build if you move forward. Custom builds run $3,000 to $12,000 fixed-fee depending on scope. Maintenance is $400 to $1,200 a month if you want us to own monitoring and fixes after launch. Most clients see ROI within 60 to 90 days, especially in workflows that previously consumed 10 or more labor hours a week." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+function toggleMobileNav(btn) {
+  var nav = document.getElementById('nav-mobile');
+  nav.classList.toggle('open');
+  var spans = btn.querySelectorAll('span');
+  if (nav.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #0e0e0e; --paper: #f2ede6; --rust: #c94f2a; --steel: #3a4a56; --mist: #8a9aa6; --cream: #e8e2d8; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 60px; background: rgba(14,14,14,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(242,237,230,0.07); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--paper); text-decoration: none; flex-shrink: 0; }
+  .nav-logo span { color: var(--rust); }
+  .nav-links { display: flex; align-items: center; flex: 1; justify-content: center; }
+  .nav-link { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,237,230,0.55); text-decoration: none; padding: 0 1.1rem; height: 60px; display: flex; align-items: center; transition: color 0.2s; white-space: nowrap; }
+  .nav-link:hover, .nav-link.active { color: var(--paper); }
+  .nav-cta { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--rust); border: none; border-radius: 3px; padding: 0.7rem 1.5rem; cursor: pointer; text-decoration: none; transition: background 0.2s, box-shadow 0.2s; flex-shrink: 0; white-space: nowrap; font-weight: 500; box-shadow: 0 2px 14px rgba(201,79,42,0.4); }
+  .nav-cta:hover { background: #e05a30; box-shadow: 0 4px 22px rgba(201,79,42,0.6); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 0.5rem; background: none; border: none; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--paper); transition: all 0.25s; }
+  .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: #0e0e0e; border-bottom: 1px solid rgba(242,237,230,0.07); padding: 1rem 0 1.5rem; z-index: 99; max-height: calc(100vh - 60px); overflow-y: auto; }
+  .nav-mobile.open { display: block; }
+  .nav-mobile-section { padding: 0.5rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .nav-mobile-link { display: block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(242,237,230,0.55); text-decoration: none; padding: 0.65rem 1.5rem; transition: color 0.15s; }
+  .nav-mobile-link:hover { color: var(--paper); }
+  .nav-mobile-cta { display: block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--rust); color: var(--ink); text-decoration: none; padding: 0.9rem 1.5rem; margin: 1rem 1.5rem 0; text-align: center; }
+  @media (max-width: 900px) { nav { padding: 0 1.5rem; } .nav-links { display: none; } .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+
+  /* ── ARTICLE HEADER ── */
+  .article-header { background: var(--ink); padding: 8rem 3rem 5rem; }
+  .article-header-inner { max-width: 780px; margin: 0 auto; }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+  .breadcrumb a { color: var(--mist); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--paper); }
+  .breadcrumb-sep { color: rgba(242,237,230,0.2); }
+  .post-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; display: block; }
+  .article-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 0.97; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 1.5rem; text-wrap: balance; }
+  .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .meta-author { display: flex; align-items: center; gap: 0.75rem; }
+  .meta-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rust); flex-shrink: 0; }
+  .meta-author-name { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper); }
+  .meta-date { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); }
+  .meta-read { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); }
+
+  /* ── ARTICLE BODY ── */
+  .article-body { padding: 5rem 3rem 6rem; }
+  .article-body-inner { max-width: 680px; margin: 0 auto; }
+  .article-body p { font-size: 1.08rem; line-height: 1.8; color: #2a2a2a; margin-bottom: 1.6rem; }
+  .article-body p strong { color: var(--ink); font-weight: 500; }
+  .article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; color: var(--ink); margin: 3rem 0 1rem; }
+  .article-body h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); margin: 2.5rem 0 0.75rem; }
+  .article-body ul { margin: 0 0 1.6rem 1.2rem; }
+  .article-body ul li { font-size: 1.05rem; line-height: 1.75; color: #2a2a2a; margin-bottom: 0.5rem; }
+  .article-body ol { margin: 0 0 1.6rem 1.2rem; }
+  .article-body ol li { font-size: 1.05rem; line-height: 1.75; color: #2a2a2a; margin-bottom: 0.9rem; }
+  .article-body a { color: var(--rust); text-decoration: none; border-bottom: 1px solid rgba(201,79,42,0.3); transition: border-color 0.2s; }
+  .article-body a:hover { border-color: var(--rust); }
+  .article-divider { border: none; border-top: 1px solid rgba(14,14,14,0.1); margin: 3rem 0; }
+  .article-pullquote { border-left: 4px solid var(--rust); padding: 1.2rem 1.8rem; margin: 2.5rem 0; background: var(--cream); }
+  .article-pullquote p { font-size: 1.08rem; line-height: 1.7; color: var(--ink); font-weight: 400; margin: 0 0 0.5rem; }
+  .article-pullquote p:last-child { margin: 0; }
+  .article-pullquote .callout-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 0.6rem; }
+
+  /* ── KEY TAKEAWAYS ── */
+  .takeaways-box { background: var(--ink); border-left: 4px solid var(--rust); padding: 1.8rem 2rem; margin: 2rem 0 2.5rem; }
+  .takeaways-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .takeaways-box ul { margin: 0; list-style: none; padding: 0; }
+  .takeaways-box ul li { font-size: 0.96rem; line-height: 1.65; color: var(--paper); margin-bottom: 0.6rem; padding-left: 1.2rem; position: relative; }
+  .takeaways-box ul li::before { content: '→'; position: absolute; left: 0; color: var(--rust); font-size: 0.85rem; }
+
+  /* ── DEFINITION BOX ── */
+  .definition-box { background: var(--cream); border: 1px solid rgba(14,14,14,0.1); padding: 1.5rem 1.8rem; margin: 2rem 0; }
+  .definition-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); margin-bottom: 0.8rem; }
+  .definition-box p { font-size: 0.96rem; line-height: 1.7; color: #3a3a3a; margin: 0 0 0.8rem; }
+  .definition-box p:last-child { margin: 0; }
+
+  /* ── INLINE CTA ── */
+  .inline-cta { background: var(--cream); border: 1px solid rgba(14,14,14,0.1); border-left: 4px solid var(--rust); padding: 2rem; margin: 3rem 0; }
+  .inline-cta p { font-size: 1rem; line-height: 1.65; color: var(--ink); margin-bottom: 0.75rem; }
+  .inline-cta p:last-of-type { margin-bottom: 1.2rem; }
+  .inline-cta .btn-inline { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--rust); border: none; padding: 0.8rem 1.6rem; cursor: pointer; text-decoration: none; font-weight: 500; transition: background 0.2s; display: inline-block; border-bottom: none; }
+  .inline-cta .btn-inline, .article-body .inline-cta .btn-inline { color: var(--ink); border-bottom: none; }
+  .inline-cta .btn-inline:hover { background: #e05a30; border-bottom: none; }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison-table-wrap { overflow-x: auto; margin: 2rem 0 2.5rem; }
+  .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .comparison-table th { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.8rem 1rem; text-align: left; font-weight: 400; }
+  .comparison-table td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(14,14,14,0.08); color: #2a2a2a; line-height: 1.55; vertical-align: top; }
+  .comparison-table tr:nth-child(even) td { background: var(--cream); }
+  .comparison-table td:first-child { font-weight: 500; color: var(--ink); }
+
+  /* ── FAQ ── */
+  .faq-item { border-top: 1px solid rgba(14,14,14,0.1); padding: 1.5rem 0; }
+  .faq-item:last-child { border-bottom: 1px solid rgba(14,14,14,0.1); }
+  .faq-q { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 0.75rem; }
+  .faq-a { font-size: 1rem; line-height: 1.75; color: #2a2a2a; }
+
+  /* ── SIGN LABEL ── */
+  .step-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 0.3rem; }
+
+  /* ── AUTHOR BIO ── */
+  .author-bio { background: var(--cream); border-top: 1px solid rgba(14,14,14,0.08); padding: 3rem; }
+  .author-bio-inner { max-width: 680px; margin: 0 auto; display: flex; align-items: flex-start; gap: 1.5rem; }
+  .author-bio-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--rust); flex-shrink: 0; }
+  .author-bio-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem; }
+  .author-bio-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.5rem; }
+  .author-bio-text { font-size: 0.9rem; line-height: 1.65; color: #555; }
+
+  /* ── BACK TO BLOG ── */
+  .back-link-bar { background: var(--paper); border-top: 1px solid rgba(14,14,14,0.08); padding: 1.5rem 3rem; }
+  .back-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.2s; border-bottom: none; }
+  .back-link:hover { gap: 0.7rem; border-bottom: none; }
+
+  /* ── FOOTER CTA ── */
+  .blog-footer-cta { background: var(--ink); padding: 5rem 3rem; text-align: center; border-top: 3px solid var(--rust); }
+  .blog-footer-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .blog-footer-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1; color: var(--paper); letter-spacing: 0.02em; }
+  .btn-primary { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--rust); color: var(--ink); border: none; padding: 1rem 2rem; cursor: pointer; text-decoration: none; font-weight: 500; transition: background 0.2s, transform 0.15s; display: inline-block; border-bottom: none; }
+  .btn-primary:hover { background: #e05a30; transform: translateY(-1px); border-bottom: none; }
+
+  /* ── SITEMAP ── */
+  .sitemap-section { background: #060606; padding: 3.5rem 3rem; border-top: 1px solid rgba(242,237,230,0.06); }
+  .sitemap-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+  .sitemap-heading { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .sitemap-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: rgba(242,237,230,0.35); text-decoration: none; margin-bottom: 0.45rem; transition: color 0.2s; }
+  .sitemap-link:hover { color: var(--paper); }
+
+  /* ── FOOTER ── */
+  footer { background: #080808; padding: 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(242,237,230,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--paper); }
+  .footer-logo span { color: var(--rust); }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mist); text-align: center; text-transform: uppercase; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .article-header { padding: 7rem 1.5rem 4rem; }
+    .article-body { padding: 3.5rem 1.5rem 5rem; }
+    .author-bio { padding: 2.5rem 1.5rem; }
+    .author-bio-inner { flex-direction: column; }
+    .back-link-bar { padding: 1.5rem; }
+    .blog-footer-cta { padding: 4rem 1.5rem; }
+    .sitemap-inner { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">RIDGELINE<span>.</span></a>
+  <div class="nav-links">
+    <div class="nav-item"><a href="/#how" class="nav-link">How It Works</a></div>
+    <div class="nav-item"><a href="/services/automation-build/" class="nav-link">Pricing</a></div>
+    <div class="nav-item"><a href="/about/" class="nav-link">About</a></div>
+    <div class="nav-item"><a href="/blog/" class="nav-link active">Blog</a></div>
+  </div>
+  <a class="nav-cta" href="/free-discovery-call/">Book Free Call →</a>
+  <button class="nav-hamburger" onclick="toggleMobileNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile-section">
+    <a href="/#how" class="nav-mobile-link">How It Works</a>
+    <a href="/services/automation-build/" class="nav-mobile-link">Pricing</a>
+    <a href="/about/" class="nav-mobile-link">About</a>
+    <a href="/blog/" class="nav-mobile-link">Blog</a>
+  </div>
+  <a href="/free-discovery-call/" class="nav-mobile-cta" onclick="document.getElementById('nav-mobile').classList.remove('open')">Book Free Call →</a>
+</div>
+
+<!-- ARTICLE HEADER -->
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="/blog/">Blog</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Operations</span>
+    </div>
+    <span class="post-tag">// Operations</span>
+    <h1 class="article-title">How to Spot a Broken Workflow in Your Business</h1>
+    <div class="article-meta">
+      <div class="meta-author">
+        <img src="/deshea-witcher.jpg" alt="DeShea Witcher" class="meta-avatar">
+        <span class="meta-author-name">DeShea Witcher</span>
+      </div>
+      <span class="meta-date">May 2026</span>
+      <span class="meta-read">11 min read</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+  <div class="article-body-inner">
+
+    <div class="definition-box">
+      <div class="definition-label">// Quick Answer</div>
+      <p>A workflow is broken when it produces unreliable output, costs more in labor than it saves, or stops working when one key person is out. The clearest signs are duplicate data entry, spreadsheet-as-database, approvals stuck in email, untrusted reports, customer complaints climbing, shrinking margins, no clear owner, and single points of failure. See three or more of those, and you do not have a slow workflow. You have a broken one.</p>
+    </div>
+
+    <p>A Roanoke practice manager called me last fall. Her front desk was working 50-hour weeks and she had just lost her second hire in six months. She thought she needed more people. What she had was a workflow that depended on three humans typing the same patient info into three different systems. We rebuilt it in 14 days. They gave back 23 hours a week.</p>
+
+    <p>That is the thing about broken workflows. They almost never announce themselves. They produce output. The team keeps moving. The owner keeps writing checks. And the cost only shows up later, in turnover, in shrinking margin, in the customer who left a 2-star review and never told you why.</p>
+
+    <p>This guide walks through the eight signs we look for during a <a href="/services/discovery-audit/">Workflow Discovery Audit</a>, what each one is actually costing you, and what to do once you spot them. Whether you are a business owner reading <a href="/owner-path/">the owner's automation playbook</a> or an ops lead working through <a href="/ops-path/">the operations manager's playbook</a>, the diagnostic is the same.</p>
+
+    <div class="takeaways-box">
+      <div class="takeaways-label">// Key Takeaways</div>
+      <ul>
+        <li>A workflow is "broken" when the cost to run it exceeds what it produces in time, money, or trust.</li>
+        <li>The eight most common signs: duplicate data entry, spreadsheet-as-database, lost approvals, untrusted data, rising customer complaints, shrinking margins, no clear owner, and single points of failure.</li>
+        <li>Most broken workflows hide in plain sight because they technically work.</li>
+        <li>Diagnosing the symptom is easy. Finding the root cause takes a structured audit.</li>
+        <li>If you see three or more signs in your business, the workflow is broken, not slow.</li>
+      </ul>
+    </div>
+
+    <h2>What Counts as a "Broken" Workflow?</h2>
+
+    <p>A broken workflow is not a slow one. It is a process that produces unreliable output, costs more in labor than it saves, or fails completely when one key person is absent. That distinction matters because the fix is different. Slow workflows get optimized. Broken workflows get rebuilt.</p>
+
+    <div class="definition-box">
+      <div class="definition-label">// Broken vs. Inefficient</div>
+      <p>A <strong>broken workflow</strong> produces unreliable output, costs more in labor than it saves, or breaks when one key person is absent.</p>
+      <p>An <strong>inefficient workflow</strong> still works reliably but takes longer than it should.</p>
+      <p>The fix is different. Inefficient gets optimized. Broken gets rebuilt.</p>
+    </div>
+
+    <p>This is also why most automation projects fail. Owners try to automate a workflow that needs to be redesigned first. You end up with a faster broken process. According to <a href="https://asana.com/resources/anatomy-of-work" target="_blank" rel="noopener">Asana's Anatomy of Work Index</a>, knowledge workers spend about 58% of their week on "work about work" rather than the skilled work they were hired to do. Most of that is workflow friction nobody mapped.</p>
+
+    <h2>8 Signs You Have a Broken Workflow</h2>
+
+    <p>Each sign below comes with the rough hourly or dollar cost we see at small businesses across the Roanoke Valley. Skim them honestly. If you see three or more in your business, schedule an audit. If you see five or more, stop reading and call someone.</p>
+
+    <span class="step-label">// Sign 01</span>
+    <h3>You're Doing Duplicate Data Entry</h3>
+
+    <p>Duplicate data entry means the same information gets typed into two or more systems by hand. It is the single most common sign of a broken workflow, and the easiest one to spot once you go looking.</p>
+
+    <p>A 5-person team doing 10 hours a week of duplicate entry burns $30,000 to $50,000 a year in labor for zero new output. Error rates also climb with every retype — a transposed digit, a wrong checkbox, a missed field. Every manual transfer is a place where the data splits from the truth.</p>
+
+    <p>What it looks like in practice: a small medical office re-typing patient info into the EHR, the billing system, and the SMS reminder tool. Same patient. Three systems. Every visit. Or a job shop where the order arrives in email, gets copied to a spreadsheet, gets copied again to QuickBooks, and finally lands in the shop-floor schedule.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// From the Field</span>
+      <p>A Roanoke medical practice was losing 23 hours a week to manual patient intake re-entry across their EHR, billing, and reminder systems. We replaced it in 14 days. Their front desk got their afternoons back. <a href="/roanoke/healthcare/">Automation for Roanoke medical practices →</a></p>
+    </div>
+
+    <span class="step-label">// Sign 02</span>
+    <h3>Your "Database" Is a Spreadsheet</h3>
+
+    <p>When a spreadsheet becomes the system of record for orders, inventory, customers, or active projects, the workflow is structurally broken. It might still produce numbers. But it is one accidental delete away from disaster.</p>
+
+    <p>Spreadsheets do not enforce data rules. They cannot be audited. Multiple users editing the same file produce silent conflicts. Research consistently finds that the vast majority of business-critical spreadsheets contain material errors — and most owners discover the errors after decisions have already been made on them.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// Reality Check</span>
+      <p>Spreadsheets are great for analysis. They are terrible as the brain of your business. If your team would lose a week of work when one cell gets deleted, the spreadsheet has outgrown its job.</p>
+    </div>
+
+    <p>A spreadsheet becomes a database the day it has more than two regular editors and at least one formula nobody understands. That is the day it needs to move into a real system.</p>
+
+    <span class="step-label">// Sign 03</span>
+    <h3>Approvals Get Lost in Email</h3>
+
+    <p>When approval requests sit in email threads with no system tracking status, work stalls and decisions take days instead of hours. The visible cost is the delay. The hidden cost is the work that piled up behind it.</p>
+
+    <p><a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">McKinsey research</a> has consistently shown knowledge workers spend roughly 28% of their week on email. A meaningful chunk of that is workflow signal trapped in inboxes — approval requests, status pings, "did you see my last note?"</p>
+
+    <p>What it looks like in practice: a professional services firm where every PO over $500 needs the owner's signoff. Half the requests sit unread for four days because they are buried under newsletters and CC chains. By the time the owner clears the inbox on Friday, the vendor has moved on to next week's slot.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// Pro Tip</span>
+      <p>If your team uses the phrase "I emailed you last week about this" more than twice a day, your approval workflow is broken. Move it out of email. A <a href="/services/discovery-audit/">Workflow Discovery Audit</a> usually turns up two or three approval bottlenecks the owner did not know existed.</p>
+    </div>
+
+    <span class="step-label">// Sign 04</span>
+    <h3>Nobody Trusts the Data</h3>
+
+    <p>When two reports from the same system show different numbers and the team debates which is right, the workflow that produced both is broken. You are now spending energy reconciling instead of deciding.</p>
+
+    <p>Decisions made on bad data are worse than no decisions. You waste time and you move in the wrong direction. <a href="https://www.gartner.com/" target="_blank" rel="noopener">Gartner</a> has estimated poor data quality costs the average organization $12.9 million a year — scaled to a 25-person business, that is still tens of thousands a year in misallocated effort.</p>
+
+    <p>What it looks like in practice: the CRM says the pipeline is $400k. The sales lead's spreadsheet says $520k. The owner spends two hours on Sunday reconciling, then goes into Monday's planning meeting still unsure which number to trust. Decisions get hedged. Velocity slows.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// Did You Know</span>
+      <p>When two reports disagree, the most common root cause is not bad data entry. It is two different definitions of the same metric in two different systems. That is a workflow design problem, not a people problem. The <a href="/ops-path/">operations manager's playbook</a> walks through how to surface those mismatches.</p>
+    </div>
+
+    <div class="inline-cta">
+      <p><strong>Stop guessing whether your workflow is broken.</strong></p>
+      <p>Ridgeline's <a href="/services/discovery-audit/">Workflow Discovery Audit</a> is a $750 flat-fee, on-site workflow audit. We map every step, find the breaks, and hand you a fixed-fee plan to rebuild what is broken. The $750 credits back when you say yes to the build. Average kickoff-to-live: 11 days.</p>
+      <a href="/services/discovery-audit/" class="btn-inline">Book Your Workflow Discovery Audit →</a>
+    </div>
+
+    <span class="step-label">// Sign 05</span>
+    <h3>Customer Complaints Are Climbing</h3>
+
+    <p>When customers complain about late delivery, wrong invoices, or missed follow-ups, the root cause is almost never the front-line rep. It is the workflow behind the rep that is failing.</p>
+
+    <p>Customer acquisition costs five to seven times more than customer retention, according to research by <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">Frederick Reichheld published in HBR</a>. Every churned customer is paying the price of your workflow problem.</p>
+
+    <p>What it looks like in practice: a customer requests a project status update. The rep has to chase three internal people across email and Slack to answer. By the time they respond, two days later, the customer has already left a 2-star review about communication. The rep gets blamed for "poor follow-through." The actual problem is that status info lives in nobody's system.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// Reality Check</span>
+      <p>When customers complain about your communication, they are really complaining about your workflow. Hiring a "customer success manager" will not fix it. They will just have a slightly nicer time chasing the same three people for the same answers.</p>
+    </div>
+
+    <p>The fix is to put status data somewhere the front-line rep can see it, in real time, without asking anyone. That is a workflow design call. We handle these as part of our <a href="/services/automation-build/">custom automation build</a> work.</p>
+
+    <span class="step-label">// Sign 06</span>
+    <h3>Margins Are Shrinking as Revenue Grows</h3>
+
+    <p>If top-line is up but margin is flat or declining, you are solving growth with manual labor instead of better systems. This is the single most expensive sign on the list. Most owners catch it 12 to 18 months too late, after they have already hired their way through it.</p>
+
+    <p>The math is simple. Every time revenue doubles, manual processes need to roughly double in labor. Systems-based processes do not. The gap between those two cost curves is what we call the automation tax. The longer you defer it, the worse the bill.</p>
+
+    <p>What it looks like in practice: a distribution business doubles revenue in 18 months. Hires four more people on the order-processing side. Two years later, net profit per dollar of revenue is down 15%. Owner thinks the problem is the new hires. The problem is the workflow they were hired to operate.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// From the Field</span>
+      <p>A Salem distribution company was scaling revenue but watching margins shrink. We rebuilt their order-to-invoice workflow and eliminated $84,000 in annual labor cost in 18 days. Same revenue. More margin. <a href="/salem/manufacturing/">Salem manufacturing automation →</a></p>
+    </div>
+
+    <span class="step-label">// Sign 07</span>
+    <h3>No One Owns It When It Breaks</h3>
+
+    <p>A workflow with no clear owner gets ignored until it fails publicly. Then everyone blames everyone else. By the time you assign blame, the cost is already paid.</p>
+
+    <p>Unowned workflows degrade silently. A field gets renamed. An integration token expires. A vendor pushes an undocumented API change at 2am. Nobody notices until a customer does. By then, the fix costs roughly three times what early detection would have cost.</p>
+
+    <p>What it looks like in practice: the lead form on the website stops sending submissions to the CRM. Marketing thinks IT owns it. IT thinks marketing owns it. The form silently swallows three weeks of leads before anyone realizes. The owner finds out from a follow-up call with a prospect who said "I never heard back from your team."</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// Pro Tip</span>
+      <p>Every critical workflow needs one named owner. Not a team. Not a department. One person who gets the alert when something breaks. If you cannot name that person in under three seconds, the workflow has no owner. This is also why an <a href="/services/maintenance-retainer/">automation maintenance retainer</a> is worth more than the build itself for any workflow your business actually depends on.</p>
+    </div>
+
+    <span class="step-label">// Sign 08</span>
+    <h3>It Breaks When One Person Is Out</h3>
+
+    <p>If your workflow depends on a single person knowing the steps, it is not really a workflow. It is a hostage situation. The business runs at the speed of that person's calendar.</p>
+
+    <p>Single points of failure are how small businesses lose two weeks of operations when someone takes vacation or quits. Owner and key-person dependency is one of the top blockers to small businesses scaling past 10 employees — and it is one of the first things we audit for.</p>
+
+    <p>What it looks like in practice: a small startup's billing process lives entirely in the founder's head. Founder takes a week off for a wedding. No invoices go out that week. Two weeks later, cash flow takes a real hit, and accounts receivable is buried under late notices.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// From the Trenches</span>
+      <p>Every founder we work with at <a href="/blacksburg/startups/">Blacksburg startups</a> has at least one workflow living in their own head. The first job of any audit is finding those, because they are the workflows most likely to nuke a quarter.</p>
+    </div>
+
+    <hr class="article-divider">
+
+    <h2>What to Do Once You've Spotted a Broken Workflow</h2>
+
+    <p>The fix sequence is always the same: map it, find the breaks, decide whether to optimize or rebuild, then automate the rebuild. Skipping the mapping step is the number-one reason automation projects fail. You will automate the breaks.</p>
+
+    <p>There are three honest paths to fixing it, in order of cost:</p>
+
+    <ol>
+      <li><strong>DIY map and fix it yourself.</strong> Free, but it costs 20 to 40 hours of owner or ops-lead time. Works if you have a technical operator on staff and two to three weekends to spend on it.</li>
+      <li><strong>DIY audit with a partner build.</strong> You map the workflow. A partner builds the rebuild. Splits the time investment. Good middle path if you understand the workflow deeply but do not want to learn n8n, webhooks, and API auth.</li>
+      <li><strong>Done-for-you audit.</strong> A partner maps it, scopes it, and builds it. Ridgeline's <a href="/services/discovery-audit/">Workflow Discovery Audit</a> is $750 flat, credited back when you say yes to the build. Average kickoff-to-live is 11 days.</li>
+    </ol>
+
+    <h3>DIY Workflow Audit vs. Done-for-You Audit</h3>
+
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>DIY Audit</th>
+            <th>Ridgeline Discovery Audit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost</td>
+            <td>$0 (your time)</td>
+            <td>$750 (credited toward build)</td>
+          </tr>
+          <tr>
+            <td>Time investment</td>
+            <td>20 to 40 hours over 2 to 4 weeks</td>
+            <td>1 hour kickoff + 1 hour review</td>
+          </tr>
+          <tr>
+            <td>Output</td>
+            <td>Whatever notes you take</td>
+            <td>Full map, scope, fixed-fee build plan</td>
+          </tr>
+          <tr>
+            <td>Root-cause confidence</td>
+            <td>Variable</td>
+            <td>High (40+ builds across Roanoke Valley)</td>
+          </tr>
+          <tr>
+            <td>What happens next</td>
+            <td>You figure it out</td>
+            <td>Optional fixed-fee build, avg 11 days to live</td>
+          </tr>
+          <tr>
+            <td>Best for</td>
+            <td>Technical operators with time</td>
+            <td>Owners who'd rather pay than learn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The most expensive option is the one most owners pick by default: do nothing, hire another person, and let the manual cost climb until the margin pain becomes obvious. That is the path the Salem distributor was on before we rebuilt their order-to-invoice flow.</p>
+
+    <h2>Why Roanoke Valley Business Owners Spot This Late</h2>
+
+    <p>Roanoke Valley businesses tend to spot broken workflows years after the breakage starts. The reasons are local and consistent.</p>
+
+    <p>First, most Carilion-orbit healthcare practices, Salem manufacturing operations, and Lynchburg professional services firms grew slowly and built workflows organically. There was never a rebuild moment. The systems compounded on top of each other for a decade.</p>
+
+    <p>Second, tech help locally splits between expensive enterprise consultants quoting six figures and generalist IT shops focused on networking and laptops. Neither owns workflow design. The gap in between is where small businesses lose hours every week with no one to call.</p>
+
+    <p>Third, the national automation agencies do not return calls under $50k. They market to mid-market. SMB owners get ghosted or routed to a junior who sets up one Zapier zap and disappears.</p>
+
+    <div class="article-pullquote">
+      <span class="callout-label">// From the Trenches</span>
+      <p>"We're local. We stay. We fix it when it breaks." That is the line we open most discovery calls with, because most owners we talk to have been burned by an out-of-state shop that built one workflow, sent the invoice, and stopped answering email. Learn more about <a href="/about/">the team at Ridgeline</a> and why we built the agency this way.</p>
+    </div>
+
+    <p>We have shipped 40+ workflows across the <a href="/roanoke/">Roanoke Valley</a>. Most of those builds started with an owner who realized only after the audit that they had been running a broken workflow for years.</p>
+
+    <hr class="article-divider">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">What is a broken workflow?</div>
+      <p class="faq-a">A broken workflow is a process that produces unreliable output, costs more in labor than it saves, or fails when one key person is absent. It is different from an inefficient workflow, which still works reliably but takes longer than it should. Broken workflows need to be rebuilt, not optimized. If you try to speed up a broken workflow with automation, you usually just automate the failure points faster.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do you know if a business process is inefficient versus broken?</div>
+      <p class="faq-a">An inefficient process is slow but reliable. A broken process produces wrong output, swallows hidden costs, or stops entirely when one person is unavailable. The simplest test: if you would be afraid to take a two-week vacation because of how this workflow runs, it is broken. If the workflow runs fine without you but you wish it ran faster, it is inefficient. The fixes are different.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What causes workflow bottlenecks?</div>
+      <p class="faq-a">The four most common causes are manual handoffs between systems, no single source of truth, approvals trapped in email instead of a tracked system, and unclear ownership when a workflow breaks. Each one adds friction. Stack three or four together and the workflow grinds. Most small business workflows fail because of two or three of these stacked, not one.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do you fix a broken workflow?</div>
+      <p class="faq-a">Map every step end-to-end on paper or in a diagramming tool. Find the breaks — handoffs, single points of failure, manual re-entry, untracked approvals. Decide whether each break should be optimized or rebuilt. Automate the rebuild. Skipping the mapping step is why most automation projects fail. A <a href="/services/discovery-audit/">Workflow Discovery Audit</a> is built around exactly this sequence.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Should I automate a broken workflow or fix it manually first?</div>
+      <p class="faq-a">Never automate a broken workflow as-is. You will just automate the breaks faster. Fix the design first, then automate. If your intake process drops 1 in 10 leads when done by hand, automating that same process will drop 1 in 10 leads at scale. The right sequence is always: map, redesign, then automate. A discovery audit handles the first two so the build is clean.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How much does it cost to audit and fix a broken workflow?</div>
+      <p class="faq-a">Ridgeline's <a href="/services/discovery-audit/">Workflow Discovery Audit</a> is $750 flat, credited toward the build if you move forward. Custom builds run $3,000 to $12,000 fixed-fee depending on scope. Maintenance is $400 to $1,200 a month if you want us to own monitoring and fixes after launch. Most clients see ROI within 60 to 90 days, especially in workflows that previously consumed 10 or more labor hours a week.</p>
+    </div>
+
+    <hr class="article-divider">
+
+    <h2>Spot It. Fix It. Move On.</h2>
+
+    <p>If you read through those eight signs and saw three or more in your business, stop reading. Book a Workflow Discovery Audit. The $750 credits back when you say yes to the build. Average build is 11 days to live.</p>
+
+    <p>You do not fix a broken workflow by adding people. You fix it by rebuilding the design. We do that for SMBs across <a href="/roanoke/">Roanoke</a>, <a href="/salem/">Salem</a>, <a href="/blacksburg/">Blacksburg</a>, <a href="/christiansburg/">Christiansburg</a>, <a href="/vinton/">Vinton</a>, and <a href="/lynchburg/">Lynchburg</a>.</p>
+
+    <p>We are local. We stay. We fix it when it breaks. <a href="/free-discovery-call/">Book a free 15-minute discovery call</a> and we will tell you honestly whether your workflow is broken or just slow.</p>
+
+  </div>
+</article>
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <img src="/deshea-witcher.jpg" alt="DeShea Witcher" class="author-bio-avatar">
+    <div>
+      <div class="author-bio-label">// Written by</div>
+      <div class="author-bio-name">DeShea Witcher</div>
+      <p class="author-bio-text">Founder of Ridgeline Automation. 15+ years in Roanoke, Virginia. I build and maintain workflow automations for local businesses — the kind of work that used to require an enterprise budget and a national vendor. Now it doesn't.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BACK TO BLOG -->
+<div class="back-link-bar">
+  <a href="/blog/" class="back-link">← Back to blog</a>
+</div>
+
+<!-- FOOTER CTA -->
+<section class="blog-footer-cta">
+  <div class="blog-footer-inner">
+    <h2 class="blog-footer-heading">Is your workflow broken or just slow?</h2>
+    <a href="/free-discovery-call/" class="btn-primary">Book Free Discovery Call →</a>
+  </div>
+</section>
+
+<section class="sitemap-section">
+  <div class="sitemap-inner">
+    <div>
+      <div class="sitemap-heading">Service Areas</div>
+      <a href="/roanoke/" class="sitemap-link">AI Automation — Roanoke, VA</a>
+      <a href="/salem/" class="sitemap-link">AI Automation — Salem, VA</a>
+      <a href="/blacksburg/" class="sitemap-link">AI Automation — Blacksburg, VA</a>
+      <a href="/christiansburg/" class="sitemap-link">AI Automation — Christiansburg, VA</a>
+      <a href="/vinton/" class="sitemap-link">AI Automation — Vinton, VA</a>
+      <a href="/lynchburg/" class="sitemap-link">AI Automation — Lynchburg, VA</a>
+    </div>
+    <div>
+      <div class="sitemap-heading">Services</div>
+      <a href="/services/discovery-audit/" class="sitemap-link">Workflow Discovery Audit</a>
+      <a href="/services/automation-build/" class="sitemap-link">Custom Automation Build</a>
+      <a href="/services/maintenance-retainer/" class="sitemap-link">Maintenance Retainer</a>
+      <a href="/free-discovery-call/" class="sitemap-link">Free Discovery Call</a>
+      <a href="/about/" class="sitemap-link">About DeShea Witcher</a>
+      <a href="/owner-path/" class="sitemap-link">For Business Owners</a>
+      <a href="/ops-path/" class="sitemap-link">For Operations Managers</a>
+    </div>
+    <div>
+      <div class="sitemap-heading">Industries</div>
+      <a href="/roanoke/healthcare/" class="sitemap-link">Healthcare Automation — Roanoke</a>
+      <a href="/salem/manufacturing/" class="sitemap-link">Manufacturing Automation — Salem</a>
+      <a href="/blacksburg/startups/" class="sitemap-link">Startup Ops Automation — Blacksburg</a>
+      <a href="/lynchburg/healthcare/" class="sitemap-link">Healthcare Automation — Lynchburg</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">RIDGELINE<span>.</span></div>
+  <div class="footer-info">Roanoke, Virginia &nbsp;·&nbsp; AI Automation for Local Business</div>
+  <a class="footer-link" href="/about/" style="margin-right:1.5rem;">About</a>
+  <a class="footer-link" href="mailto:hello@ridgelineautomation.io">hello@ridgelineautomation.io</a>
+</footer>
+
+</body>
+</html>

@@ -100,3 +100,4 @@ Location: Roanoke, Virginia
 - Blog — How to Calculate ROI on Automating a Workflow: https://ridgelineautomation.io/blog/how-to-calculate-roi-on-automating-a-workflow/
 - Blog — Kill the Monday Morning Report Scramble: https://ridgelineautomation.io/blog/kill-the-monday-morning-report-scramble/
 - Blog — Why Most Small Business Automation Projects Fail: https://ridgelineautomation.io/blog/why-most-small-business-automation-projects-fail/
+- Blog — How to Spot a Broken Workflow in Your Business: https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/

@@ -199,6 +199,17 @@ function toggleMobileNav(btn) {
   .failure-item.active .sign-label { color: rgba(242,237,230,0.75); }
   .failure-item.active .sign-n { color: #e05a30; }
 
+  /* ── BROKEN WORKFLOW VISUAL ── */
+  .broken-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .broken-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
+  .broken-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .broken-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .broken-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .broken-item .sign-label { color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .broken-item .sign-label { color: rgba(242,237,230,0.7); }
+  .broken-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .broken-item.active .sign-n { color: #e05a30; }
+
   /* ── COMING SOON BADGE ── */
   .coming-soon-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
 
@@ -287,6 +298,32 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: How to Spot a Broken Workflow -->
+      <a href="/blog/how-to-spot-a-broken-workflow-in-your-business/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Operations</span>
+            <span class="post-date">May 2026</span>
+          </div>
+          <div class="post-title">How to Spot a Broken Workflow in Your Business</div>
+          <p class="post-excerpt">Eight signs your workflow is broken — not just slow. Duplicate entry, untrusted reports, email-trapped approvals, shrinking margins as revenue climbs. See three, you have a problem. See five, stop reading and call someone.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual broken-visual">
+          <div class="broken-list">
+            <div class="broken-label">// 8 signs it's broken</div>
+            <div class="broken-item"><span class="sign-n">01</span><span class="sign-label">Duplicate Data Entry</span></div>
+            <div class="broken-item"><span class="sign-n">02</span><span class="sign-label">Spreadsheet as Database</span></div>
+            <div class="broken-item"><span class="sign-n">03</span><span class="sign-label">Approvals Lost in Email</span></div>
+            <div class="broken-item active"><span class="sign-n">04</span><span class="sign-label">Nobody Trusts the Data</span></div>
+            <div class="broken-item"><span class="sign-n">05</span><span class="sign-label">Customer Complaints Climbing</span></div>
+            <div class="broken-item"><span class="sign-n">06</span><span class="sign-label">Margins Shrinking</span></div>
+            <div class="broken-item"><span class="sign-n">07</span><span class="sign-label">No Clear Owner</span></div>
+            <div class="broken-item active"><span class="sign-n">08</span><span class="sign-label">Breaks When One Person Is Out</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: Why Automation Projects Fail -->
       <a href="/blog/why-most-small-business-automation-projects-fail/" class="post-card featured">
