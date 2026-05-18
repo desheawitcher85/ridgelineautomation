@@ -199,6 +199,17 @@ function toggleMobileNav(btn) {
   .failure-item.active .sign-label { color: rgba(242,237,230,0.75); }
   .failure-item.active .sign-n { color: #e05a30; }
 
+  /* ── MAP WORKFLOW VISUAL ── */
+  .map-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .map-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
+  .map-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .map-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .map-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .map-item .sign-label { color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .map-item .sign-label { color: rgba(242,237,230,0.7); }
+  .map-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .map-item.active .sign-n { color: #e05a30; }
+
   /* ── AI VS AUTO VISUAL ── */
   .ai-vs-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
   .av-compare { width: 100%; }
@@ -313,6 +324,31 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: How to Map a Workflow -->
+      <a href="/blog/how-to-map-a-workflow-before-you-automate-it/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Guide</span>
+            <span class="post-date">May 18, 2026</span>
+          </div>
+          <div class="post-title">How to Map a Workflow Before You Automate It</div>
+          <p class="post-excerpt">The 7-step framework Ridgeline uses on every audit. Walk it live, document inputs and triggers, mark every handoff and decision, find the bottleneck, decide what a machine handles versus what a human keeps. Total time: 4 to 8 hours.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual map-visual">
+          <div class="map-list">
+            <div class="map-label">// The 7-step framework</div>
+            <div class="map-item"><span class="sign-n">01</span><span class="sign-label">Pick One Workflow</span></div>
+            <div class="map-item"><span class="sign-n">02</span><span class="sign-label">Walk It Live</span></div>
+            <div class="map-item"><span class="sign-n">03</span><span class="sign-label">Document Inputs &amp; Triggers</span></div>
+            <div class="map-item active"><span class="sign-n">04</span><span class="sign-label">Mark Decisions &amp; Handoffs</span></div>
+            <div class="map-item"><span class="sign-n">05</span><span class="sign-label">Find the Bottleneck</span></div>
+            <div class="map-item"><span class="sign-n">06</span><span class="sign-label">Automate vs. Keep Manual</span></div>
+            <div class="map-item"><span class="sign-n">07</span><span class="sign-label">Hand Off to a Builder</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: AI vs Automation -->
       <a href="/blog/ai-vs-automation-whats-actually-different/" class="post-card featured">

@@ -118,6 +118,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ridgelineautomation.io/blog/how-to-map-a-workflow-before-you-automate-it/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ridgelineautomation.io/blog/ai-vs-automation-whats-actually-different/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

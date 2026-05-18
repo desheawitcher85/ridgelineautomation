@@ -102,3 +102,4 @@ Location: Roanoke, Virginia
 - Blog — Why Most Small Business Automation Projects Fail: https://ridgelineautomation.io/blog/why-most-small-business-automation-projects-fail/
 - Blog — How to Spot a Broken Workflow in Your Business: https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/
 - Blog — AI vs Automation: What's Actually Different: https://ridgelineautomation.io/blog/ai-vs-automation-whats-actually-different/
+- Blog — How to Map a Workflow Before You Automate It: https://ridgelineautomation.io/blog/how-to-map-a-workflow-before-you-automate-it/
