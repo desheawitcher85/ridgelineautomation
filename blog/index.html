@@ -199,6 +199,17 @@ function toggleMobileNav(btn) {
   .failure-item.active .sign-label { color: rgba(242,237,230,0.75); }
   .failure-item.active .sign-n { color: #e05a30; }
 
+  /* ── TIME WASTERS VISUAL ── */
+  .timewaste-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .tw-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
+  .tw-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .tw-item { display: flex; align-items: baseline; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .tw-item:first-of-type { border-top: 1px solid rgba(242,237,230,0.06); }
+  .tw-item .sign-label { color: rgba(242,237,230,0.45); transition: color 0.2s; }
+  .post-card.featured:hover .tw-item .sign-label { color: rgba(242,237,230,0.7); }
+  .tw-item.active .sign-label { color: rgba(242,237,230,0.75); }
+  .tw-item.active .sign-n { color: #e05a30; }
+
   /* ── MAP WORKFLOW VISUAL ── */
   .map-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
   .map-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
@@ -324,6 +335,29 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: 5 Biggest Time Wasters -->
+      <a href="/blog/the-5-biggest-time-wasters-in-small-business-ops/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Operations</span>
+            <span class="post-date">May 20, 2026</span>
+          </div>
+          <div class="post-title">The 5 Biggest Time Wasters in Small Business Operations</div>
+          <p class="post-excerpt">Manual data entry, hand-built reports, owners doing $15 work, meeting overload, and chasing approvals. Each one is a systems problem, not a discipline problem — and most can be engineered out in days.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual timewaste-visual">
+          <div class="tw-list">
+            <div class="tw-label">// 5 time wasters</div>
+            <div class="tw-item active"><span class="sign-n">01</span><span class="sign-label">Manual Data Entry</span></div>
+            <div class="tw-item"><span class="sign-n">02</span><span class="sign-label">Hand-Built Status Reports</span></div>
+            <div class="tw-item"><span class="sign-n">03</span><span class="sign-label">Owners Doing $15 Work</span></div>
+            <div class="tw-item"><span class="sign-n">04</span><span class="sign-label">Meeting &amp; Interruption Overload</span></div>
+            <div class="tw-item"><span class="sign-n">05</span><span class="sign-label">Chasing Info &amp; Approvals</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: How to Map a Workflow -->
       <a href="/blog/how-to-map-a-workflow-before-you-automate-it/" class="post-card featured">

@@ -103,3 +103,4 @@ Location: Roanoke, Virginia
 - Blog — How to Spot a Broken Workflow in Your Business: https://ridgelineautomation.io/blog/how-to-spot-a-broken-workflow-in-your-business/
 - Blog — AI vs Automation: What's Actually Different: https://ridgelineautomation.io/blog/ai-vs-automation-whats-actually-different/
 - Blog — How to Map a Workflow Before You Automate It: https://ridgelineautomation.io/blog/how-to-map-a-workflow-before-you-automate-it/
+- Blog — The 5 Biggest Time Wasters in Small Business Operations: https://ridgelineautomation.io/blog/the-5-biggest-time-wasters-in-small-business-ops/

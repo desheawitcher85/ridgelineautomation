@@ -118,6 +118,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ridgelineautomation.io/blog/the-5-biggest-time-wasters-in-small-business-ops/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ridgelineautomation.io/blog/how-to-map-a-workflow-before-you-automate-it/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
