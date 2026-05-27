@@ -199,6 +199,20 @@ function toggleMobileNav(btn) {
   .failure-item.active .sign-label { color: rgba(242,237,230,0.75); }
   .failure-item.active .sign-n { color: #e05a30; }
 
+  /* ── AUTOMATE OR HIRE VISUAL ── */
+  .hire-vs-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
+  .hv-compare { width: 100%; }
+  .hv-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .hv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(242,237,230,0.06); }
+  .hv-row.hv-header { border-top: none; padding-bottom: 0.3rem; border-bottom: 1px solid rgba(242,237,230,0.12); }
+  .hv-col { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 300; color: rgba(242,237,230,0.4); letter-spacing: 0.01em; transition: color 0.2s; }
+  .hv-col.header { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,237,230,0.25); }
+  .hv-row.active .hv-col { color: rgba(242,237,230,0.75); }
+  .hv-row.active .hv-col:first-child { color: var(--rust); }
+  .post-card.featured:hover .hv-col { color: rgba(242,237,230,0.65); }
+  .post-card.featured:hover .hv-row.active .hv-col { color: rgba(242,237,230,0.9); }
+  .post-card.featured:hover .hv-row.active .hv-col:first-child { color: #e05a30; }
+
   /* ── TIME WASTERS VISUAL ── */
   .timewaste-visual { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 2rem; aspect-ratio: auto; align-self: stretch; }
   .tw-list { width: 100%; display: flex; flex-direction: column; gap: 0; }
@@ -335,6 +349,32 @@ function toggleMobileNav(btn) {
   <div class="blog-main-inner">
     <p class="blog-section-label">// Latest posts</p>
     <div class="post-grid">
+
+      <!-- POST: Should You Automate It or Hire Someone -->
+      <a href="/blog/should-you-automate-it-or-hire-someone/" class="post-card featured">
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-tag">// Strategy</span>
+            <span class="post-date">May 27, 2026</span>
+          </div>
+          <div class="post-title">Should You Automate It or Hire Someone?</div>
+          <p class="post-excerpt">A five-question framework for making the call. Automate when the task is repetitive, rule-based, and stable. Hire when it needs judgment, empathy, or a relationship. Real cost numbers for both sides.</p>
+          <span class="post-read-more">Read post →</span>
+        </div>
+        <div class="post-card-visual hire-vs-visual">
+          <div class="hv-compare">
+            <div class="hv-label">// Automate or Hire?</div>
+            <div class="hv-row hv-header">
+              <span class="hv-col header">Automate</span>
+              <span class="hv-col header">Hire</span>
+            </div>
+            <div class="hv-row"><span class="hv-col">Repetitive rules</span><span class="hv-col">Judgment needed</span></div>
+            <div class="hv-row"><span class="hv-col">Same steps daily</span><span class="hv-col">Empathy required</span></div>
+            <div class="hv-row active"><span class="hv-col">10+ hrs/week →</span><span class="hv-col">Changes often</span></div>
+            <div class="hv-row"><span class="hv-col">High volume</span><span class="hv-col">Relationship-driven</span></div>
+          </div>
+        </div>
+      </a>
 
       <!-- POST: 5 Biggest Time Wasters -->
       <a href="/blog/the-5-biggest-time-wasters-in-small-business-ops/" class="post-card featured">
