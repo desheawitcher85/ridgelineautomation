@@ -17,16 +17,16 @@ DeShea Witcher is the founder of Ridgeline Automation. He has lived in Roanoke, 
 The engagement follows three steps:
 
 1. Free Discovery Call — 30-minute phone or video call. Free, no obligation. We assess whether automation is the right move and explain what the paid audit involves.
-2. Workflow Discovery Audit — $750 flat fee (credited to any build). 90-minute on-site session mapping workflows, identifying automation opportunities, and delivering a written roadmap with ROI estimates within 48 hours.
-3. Custom Automation Build — $3,000–$12,000 flat fee, scoped after audit. Average 11-day delivery. Full IP ownership transfers to client on handoff.
-4. Maintenance Retainer — $400–$1,200/month. Monthly monitoring, tuning, repair, and status reporting.
+2. Workflow Discovery Audit — Flat fee (credited to any build). 90-minute on-site session mapping workflows, identifying automation opportunities, and delivering a written roadmap with ROI estimates within 48 hours.
+3. Custom Automation Build — Flat fee, scoped after audit. Delivered in under a week. Full IP ownership transfers to client on handoff.
+4. Maintenance Retainer — Monthly. Tiers based on number and complexity of automations. Monthly monitoring, tuning, repair, and status reporting.
 
 ## Services
 
 - Free Discovery Call — Free, 30 minutes, no obligation. Entry point to all engagements.
-- Workflow Discovery Audit — $750 flat fee, credited to build. On-site workflow mapping and written ROI roadmap.
-- Custom Automation Build — $3,000–$12,000 flat fee. Scoped after audit. Average 11-day delivery. Full documentation and IP transfer.
-- Maintenance Retainer — $400–$1,200/month. Three tiers: Basic ($400, up to 3 automations), Standard ($750, up to 6 automations), Growth ($1,200, unlimited).
+- Workflow Discovery Audit — Flat fee, credited to build. On-site workflow mapping and written ROI roadmap.
+- Custom Automation Build — Flat fee. Scoped after audit. Delivered in under a week. Full documentation and IP transfer.
+- Maintenance Retainer — Monthly. Three tiers based on number and complexity of automations.
 
 ## Service Area
 
